@@ -1,0 +1,1 @@
+export { ArrowBackIcon } from "./components"
