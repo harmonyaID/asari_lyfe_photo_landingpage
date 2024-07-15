@@ -18,6 +18,7 @@
             }
         ],
         "paths": {
+            "@/book/*" : [ "./src/module/book/*" ],
             "@/*": [ "./src/*" ]
         }
     },
