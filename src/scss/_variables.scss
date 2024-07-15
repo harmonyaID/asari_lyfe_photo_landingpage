@@ -1,0 +1,57 @@
+@use "sass:map";
+
+$primary: #0099AB;
+$secondary: #009FB2;
+
+$grey: (
+    100: #18255C,
+    200: #26273B,
+    300: #454560,
+    400: #585858,
+    500: #6F708B,
+    600: #737373,
+    700: #ACADC1,
+    800: #EBEBEB,
+    900: #F4F4FA,
+);
+
+$body-color: map.get($grey, 200);
+$body-secondary-color: map.get($grey, 300);
+$body-tertiary-color: map.get($grey, 400);
+$body-bg: #ffffff;
+
+
+$input-btn-padding-x: .75rem - .0625rem;
+$input-btn-padding-y: .5rem - .0625rem;
+
+$input-border-color: #C9C9D8;
+$input-placeholder-color: #ACADC1;
+
+$form-label-margin-bottom: .25rem;
+
+$form-label-color: $body-secondary-color;
+$form-check-label-color: $body-secondary-color;
+
+$font-family-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+
+
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/variables-dark";
+
+$custom-colors: (
+    "accent"    : #009AAC,
+    "highlight" : #12636B,
+    "app-body"  : #F4F6F9,
+);
+
+@each $variant, $color in $grey {
+    $custom-colors: map.set($custom-colors, "grey-#{$variant}", $color);
+}
+
+$theme-colors: map.merge($theme-colors,$custom-colors);
+
+$custom-font-sizes: (
+    7: .75rem
+);
+
+$font-sizes: map.merge($font-sizes, $custom-font-sizes);
