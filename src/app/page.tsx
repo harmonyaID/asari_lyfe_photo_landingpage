@@ -1,5 +1,7 @@
 import { Logo } from "@/components/brandings";
 import { LinkButton } from "@/components/buttons";
+import { Facebook, Instagram, LinkedIn, XTwitter, Youtube } from "@/components/icons";
+import Link from "next/link";
 
 export default function Home() {
     return (
@@ -16,10 +18,48 @@ export default function Home() {
                 used to demonstrate the visual form of a document or a typeface without 
                 relying on meaningful content. Lorem ipsum 
             </p>
-            <div className="d-grid">
-                <LinkButton href="#" pill>
+            <div className="d-grid pb-3 mb-3">
+                <LinkButton href="/book" pill>
                     Book an Appointment
                 </LinkButton>
+            </div>
+            <div className="d-flex gap-3 justify-content-center align-items-center">
+                <Link
+                    href="#"
+                    className="social-icons rounded-circle"
+                >
+                    <Facebook/>
+                </Link>
+                <Link
+                    href="#"
+                    className="social-icons rounded-circle"
+                >
+                    <XTwitter
+                        width={18}
+                    />
+                </Link>
+                <Link
+                    href="#"
+                    className="social-icons rounded-circle"
+                >
+                    <Instagram/>
+                </Link>
+                <Link
+                    href="#"
+                    className="social-icons rounded-circle"
+                >
+                    <Youtube
+                        width={18}
+                    />
+                </Link>
+                <Link
+                    href="#"
+                    className="social-icons rounded-circle"
+                >
+                    <LinkedIn
+                        width={18}
+                    />
+                </Link>
             </div>
         </section>
     )
