@@ -2,6 +2,16 @@ import CopyPlugin from 'copy-webpack-plugin';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    output: 'export',
+    distDir: 'dist',
+    reactStrictMode: true,
+    swcMinify: true,
+    trailingSlash: true,
+    logging: {
+        fetches: {
+            fullUrl: true
+        }
+    },
     webpack: (config) => {
         config.plugins.push(
             new CopyPlugin({
