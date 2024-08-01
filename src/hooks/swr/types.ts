@@ -1,0 +1,1 @@
+export type SwrFetcherType = (...params : [string, ...unknown[]]) => Promise<any>
