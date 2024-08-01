@@ -1,0 +1,52 @@
+@import "vanillajs-datepicker/sass/datepicker-bs5";
+
+.datepicker-header {
+    .datepicker-controls {
+        padding: .5rem .5rem 0;
+
+        .view-switch {
+            font-size: .875rem;
+        }
+
+        .next-btn, .prev-btn {
+            font-size: 1.25rem;
+            color: var(--bs-primary);
+        }
+    }
+}
+
+.datepicker-main {
+    padding: .5rem;
+}
+
+.datepicker {
+    .days {
+        .dow {
+            color: var(--bs-primary)
+        }
+
+        .dow, .datepicker-cell {
+            font-size: .75rem;
+        }
+
+        .datepicker-cell {
+            &.range {
+                background-color: var(--bs-grey-500);
+            }
+
+            &.selected {
+                background-color: var(--bs-primary);
+            }
+
+            &.range-start:not(.selected), &.range-end:not(.selected) {
+                background-color: var(--bs-grey-400);
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+.datepicker-extra {
+    border-top: 1px solid #C9C9D8;
+    border-bottom: 1px solid #C9C9D8;
+}
