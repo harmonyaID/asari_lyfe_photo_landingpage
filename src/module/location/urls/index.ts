@@ -1,0 +1,1 @@
+export { GetLocationUrl } from "./location"
