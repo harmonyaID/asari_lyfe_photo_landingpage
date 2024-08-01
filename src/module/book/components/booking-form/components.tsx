@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Button } from "@/components/buttons";
 import { Checkbox, DatePicker, Input } from "@/components/inputs";
@@ -22,7 +22,7 @@ export const BookingForm : FC = () => {
         event.preventDefault()
 
         grecaptcha.ready(() => {
-            grecaptcha.execute(process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY, { action: 'submit' })
+            grecaptcha.execute(process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY as string, { action: 'submit' })
                 .then((token) => {
                     console.log(token)
                 })

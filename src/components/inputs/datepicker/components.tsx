@@ -2,7 +2,6 @@
 
 import { FC, useEffect, useLayoutEffect, useRef } from "react"
 import { DatePickerProps } from "./props"
-import { Datepicker } from "vanillajs-datepicker"
 import { DatepickerEvent } from "./types"
 
 export const DatePicker : FC<DatePickerProps> = ({
@@ -16,21 +15,18 @@ export const DatePicker : FC<DatePickerProps> = ({
     ...props
 }) => {
 
-    const dateRef   = useRef<Datepicker>()
+    const dateRef   = useRef<any>()
     const elemRef   = useRef<HTMLInputElement>(null)
     const changeRef = useRef(onChange)
 
     const inputId = id || `date-picker-${name}`
 
-    useLayoutEffect(() => {
-        changeRef.current = onChange
-    })
-
-
-    useEffect(() => {
+    const handleRenderPicker = async () => {
         if (!elemRef.current) {
             return
         }
+
+        const Datepicker = (await import("vanillajs-datepicker")).Datepicker
 
         dateRef.current = new Datepicker(elemRef.current, {
             buttonClass: 'btn',
@@ -47,6 +43,15 @@ export const DatePicker : FC<DatePickerProps> = ({
                 })
             }
         })
+    }
+
+    useLayoutEffect(() => {
+        changeRef.current = onChange
+    })
+
+
+    useEffect(() => {
+        handleRenderPicker()
     }, [])
 
 
