@@ -1,0 +1,1 @@
+export { useGetPolicy } from "./useGetPolicy"
