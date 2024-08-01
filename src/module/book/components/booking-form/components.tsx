@@ -3,6 +3,7 @@
 import { Button } from "@/components/buttons";
 import { Checkbox, DatePicker, Input } from "@/components/inputs";
 import { InputChangeHandler } from "@/helpers/changeHandlers/types";
+import { LocationSelect } from "@/module/location/components/location-select";
 import Link from "next/link";
 import { FC, FormEventHandler, useState } from "react";
 
@@ -72,12 +73,10 @@ export const BookingForm : FC = () => {
                     />
                 </div>
                 <div className="col-6 mb-3">
-                    <Input
-                        name="location"
-                        value={formData.location || ''}
-                        onChange={handleChange}
-                        label="Location"
+                    <LocationSelect
                         required
+                        value={formData.locationId || ''}
+                        onChange={handleChange}
                     />
                 </div>
                 <div className="col-6 mb-3">
