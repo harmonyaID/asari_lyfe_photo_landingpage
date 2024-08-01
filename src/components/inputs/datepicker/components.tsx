@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { FC, useEffect, useLayoutEffect, useRef } from "react"
 import { DatePickerProps } from "./props"
