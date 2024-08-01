@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/buttons";
-import { Checkbox, Input } from "@/components/inputs";
+import { Checkbox, DatePicker, Input } from "@/components/inputs";
 import { InputChangeHandler } from "@/helpers/changeHandlers/types";
 import Link from "next/link";
 import { FC, FormEventHandler, useState } from "react";
@@ -86,19 +86,16 @@ export const BookingForm : FC = () => {
                         value={formData.room || ''}
                         onChange={handleChange}
                         label="Room"
-                        required
                         placeholder="e.g HI-203"
                     />
                 </div>
                 <div className="col-12 mb-3">
-                    <Input
+                    <DatePicker
                         name="date"
                         value={formData.date || ''}
                         onChange={handleChange}
                         label="Date"
-                        type="date"
                         required
-                        placeholder="e.g 22/03/2024"
                     />
                 </div>
                 <div className="col-12 mb-3">
@@ -107,7 +104,7 @@ export const BookingForm : FC = () => {
                             <>
                                 I agree to the
                                 {' '}
-                                <Link href="privacy-policy">
+                                <Link href="/policy">
                                     Terms and Conditions
                                 </Link>
                             </>
