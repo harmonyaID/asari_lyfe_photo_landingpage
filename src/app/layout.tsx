@@ -1,9 +1,11 @@
+import "@/scss/main.scss"
+import "react-toastify/dist/ReactToastify.css"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
-import "@/scss/main.scss"
 import { BackdropPanel } from "@/components/panels/backdrop";
 import { MainPanel } from "@/components/panels/main/components";
 import Script from "next/script";
+import { ToastContainer } from "react-toastify";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +33,7 @@ export default function RootLayout({
                 <MainPanel>
                     { children }
                 </MainPanel>
+                <ToastContainer/>
                 <Script src="/js/bootstrap.js"/>
             </body>
         </html>

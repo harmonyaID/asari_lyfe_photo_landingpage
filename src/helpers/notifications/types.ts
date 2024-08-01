@@ -1,0 +1,1 @@
+export type NotifyFunction = (message: string, timeout?: number) => void
