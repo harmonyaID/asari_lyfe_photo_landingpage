@@ -21,7 +21,7 @@ export const MainPanel : FC<PropsWithChildren> = ({
                         © {year} Lyfe Foto
                     </div>
                     <div
-                        className="text-grey-400"
+                        className="text-grey-400 text-end"
                         title="credit"
                     >
                         Design & Development By Harmonya Indonesia
