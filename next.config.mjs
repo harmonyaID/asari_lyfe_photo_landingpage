@@ -2,6 +2,7 @@ import CopyPlugin from 'copy-webpack-plugin';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    distDir: 'dist',
     reactStrictMode: true,
     swcMinify: true,
     trailingSlash: true,
