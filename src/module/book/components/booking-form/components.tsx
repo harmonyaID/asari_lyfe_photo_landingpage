@@ -1,5 +1,6 @@
 "use client";
 
+import { Logo } from "@/components/brandings";
 import { Button } from "@/components/buttons";
 import { Checkbox, DatePicker, Input } from "@/components/inputs";
 import { InputChangeHandler } from "@/helpers/changeHandlers/types";
@@ -31,6 +32,12 @@ export const BookingForm : FC = () => {
 
     return (
         <section className="text-start">
+            <Link href="/">
+                <Logo
+                    size={64}
+                    className="mb-4 pb-2"
+                />
+            </Link>
             <h1 className="fw-light mb-2 page-title">
                 Record Your Memory <span className="fw-semibold">With Us</span>
             </h1>
