@@ -34,7 +34,7 @@ export const BookingForm : FC = () => {
         <section className="text-start">
             <Link href="/">
                 <Logo
-                    size={64}
+                    size={96}
                     className="mb-4 pb-2"
                 />
             </Link>
