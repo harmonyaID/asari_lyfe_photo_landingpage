@@ -1,3 +1,3 @@
 import { InputProps } from "../input";
 
-export type DatePickerProps = Omit<InputProps, 'type'>
+export type DatePickerProps = Omit<InputProps, 'type'|'min'>

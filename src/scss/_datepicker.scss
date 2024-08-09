@@ -11,6 +11,10 @@
         .next-btn, .prev-btn {
             font-size: 1.25rem;
             color: var(--bs-primary);
+
+            &:disabled {
+                color: var(--bs-primary-bg-subtle);
+            }
         }
     }
 }

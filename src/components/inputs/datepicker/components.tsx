@@ -31,6 +31,7 @@ export const DatePicker : FC<DatePickerProps> = ({
         dateRef.current = new Datepicker(elemRef.current, {
             buttonClass: 'btn',
             format: 'dd MM yyyy',
+            minDate: new Date,
         })
 
         elemRef.current.addEventListener('changeDate', (event) => {
