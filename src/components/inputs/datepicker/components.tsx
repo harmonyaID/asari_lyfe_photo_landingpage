@@ -3,6 +3,7 @@
 import { FC, useEffect, useLayoutEffect, useRef } from "react"
 import { DatePickerProps } from "./props"
 import { DatepickerEvent } from "./types"
+import { Datepicker } from "vanillajs-datepicker";
 
 export const DatePicker : FC<DatePickerProps> = ({
     className = '',
@@ -11,11 +12,13 @@ export const DatePicker : FC<DatePickerProps> = ({
     name,
     label = '',
     required = false,
+    maxNumberOfDates = 1,
+    datesDisabled = [],
     onChange,
     ...props
 }) => {
 
-    const dateRef   = useRef<any>()
+    const dateRef   = useRef<Datepicker>()
     const elemRef   = useRef<HTMLInputElement>(null)
     const changeRef = useRef(onChange)
 
@@ -26,12 +29,15 @@ export const DatePicker : FC<DatePickerProps> = ({
             return
         }
 
-        const Datepicker = (await import("vanillajs-datepicker")).Datepicker
+        const { Datepicker } = await import("vanillajs-datepicker")
 
         dateRef.current = new Datepicker(elemRef.current, {
             buttonClass: 'btn',
             format: 'dd MM yyyy',
             minDate: new Date,
+            maxNumberOfDates: maxNumberOfDates,
+            clearButton     : maxNumberOfDates > 1,
+            datesDisabled   : datesDisabled,
         })
 
         elemRef.current.addEventListener('changeDate', (event) => {
@@ -54,6 +60,30 @@ export const DatePicker : FC<DatePickerProps> = ({
     useEffect(() => {
         handleRenderPicker()
     }, [])
+
+    
+    useEffect(() => {
+        if (!dateRef.current) {
+            return
+        }
+
+        dateRef.current.setOptions({
+            maxNumberOfDates: maxNumberOfDates,
+            clearButton     : maxNumberOfDates > 1,
+        })
+    }, [maxNumberOfDates])
+
+    useEffect(() => {
+        if (!dateRef.current) {
+            return
+        }
+
+        dateRef.current.setOptions({
+            datesDisabled: datesDisabled
+        })
+
+        dateRef.current.refresh()
+    }, [datesDisabled])
 
 
     return (

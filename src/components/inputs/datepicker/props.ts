@@ -1,3 +1,6 @@
 import { InputProps } from "../input";
 
-export type DatePickerProps = Omit<InputProps, 'type'|'min'>
+export interface DatePickerProps extends Omit<InputProps, 'type'> {
+    maxNumberOfDates?   : number
+    datesDisabled?      : string[]
+}
