@@ -1,5 +1,5 @@
 import { BackButton } from "@/components/buttons";
-import { PolicySection } from "@/module/support/components/policy-section";
+import { PolicySection } from "@/support/components/policy-section";
 import { FC } from "react";
 
 const PolicyPage : FC = () => (
