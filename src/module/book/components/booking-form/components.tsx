@@ -4,13 +4,16 @@ import { Logo } from "@/components/brandings";
 import { Button } from "@/components/buttons";
 import { Checkbox, DatePicker, Input } from "@/components/inputs";
 import { InputChangeHandler } from "@/helpers/changeHandlers/types";
-import { LocationSelect } from "@/module/location/components/location-select";
+import { LocationSelect } from "@/location/components/location-select";
+import { DAY_OFFS } from "@/setting/constants";
+import { useFindScheduleSetting } from "@/setting/hooks";
 import Link from "next/link";
 import { FC, FormEventHandler, useState } from "react";
 
 export const BookingForm : FC = () => {
 
     const [formData, setFormData] = useState<Record<string, any>>({})
+    const { data: scheduleSetting, isLoading } = useFindScheduleSetting(DAY_OFFS, formData.locationId || 0)
 
     const handleChange : InputChangeHandler = ({name, value}) => {
         setFormData(prevState => ({
@@ -102,6 +105,7 @@ export const BookingForm : FC = () => {
                         onChange={handleChange}
                         label="Date"
                         required
+                        datesDisabled={scheduleSetting?.result?.value || []}
                     />
                 </div>
                 <div className="col-12 mb-3">
