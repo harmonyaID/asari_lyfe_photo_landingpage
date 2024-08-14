@@ -5,6 +5,7 @@ export interface CreatedBy {
 
 export interface BaseModel {
     id          : number
+    location?   : Location
     createdBy?  : CreatedBy
     createdAt?  : string
 }

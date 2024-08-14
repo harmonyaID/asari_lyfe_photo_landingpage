@@ -25,7 +25,7 @@ export const PolicySection : FC = () => {
 
     return (
         <div 
-            className="overflow-y-auto max-h-screen-60 min-h-screen-60"
+            className="overflow-y-auto max-h-lg-screen-60 min-h-screen-60"
             dangerouslySetInnerHTML={{
                 __html: data.result.content
             }}

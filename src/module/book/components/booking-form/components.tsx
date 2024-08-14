@@ -9,6 +9,7 @@ import { DAY_OFFS } from "@/setting/constants";
 import { useFindScheduleSetting } from "@/setting/hooks";
 import Link from "next/link";
 import { FC, FormEventHandler, useState } from "react";
+import { ScheduleSelect } from "../schedule-select";
 
 export const BookingForm : FC = () => {
 
@@ -49,7 +50,7 @@ export const BookingForm : FC = () => {
             </p>
             <form
                 onSubmit={handleSubmit}
-                className="row"
+                className="row overflow-y-auto max-h-lg-screen-60 min-h-screen-60"
             >
                 <div className="col-12 mb-3">
                     <Input
@@ -109,6 +110,15 @@ export const BookingForm : FC = () => {
                     />
                 </div>
                 <div className="col-12 mb-3">
+                    <ScheduleSelect
+                        required
+                        value={formData.scheduleId}
+                        onChange={handleChange}
+                        date={formData.date}
+                        locationId={formData.locationId}
+                    />
+                </div>
+                <div className="col-12 mb-3">
                     <Checkbox
                         label={(
                             <>
@@ -127,7 +137,7 @@ export const BookingForm : FC = () => {
                 <div className="col-12 mb-3 text-danger fst-italic">
                     *required field
                 </div>
-                <div className="col-12">
+                <div className="col-12 mb-3">
                     <div className="d-grid">
                         <Button 
                             type="submit"
