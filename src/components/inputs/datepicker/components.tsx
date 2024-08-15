@@ -38,6 +38,7 @@ export const DatePicker : FC<DatePickerProps> = ({
             maxNumberOfDates: maxNumberOfDates,
             clearButton     : maxNumberOfDates > 1,
             datesDisabled   : datesDisabled,
+            autohide        : true
         })
 
         elemRef.current.addEventListener('changeDate', (event) => {

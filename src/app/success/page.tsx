@@ -1,18 +1,33 @@
+import { BookingNumber } from "@/book/components/booking-number";
 import { LinkButton } from "@/components/buttons";
 import { SuccessIcon } from "@/components/icons";
 import { FC } from "react";
 
-const SuccessPage : FC = () => (
+interface Props {
+    params: any
+    searchParams: Record<string, string | string[] | undefined>
+}
+
+const SuccessPage : FC<Props> = ({
+    searchParams
+}) => (
     <section>
         <div className="pb-3 mb-5">
             <SuccessIcon/>
         </div>
         <h1 className="pb-2 mb-1 page-title bold">
-            BOOKING SUccess
+            BOOKING SUCESS
         </h1>
-        <p className="fw-light pb-5 mb-1">
-            Successfully bookedd an appointment, our team will reach you as soon as possible
+        <p className="fw-light mb-1">
+            Successfully booked an appointment, our team will reach you as soon as possible
         </p>
+        <p className="fw-light mb-1">
+            Booking number
+        </p>
+        <BookingNumber
+            number={searchParams.number as string || ''}
+            className="mb-5"
+        />
         <div className="d-grid">
             <LinkButton href="/" pill>
                 Back to Home

@@ -10,10 +10,29 @@ import { useFindScheduleSetting } from "@/setting/hooks";
 import Link from "next/link";
 import { FC, FormEventHandler, useState } from "react";
 import { ScheduleSelect } from "../schedule-select";
+import { CreateBookingFormdata } from "@/book/types";
+import { createBooking } from "@/book/services";
+import { useRouter } from "next/navigation";
+import { Loader } from "@/components/misc";
 
 export const BookingForm : FC = () => {
 
-    const [formData, setFormData] = useState<Record<string, any>>({})
+    const router = useRouter()
+
+    const [isSending, setIsSending] = useState(false)
+    const [formData, setFormData] = useState<CreateBookingFormdata>({
+        source          : 'Website',
+        recaptchaToken  : '',
+        recaptchaAction : '',
+        date            : '',
+        locationId      : 0,
+        scheduleId      : 0,
+        name            : '',
+        email           : '',
+        phone           : '',
+        roomNumber      : '',
+        compilance      : false,
+    })
     const { data: scheduleSetting, isLoading } = useFindScheduleSetting(DAY_OFFS, formData.locationId || 0)
 
     const handleChange : InputChangeHandler = ({name, value}) => {
@@ -26,10 +45,35 @@ export const BookingForm : FC = () => {
     const handleSubmit : FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault()
 
+        if (isSending) {
+            return
+        }
+
+        setIsSending(true)
+
+        const action = 'submit'
+
         grecaptcha.ready(() => {
-            grecaptcha.execute(process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY as string, { action: 'submit' })
+            grecaptcha.execute(process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY as string, { action: action })
                 .then((token) => {
-                    console.log(token)
+                    const formRequest : CreateBookingFormdata = {
+                        ...formData,
+                        recaptchaToken  : token,
+                        recaptchaAction : action
+                    }
+
+                    createBooking(formRequest)
+                        .then(response => {
+                            if (!response?.result) {
+                                return
+                            }
+
+                            const number = response.result.number
+                            router.push(`/success?number=${number}`,)
+                        })
+                        .finally(() => {
+                            setIsSending(false)
+                        })
                 })
         })
     }
@@ -92,8 +136,8 @@ export const BookingForm : FC = () => {
                 </div>
                 <div className="col-6 mb-3">
                     <Input
-                        name="room"
-                        value={formData.room || ''}
+                        name="roomNumber"
+                        value={formData.roomNumber || ''}
                         onChange={handleChange}
                         label="Room"
                         placeholder="e.g HI-203"
@@ -132,6 +176,7 @@ export const BookingForm : FC = () => {
                         name="compilance"
                         checked={formData.compilance}
                         onChange={handleChange}
+                        required
                     />
                 </div>
                 <div className="col-12 mb-3 text-danger fst-italic">
@@ -141,8 +186,14 @@ export const BookingForm : FC = () => {
                     <div className="d-grid">
                         <Button 
                             type="submit"
+                            disabled={isSending}
                             pill
                         >
+                            <Loader 
+                                small 
+                                hidden={!isSending} 
+                                className="me-2"
+                            />
                             Book an Appointment
                         </Button>
                     </div>
