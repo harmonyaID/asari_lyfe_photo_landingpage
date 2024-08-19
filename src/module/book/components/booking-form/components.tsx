@@ -14,6 +14,7 @@ import { CreateBookingFormdata } from "@/book/types";
 import { createBooking } from "@/book/services";
 import { useRouter } from "next/navigation";
 import { Loader } from "@/components/misc";
+import { BOOKING_NUMBER } from "@/configs/session-storage-keys";
 
 export const BookingForm : FC = () => {
 
@@ -69,7 +70,8 @@ export const BookingForm : FC = () => {
                             }
 
                             const number = response.result.number
-                            router.push(`/success?number=${number}`,)
+                            sessionStorage.setItem(BOOKING_NUMBER, number)
+                            router.push(`/success`,)
                         })
                         .finally(() => {
                             setIsSending(false)

@@ -1,17 +1,18 @@
 'use client';
 
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { BookingNumberProps } from "./props";
 import { notifyError } from "@/helpers/notifications";
+import { BOOKING_NUMBER } from "@/configs/session-storage-keys";
 
 export const BookingNumber : FC<BookingNumberProps> = ({
-    number,
     className = ''
 }) => {
     const [recentlyClicked, setRecentlyClicked] = useState(false)
+    const [number, setNumber] = useState('')
 
     const handleClick = () => {
-        if (recentlyClicked) {
+        if (recentlyClicked || !number) {
             return
         }
 
@@ -28,6 +29,15 @@ export const BookingNumber : FC<BookingNumberProps> = ({
         }
 
     }
+
+    useEffect(() => {
+        const num = sessionStorage.getItem(BOOKING_NUMBER)
+        if (!num) {
+            return
+        }
+
+        setNumber(num)
+    }, [])
 
     return (
         <p 

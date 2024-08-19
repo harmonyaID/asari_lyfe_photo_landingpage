@@ -3,14 +3,7 @@ import { LinkButton } from "@/components/buttons";
 import { SuccessIcon } from "@/components/icons";
 import { FC } from "react";
 
-interface Props {
-    params: any
-    searchParams: Record<string, string | string[] | undefined>
-}
-
-const SuccessPage : FC<Props> = ({
-    searchParams
-}) => (
+const SuccessPage : FC = () => (
     <section>
         <div className="pb-3 mb-5">
             <SuccessIcon/>
@@ -25,7 +18,6 @@ const SuccessPage : FC<Props> = ({
             Booking number
         </p>
         <BookingNumber
-            number={searchParams.number as string || ''}
             className="mb-5"
         />
         <div className="d-grid">
