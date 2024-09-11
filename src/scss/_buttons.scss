@@ -2,4 +2,9 @@
     &:checked + .btn-outline-primary {
         color: var(--bs-white);
     }
+    &:disabled + .btn-outline-primary {
+        border-color: var(--bs-grey-700);
+        color: var(--bs-grey-900);
+        background-color: var(--bs-grey-700);
+    }
 }
