@@ -19,8 +19,8 @@ export const SuccessIcon : FC<IconProps> = ({
             fill="#009FB2"
         />
         <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M44.5625 57L68.1875 33.375L77 42.1875L44.5625 74.625L27 57.0625L35.8125 48.25L44.5625 57ZM71.1042 42.1875L68.1875 39.2708L44.5625 62.8958L35.8125 54.1458L32.8958 57.0625L44.5625 68.7292L71.1042 42.1875Z"
             fill="white"
         />

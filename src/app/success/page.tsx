@@ -1,10 +1,12 @@
 import { BookingNumber } from "@/book/components/booking-number";
+import { SuccessNotification } from "@/book/components/success-notification";
 import { LinkButton } from "@/components/buttons";
 import { SuccessIcon } from "@/components/icons";
 import { FC } from "react";
 
 const SuccessPage : FC = () => (
     <section>
+        <SuccessNotification/>
         <div className="pb-3 mb-5">
             <SuccessIcon/>
         </div>
@@ -12,8 +14,7 @@ const SuccessPage : FC = () => (
             BOOKING SUCESS
         </h1>
         <p className="fw-light mb-1">
-            Photo session successfully booked, our admin will contact you through
-            your Whatsapp number or email address
+            Successfully booked an appointment, our team will reach you as soon as possible
         </p>
         <p className="fw-light mb-1">
             Booking number

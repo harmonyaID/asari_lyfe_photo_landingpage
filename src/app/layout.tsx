@@ -29,12 +29,12 @@ export default function RootLayout({
                     "d-flex"
                 }`}
             >
+                <Script src="/js/bootstrap.js"/>
                 <BackdropPanel/>
                 <MainPanel>
                     { children }
                 </MainPanel>
                 <ToastContainer/>
-                <Script src="/js/bootstrap.js"/>
             </body>
         </html>
     )
