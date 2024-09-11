@@ -12,7 +12,8 @@ const SuccessPage : FC = () => (
             BOOKING SUCESS
         </h1>
         <p className="fw-light mb-1">
-            Successfully booked an appointment, our team will reach you as soon as possible
+            Photo session successfully booked, our admin will contact you through
+            your Whatsapp number or email address
         </p>
         <p className="fw-light mb-1">
             Booking number
