@@ -26,12 +26,14 @@ export const BookingForm : FC = () => {
         recaptchaToken  : '',
         recaptchaAction : '',
         date            : '',
+        checkoutDate    : '',
         locationId      : 0,
         scheduleId      : 0,
         name            : '',
         email           : '',
         phone           : '',
         roomNumber      : '',
+        guests          : 0,
         compilance      : false,
     })
     const { data: scheduleSetting, isLoading } = useFindScheduleSetting(DAY_OFFS, formData.locationId || 0)
@@ -88,12 +90,9 @@ export const BookingForm : FC = () => {
                     className="mb-4 pb-2"
                 />
             </Link>
-            <h1 className="fw-light mb-2 page-title">
+            <h1 className="fw-light mb-3 page-title">
                 Record Your Memory <span className="fw-semibold">With Us</span>
             </h1>
-            <p className="mb-3">
-                Lorem ipsum dolor sit amet
-            </p>
             <form
                 onSubmit={handleSubmit}
                 className="row overflow-y-auto max-h-lg-screen-60 min-h-screen-60"
@@ -129,7 +128,7 @@ export const BookingForm : FC = () => {
                         placeholder="e.g 6281122223333"
                     />
                 </div>
-                <div className="col-6 mb-3">
+                <div className="col-12 mb-3">
                     <LocationSelect
                         required
                         value={formData.locationId || ''}
@@ -145,7 +144,17 @@ export const BookingForm : FC = () => {
                         placeholder="e.g HI-203"
                     />
                 </div>
-                <div className="col-12 mb-3">
+                <div className="col-6 mb-3">
+                    <Input
+                        name="guests"
+                        value={formData.guests || ''}
+                        onChange={handleChange}
+                        label="Number of Guest"
+                        placeholder="e.g 1"
+                        type="number"
+                    />
+                </div>
+                <div className="col-6 mb-3">
                     <DatePicker
                         name="date"
                         value={formData.date || ''}
@@ -153,6 +162,14 @@ export const BookingForm : FC = () => {
                         label="Date"
                         required
                         datesDisabled={scheduleSetting?.result?.value || []}
+                    />
+                </div>
+                <div className="col-6 mb-3">
+                    <DatePicker
+                        name="checkoutDate"
+                        value={formData.checkoutDate || ''}
+                        onChange={handleChange}
+                        label="Checkout Date"
                     />
                 </div>
                 <div className="col-12 mb-3">

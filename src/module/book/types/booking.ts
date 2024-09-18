@@ -16,6 +16,7 @@ export interface CreateBookingFormdata {
     recaptchaToken  : string
     recaptchaAction : string
     date            : string
+    checkoutDate    : string
     locationId      : number
     scheduleId      : number
     name            : string
@@ -23,4 +24,5 @@ export interface CreateBookingFormdata {
     phone           : string
     roomNumber      : string
     compilance      : boolean
+    guests          : number
 }
