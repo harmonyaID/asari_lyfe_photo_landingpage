@@ -14,7 +14,7 @@ import { CreateBookingFormdata } from "@/book/types";
 import { createBooking } from "@/book/services";
 import { useRouter } from "next/navigation";
 import { Loader } from "@/components/misc";
-import { BOOKING_NUMBER } from "@/configs/session-storage-keys";
+import { BOOKING_NUMBER, SUCCESS_MESSAGE } from "@/configs/session-storage-keys";
 
 export const BookingForm : FC = () => {
 
@@ -73,7 +73,13 @@ export const BookingForm : FC = () => {
 
                             const number = response.result.number
                             sessionStorage.setItem(BOOKING_NUMBER, number)
-                            router.push(`/success`,)
+
+                            const message = response.status.internalMsg
+                            if (message) {
+                                sessionStorage.setItem(SUCCESS_MESSAGE, message)
+                            }
+
+                            router.push(`/success`)
                         })
                         .finally(() => {
                             setIsSending(false)
@@ -159,7 +165,8 @@ export const BookingForm : FC = () => {
                         name="date"
                         value={formData.date || ''}
                         onChange={handleChange}
-                        label="Date"
+                        label="Choose Session Date"
+                        placeholder="e.g. 30 September 2024"
                         required
                         datesDisabled={scheduleSetting?.result?.value || []}
                     />
@@ -170,6 +177,7 @@ export const BookingForm : FC = () => {
                         value={formData.checkoutDate || ''}
                         onChange={handleChange}
                         label="Checkout Date"
+                        placeholder="e.g. 2 October 2024"
                     />
                 </div>
                 <div className="col-12 mb-3">
