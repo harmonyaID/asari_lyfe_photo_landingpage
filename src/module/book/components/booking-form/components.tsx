@@ -74,9 +74,9 @@ export const BookingForm : FC = () => {
                             const number = response.result.number
                             sessionStorage.setItem(BOOKING_NUMBER, number)
 
-                            const message = response.status.internalMsg
-                            if (message) {
-                                sessionStorage.setItem(SUCCESS_MESSAGE, message)
+                            const successMsg = response.status.attributes
+                            if (successMsg) {
+                                sessionStorage.setItem(SUCCESS_MESSAGE, JSON.stringify(successMsg))
                             }
 
                             router.push(`/success`)

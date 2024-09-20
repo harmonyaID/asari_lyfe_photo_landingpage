@@ -1,0 +1,1 @@
+export type FormatPhoneNumber = (number: string) => string

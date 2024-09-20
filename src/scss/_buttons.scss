@@ -8,3 +8,9 @@
         background-color: var(--bs-grey-700);
     }
 }
+
+.btn-outline-primary {
+    &:hover {
+        color: var(--bs-white);
+    }
+}
