@@ -33,7 +33,7 @@ export const BookingForm : FC = () => {
         email           : '',
         phone           : '',
         roomNumber      : '',
-        guests          : 0,
+        paxQty          : 0,
         compilance      : false,
     })
     const { data: scheduleSetting, isLoading } = useFindScheduleSetting(DAY_OFFS, formData.locationId || 0)
@@ -152,8 +152,8 @@ export const BookingForm : FC = () => {
                 </div>
                 <div className="col-6 mb-3">
                     <Input
-                        name="guests"
-                        value={formData.guests || ''}
+                        name="paxQty"
+                        value={formData.paxQty || ''}
                         onChange={handleChange}
                         label="Number of Guest"
                         placeholder="e.g 1"

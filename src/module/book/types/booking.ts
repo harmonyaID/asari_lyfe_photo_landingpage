@@ -24,5 +24,5 @@ export interface CreateBookingFormdata {
     phone           : string
     roomNumber      : string
     compilance      : boolean
-    guests          : number
+    paxQty          : number
 }
