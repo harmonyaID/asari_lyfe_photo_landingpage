@@ -155,7 +155,7 @@ export const BookingForm : FC = () => {
                         name="paxQty"
                         value={formData.paxQty || ''}
                         onChange={handleChange}
-                        label="Number of Guest"
+                        label="PAX"
                         placeholder="e.g 1"
                         type="number"
                     />
