@@ -14,9 +14,10 @@ export default function Home() {
                 Record Your Memory <span className="fw-semibold">With Us</span>
             </h1>
             <p className="pb-1 mb-5">
-                In publishing and graphic design, Lorem ipsum is a placeholder text commonly
-                used to demonstrate the visual form of a document or a typeface without 
-                relying on meaningful content. Lorem ipsum 
+                At Lyfe Foto, we capture the moments that matter most.{' '}
+                Our passion is turning your special memories into lasting visual treasures.{' '}
+                Whether it{"'"}s a milestone celebration or everyday joy, we’re here to help you record your story.{' '}
+                Record Your Memory With Us.
             </p>
             <div className="d-grid pb-3 mb-3">
                 <LinkButton href="/book" pill>
@@ -25,41 +26,41 @@ export default function Home() {
             </div>
             <div className="d-flex gap-3 justify-content-center align-items-center">
                 <Link
-                    href="#"
+                    href="https://www.facebook.com/lyfefoto/"
                     className="social-icons rounded-circle"
                 >
                     <Facebook/>
                 </Link>
-                <Link
+                {/* <Link
                     href="#"
                     className="social-icons rounded-circle"
                 >
                     <XTwitter
                         width={18}
                     />
-                </Link>
+                </Link> */}
                 <Link
-                    href="#"
+                    href="https://www.instagram.com/lyfe.foto"
                     className="social-icons rounded-circle"
                 >
                     <Instagram/>
                 </Link>
-                <Link
+                {/* <Link
                     href="#"
                     className="social-icons rounded-circle"
                 >
                     <Youtube
                         width={18}
                     />
-                </Link>
-                <Link
+                </Link> */}
+                {/* <Link
                     href="#"
                     className="social-icons rounded-circle"
                 >
                     <LinkedIn
                         width={18}
                     />
-                </Link>
+                </Link> */}
             </div>
         </section>
     )
