@@ -27,12 +27,14 @@ export default function Home() {
             <div className="d-flex gap-3 justify-content-center align-items-center">
                 <Link
                     href="https://www.facebook.com/lyfefoto/"
+                    target="_blank"
                     className="social-icons rounded-circle"
                 >
                     <Facebook/>
                 </Link>
                 {/* <Link
                     href="#"
+                    target="_blank"
                     className="social-icons rounded-circle"
                 >
                     <XTwitter
@@ -41,12 +43,14 @@ export default function Home() {
                 </Link> */}
                 <Link
                     href="https://www.instagram.com/lyfe.foto"
+                    target="_blank"
                     className="social-icons rounded-circle"
                 >
                     <Instagram/>
                 </Link>
                 {/* <Link
                     href="#"
+                    target="_blank"
                     className="social-icons rounded-circle"
                 >
                     <Youtube
@@ -55,6 +59,7 @@ export default function Home() {
                 </Link> */}
                 {/* <Link
                     href="#"
+                    target="_blank"
                     className="social-icons rounded-circle"
                 >
                     <LinkedIn
