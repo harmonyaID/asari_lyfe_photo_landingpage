@@ -15,6 +15,7 @@ import { createBooking } from "@/book/services";
 import { useRouter } from "next/navigation";
 import { Loader } from "@/components/misc";
 import { BOOKING_NUMBER, SUCCESS_MESSAGE } from "@/configs/session-storage-keys";
+import { LanguageSelect } from "@/module/misc/components/language-select";
 
 export const BookingForm : FC = () => {
 
@@ -22,19 +23,21 @@ export const BookingForm : FC = () => {
 
     const [isSending, setIsSending] = useState(false)
     const [formData, setFormData] = useState<CreateBookingFormdata>({
-        source          : 'Website',
-        recaptchaToken  : '',
-        recaptchaAction : '',
-        date            : '',
-        checkoutDate    : '',
-        locationId      : 0,
-        scheduleId      : 0,
-        name            : '',
-        email           : '',
-        phone           : '',
-        roomNumber      : '',
-        paxQty          : 0,
-        compilance      : false,
+        source              : 'Website',
+        recaptchaToken      : '',
+        recaptchaAction     : '',
+        date                : '',
+        checkoutDate        : '',
+        locationId          : 0,
+        scheduleId          : 0,
+        preferredLanguage   : undefined,
+        preferredLanguageId : 0,
+        name                : '',
+        email               : '',
+        phone               : '',
+        roomNumber          : '',
+        paxQty              : 0,
+        compilance          : false,
     })
     const { data: scheduleSetting, isLoading } = useFindScheduleSetting(DAY_OFFS, formData.locationId || 0)
 
@@ -132,6 +135,18 @@ export const BookingForm : FC = () => {
                         type="tel"
                         required
                         placeholder="e.g 6281122223333"
+                    />
+                </div>
+                <div className="col-12 mb-3">
+                    <LanguageSelect
+                        name="preferredLanguageId"
+                        label="Preferred Language"
+                        value={
+                            formData?.preferredLanguageId && formData?.preferredLanguage ? (
+                                formData.preferredLanguage.id == formData.preferredLanguageId ? formData.preferredLanguage : formData.preferredLanguageId
+                            ) : formData.preferredLanguageId || 0
+                        }
+                        onChange={handleChange}
                     />
                 </div>
                 <div className="col-12 mb-3">
