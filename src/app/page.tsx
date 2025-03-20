@@ -14,7 +14,7 @@ export default function Home() {
                 Record Your Memory <span className="fw-semibold">With Us</span>
             </h1>
             <p className="pb-1 mb-5">
-                At Lyfe Foto, we capture the moments that matter most.{' '}
+                At { process.env.NEXT_PUBLIC_APP_NAME }, we capture the moments that matter most.{' '}
                 Our passion is turning your special memories into lasting visual treasures.{' '}
                 Whether it{"'"}s a milestone celebration or everyday joy, we’re here to help you record your story.{' '}
                 Record Your Memory With Us.

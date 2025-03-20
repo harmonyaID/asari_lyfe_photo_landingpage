@@ -10,8 +10,8 @@ import { ToastContainer } from "react-toastify";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Lyfe Foto",
-    description: "Lyfe Foto, A photography service",
+    title: process.env.NEXT_PUBLIC_APP_NAME,
+    description: `${process.env.NEXT_PUBLIC_APP_NAME}, A photography service`,
     icons: "/images/favicon.png"
 };
 

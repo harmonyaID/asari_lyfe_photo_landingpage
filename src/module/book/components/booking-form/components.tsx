@@ -16,8 +16,9 @@ import { useRouter } from "next/navigation";
 import { Loader } from "@/components/misc";
 import { BOOKING_NUMBER, SUCCESS_MESSAGE } from "@/configs/session-storage-keys";
 import { LanguageSelect } from "@/module/misc/components/language-select";
+import { BookingFormProps } from "./props";
 
-export const BookingForm : FC = () => {
+export const BookingForm : FC<BookingFormProps> = ({ location }) => {
 
     const router = useRouter()
 
@@ -28,7 +29,7 @@ export const BookingForm : FC = () => {
         recaptchaAction     : '',
         date                : '',
         checkoutDate        : '',
-        locationId          : 0,
+        locationId          : location ? location.id : 0,
         scheduleId          : 0,
         preferredLanguage   : undefined,
         preferredLanguageId : 0,
@@ -150,11 +151,21 @@ export const BookingForm : FC = () => {
                     />
                 </div>
                 <div className="col-12 mb-3">
-                    <LocationSelect
-                        required
-                        value={formData.locationId || ''}
-                        onChange={handleChange}
-                    />
+                    { !location ? (
+                        <LocationSelect
+                            required
+                            value={formData.locationId || ''}
+                            onChange={handleChange}
+                        />
+                    ) : (
+                        <Input
+                            name="location"
+                            label="Location"
+                            readOnly
+                            value={location.name || ''}
+                            className="border-white"
+                        />
+                    ) }
                 </div>
                 <div className="col-6 mb-3">
                     <Input
