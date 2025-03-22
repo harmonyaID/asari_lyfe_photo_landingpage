@@ -17,6 +17,10 @@ import { Loader } from "@/components/misc";
 import { BOOKING_NUMBER, SUCCESS_MESSAGE } from "@/configs/session-storage-keys";
 import { LanguageSelect } from "@/module/misc/components/language-select";
 import { BookingFormProps } from "./props";
+import { NameInput } from "../name-input";
+import { PhoneInput } from "../phone-input/components";
+import { BriefCustomer } from "@/book/types/customer";
+import { CustomerDetail } from "../customer-detail";
 
 export const BookingForm : FC<BookingFormProps> = ({ location }) => {
 
@@ -46,6 +50,22 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
         setFormData(prevState => ({
             ...prevState,
             [name] : value
+        }))
+    }
+
+    const handleSelectCustomer = (customer: BriefCustomer) => {
+        setFormData((prevState) => ({
+            ...prevState,
+            customer    : customer,
+            customerId  : customer.id
+        }))
+    }
+
+    const handleRemoveCustomer = () => {
+        setFormData((prevState) => ({
+            ...prevState,
+            customer    : undefined,
+            customerId  : undefined
         }))
     }
 
@@ -107,49 +127,64 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                 onSubmit={handleSubmit}
                 className="row overflow-y-auto max-h-lg-screen-60 min-h-screen-60"
             >
-                <div className="col-12 mb-3">
-                    <Input
-                        name="name"
-                        value={formData.name || ''}
-                        onChange={handleChange}
-                        label="Name"
-                        required
-                        placeholder="e.g Nama Saya Budi"
-                    />
-                </div>
-                <div className="col-12 mb-3">
-                    <Input
-                        name="email"
-                        value={formData.email || ''}
-                        onChange={handleChange}
-                        label="Email"
-                        type="email"
-                        placeholder="e.g budi@nama.saya"
-                    />
-                </div>
-                <div className="col-12 mb-3">
-                    <Input
-                        name="phone"
-                        value={formData.phone || ''}
-                        onChange={handleChange}
-                        label="Phone"
-                        type="tel"
-                        required
-                        placeholder="e.g 6281122223333"
-                    />
-                </div>
-                <div className="col-12 mb-3">
-                    <LanguageSelect
-                        name="preferredLanguageId"
-                        label="Preferred Language"
-                        value={
-                            formData?.preferredLanguageId && formData?.preferredLanguage ? (
-                                formData.preferredLanguage.id == formData.preferredLanguageId ? formData.preferredLanguage : formData.preferredLanguageId
-                            ) : formData.preferredLanguageId || 0
-                        }
-                        onChange={handleChange}
-                    />
-                </div>
+                { !formData.customer ? (
+                    <>
+                        <div className="col-12 mb-3">
+                            <NameInput
+                                name="name"
+                                value={formData.name || ''}
+                                onChange={handleChange}
+                                onSelect={handleSelectCustomer}
+                                label="Name"
+                                required
+                                placeholder="e.g Nama Saya Budi"
+                            />
+                        </div>
+                        <div className="col-12 mb-3">
+                            <Input
+                                name="email"
+                                value={formData.email || ''}
+                                onChange={handleChange}
+                                label="Email"
+                                type="email"
+                                placeholder="e.g budi@nama.saya"
+                            />
+                        </div>
+                        <div className="col-12 mb-3">
+                            <PhoneInput
+                                name="phone"
+                                value={formData.phone || ''}
+                                onChange={handleChange}
+                                onSelect={handleSelectCustomer}
+                                label="Phone"
+                                type="tel"
+                                required
+                                placeholder="e.g 6281122223333"
+                            />
+                        </div>
+                        <div className="col-12 mb-3">
+                            <LanguageSelect
+                                name="preferredLanguageId"
+                                label="Preferred Language"
+                                value={
+                                    formData?.preferredLanguageId && formData?.preferredLanguage ? (
+                                        formData.preferredLanguage.id == formData.preferredLanguageId ? formData.preferredLanguage : formData.preferredLanguageId
+                                    ) : formData.preferredLanguageId || 0
+                                }
+                                onChange={handleChange}
+                            />
+                        </div>
+                    </>
+                ) : (
+                    <div className="col-12 mb-3">
+                        <CustomerDetail
+                            className="rounded border border-grey-800"
+                            customer={formData.customer}
+                            closable
+                            onClose={handleRemoveCustomer}
+                        />
+                    </div>
+                )}
                 <div className="col-12 mb-3">
                     { !location ? (
                         <LocationSelect

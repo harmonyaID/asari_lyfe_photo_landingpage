@@ -1,6 +1,7 @@
 import { BaseModel } from "@/types/models"
 import { Schedule } from "./schedule"
 import { Language } from "@/module/misc/types"
+import { BriefCustomer } from "./customer"
 
 export interface Booking extends BaseModel {
     number            : string
@@ -18,6 +19,8 @@ export interface CreateBookingFormdata {
     recaptchaAction     : string
     date                : string
     checkoutDate        : string
+    customerId?         : number
+    customer?           : BriefCustomer
     locationId          : number
     scheduleId          : number
     name                : string

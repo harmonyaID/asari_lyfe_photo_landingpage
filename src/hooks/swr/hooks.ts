@@ -20,6 +20,6 @@ export const useSwr = <Data = any> (
     }, [url, filter])
 
     return useSWR<Response<Data>>(target, swrFetcher, {
-        shouldRetryOnError: false
+        shouldRetryOnError: false,
     })
 }
