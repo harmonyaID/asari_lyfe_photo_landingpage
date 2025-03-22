@@ -166,11 +166,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                             <LanguageSelect
                                 name="preferredLanguageId"
                                 label="Preferred Language"
-                                value={
-                                    formData?.preferredLanguageId && formData?.preferredLanguage ? (
-                                        formData.preferredLanguage.id == formData.preferredLanguageId ? formData.preferredLanguage : formData.preferredLanguageId
-                                    ) : formData.preferredLanguageId || 0
-                                }
+                                value={formData.preferredLanguageId || 0}
                                 onChange={handleChange}
                             />
                         </div>
