@@ -1,1 +1,1 @@
-export { NameInput } from "./components"
+export { PhoneInput } from "./components"

@@ -18,7 +18,7 @@ import { BOOKING_NUMBER, SUCCESS_MESSAGE } from "@/configs/session-storage-keys"
 import { LanguageSelect } from "@/module/misc/components/language-select";
 import { BookingFormProps } from "./props";
 import { NameInput } from "../name-input";
-import { PhoneInput } from "../phone-input/components";
+import { PhoneInput } from "../phone-input";
 import { BriefCustomer } from "@/book/types/customer";
 import { CustomerDetail } from "../customer-detail";
 
