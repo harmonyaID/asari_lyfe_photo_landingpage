@@ -20,17 +20,22 @@
 @import "~bootstrap/scss/modal";
 @import "~bootstrap/scss/spinners";
 @import "~bootstrap/scss/close";
+@import "~bootstrap/scss/navbar";
 
 @import "./grids";
 @import "./heights";
 
 @import "~bootstrap/scss/utilities/api";
 
+@import "./animations";
 @import "./buttons";
 @import "./cursors";
+@import "./custom";
 @import "./datepicker";
 @import "./flex";
 @import "./inputs";
 @import "./misc";
+@import "./navigations";
 @import "./panels";
 @import "./select";
+@import "./swiper";

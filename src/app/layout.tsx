@@ -1,13 +1,9 @@
 import "@/scss/main.scss"
 import "react-toastify/dist/ReactToastify.css"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import { BackdropPanel } from "@/components/panels/backdrop";
-import { MainPanel } from "@/components/panels/main/components";
 import Script from "next/script";
 import { ToastContainer } from "react-toastify";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Inter } from "@/configs/fonts";
 
 export const metadata: Metadata = {
     title: process.env.NEXT_PUBLIC_APP_NAME,
@@ -24,16 +20,13 @@ export default function RootLayout({
         <html lang="en">
             <body 
                 className={`${
-                    inter.className
+                    Inter.className
                 } ${
-                    "d-flex"
+                    "overflow-x-hidden"
                 }`}
             >
                 <Script src="/js/bootstrap.js"/>
-                <BackdropPanel/>
-                <MainPanel>
-                    { children }
-                </MainPanel>
+                { children }
                 <ToastContainer/>
             </body>
         </html>

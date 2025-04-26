@@ -1,5 +1,6 @@
 export { ArrowBackIcon } from "./arrow-back"
 export { ErrorIcon } from "./error"
+export { QuoteIcon } from "./quote"
 export { SuccessIcon } from "./success"
 export {
     Facebook,
@@ -8,3 +9,4 @@ export {
     XTwitter,
     Youtube
 } from "./social-icons"
+export { Star } from "./star"

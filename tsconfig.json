@@ -25,6 +25,9 @@
       "@/book/*": [
         "./src/module/book/*"
       ],
+      "@/landing/*": [
+        "./src/module/landing/*"
+      ],
       "@/location/*": [
         "./src/module/location/*"
       ],

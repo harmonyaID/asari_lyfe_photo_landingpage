@@ -1,0 +1,4 @@
+export { HotelBenefitSection } from "./hotel-benefit-section"
+export { IntroSection } from "./intro-section"
+export { SubjectSection } from "./subject-section"
+export { TestimonySection } from "./testimony-section"
