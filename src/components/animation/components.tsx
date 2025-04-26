@@ -6,11 +6,12 @@ import { AnimationObserverContext } from "./contexts"
 import { AnimationObserverContextType } from "./types"
 
 export const Animation : FC<AnimationProps> = ({
-    animation   = 'fade-in',
-    timing      = 'ease-out',
-    className   = '',
-    delay       = 0,
-    show        = false,
+    animation           = 'fade-in',
+    timing              = 'ease-out',
+    className           = '',
+    wrapperClassName    = '',
+    delay               = 0,
+    show                = false,
     children
 }) => {
     const elementRef = useRef<HTMLDivElement>(null)
@@ -54,6 +55,7 @@ export const Animation : FC<AnimationProps> = ({
             ref={elementRef}
             data-anim-delay={delay}
             data-anim-show={show ? 1 : 0}
+            className={wrapperClassName}
         >
             <div 
                 className={`${

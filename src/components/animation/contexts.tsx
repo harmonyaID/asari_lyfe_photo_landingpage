@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, FC, PropsWithChildren, useCallback, useEffect, useRef, useState } from "react";
+import { createContext, FC, PropsWithChildren, useCallback, useEffect, useState } from "react";
 import { AnimationObserverContextType } from "./types";
 
 export const AnimationObserverContext = createContext<AnimationObserverContextType | null>(null)
@@ -16,7 +16,12 @@ export const AnimationObserverProvider : FC<PropsWithChildren> = ({ children }) 
                 return
             }
 
-            if (entry.intersectionRatio <= .1) {
+            if (entry.intersectionRatio <= .1 && entry.boundingClientRect.y >= window.innerHeight * .9) {
+                if (target.dataset.animTimeoutId) {
+                    const timeoutId = parseInt(target.dataset.animTimeoutId)
+                    clearTimeout(timeoutId)
+                }
+
                 child.classList.remove('active')
                 return
             }
@@ -31,9 +36,11 @@ export const AnimationObserverProvider : FC<PropsWithChildren> = ({ children }) 
             }
 
             const delay = parseInt(target.dataset.animDelay)
-            setTimeout(() => {
+            const timeoutId = setTimeout(() => {
                 child.classList.add('active')
             }, delay)
+
+            target.setAttribute('data-anim-timeout-id', `${timeoutId}`)
         })
     }, [])
 
