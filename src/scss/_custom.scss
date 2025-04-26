@@ -222,3 +222,14 @@
 
     }
 }
+
+.gallery {
+    margin-top: 14.25rem;
+    margin-bottom: 14.25rem;
+    
+    .item {
+        &.singular {
+            height: 20rem;
+        }
+    }
+}
