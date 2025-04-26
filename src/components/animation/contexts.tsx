@@ -11,7 +11,6 @@ export const AnimationObserverProvider : FC<PropsWithChildren> = ({ children }) 
         entries.forEach((entry) => {
             const target    = entry.target as HTMLElement
             const child     = target.firstElementChild as HTMLElement
-            console.log(target, child, entry.intersectionRatio)
 
             if (target.dataset.animShow == '1') {
                 return

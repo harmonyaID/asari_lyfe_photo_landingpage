@@ -1,19 +1,15 @@
 import { Animation } from "@/components/animation";
-import { Section } from "@/components/layouts/section";
 import { Thumbnail } from "@/components/layouts/thumbnail";
 import { NunitoSans, VarelaRound } from "@/configs/fonts";
 import { FC } from "react";
 
 export const IntroSection : FC = () => (
-    <Section
-        id="intro"
-        observable
+    <section 
         className={`${
             "landing-container intro-section"
         } ${
             NunitoSans.className
         }`}
-        ratio={.35}
     >
         <div className="d-flex flex-column intro-flex align-items-stretch w-100">
             <div className="d-flex intro">
@@ -106,5 +102,5 @@ export const IntroSection : FC = () => (
                 </Animation>
             </div>
         </div>
-    </Section>
+    </section>
 )

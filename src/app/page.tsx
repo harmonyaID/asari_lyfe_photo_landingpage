@@ -4,16 +4,23 @@ import { HotelBenefitSection, IntroSection, SubjectSection, TestimonySection } f
 import { LandingProvider } from "./providers";
 import "swiper/css";
 import "swiper/css/pagination";
+import { Section } from "@/components/layouts/section";
 
 export default function Home() {
     return (
         <LandingProvider>
             <Navbar/>
             <MainHeadline/>
-            <IntroSection/>
-            <SubjectSection/>
-            <HotelBenefitSection/>
-            <TestimonySection/>
+            <Section
+                id="intro"
+                observable
+                ratio={.2}
+            >
+                <IntroSection/>
+                <SubjectSection/>
+                <HotelBenefitSection/>
+                <TestimonySection/>
+            </Section>
         </LandingProvider>
     )
 }

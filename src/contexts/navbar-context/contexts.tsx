@@ -43,7 +43,7 @@ export const NavbarProvider : FC<PropsWithChildren> = ({ children }) => {
         setObserver(new IntersectionObserver(handleChange, {
             root        : null,
             rootMargin  : "0px",
-            threshold   : [.1, .5, .8, 1]
+            threshold   : [.1, .15, .2, .25, .3, .35, .4, .45, .5, .55, .6, .65, .7, .75, .8, .85, .9, .95, 1]
         }))
 
         return () => {
