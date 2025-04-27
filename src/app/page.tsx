@@ -1,6 +1,6 @@
 import { MainHeadline } from "@/components/brandings";
 import { Navbar } from "@/components/navigations/navbar";
-import { GallerySection, HotelBenefitSection, IntroSection, SubjectSection, TestimonySection } from "@/landing/components";
+import { BookBtn, Footer, GallerySection, HotelBenefitSection, IntroSection, PartnerSection, SubjectSection, TestimonySection } from "@/landing/components";
 import { LandingProvider } from "./providers";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -22,6 +22,9 @@ export default function Home() {
                 <TestimonySection/>
             </Section>
             <GallerySection/>
+            <PartnerSection/>
+            <Footer/>
+            <BookBtn/>
         </LandingProvider>
     )
 }

@@ -7,6 +7,8 @@ export {
     Instagram,
     LinkedIn,
     XTwitter,
-    Youtube
+    Youtube,
+    PlainFacebook,
+    PlainInstagram
 } from "./social-icons"
 export { Star } from "./star"
