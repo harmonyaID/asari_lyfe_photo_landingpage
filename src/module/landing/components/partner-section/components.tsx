@@ -21,56 +21,79 @@ export const PartnerSection : FC = () => (
             <hr/>
         </header>
         <section className="partner-list landing-container d-flex justify-content-between">
-            <img
-                src="/images/logos/mason-pine.webp"
-                alt="Mason Pine"
-                title="Mason Pine"
-                height={120}
-                width="auto"
-            />
-            <img
-                src="/images/logos/intercontinental.webp"
-                alt="Intercontinental Bandung"
-                title="Intercontinental Bandung"
-                height={120}
-                width="auto"
-            />
-            <img
-                src="/images/logos/marriott.webp"
-                alt="Marriott Resort Lampung"
-                title="Marriott Resort Lampung"
-                height={120}
-                width="auto"
-            />
-            <img
-                src="/images/logos/le-eminence.webp"
-                alt="Le Eminence Puncak"
-                title="Le Eminence Puncak"
-                height={120}
-                width="auto"
-            />
+            <Animation
+                animation="slide-to-bottom"
+            >
+                <img
+                    src="/images/logos/mason-pine.webp"
+                    alt="Mason Pine"
+                    title="Mason Pine"
+                    height={120}
+                    width="auto"
+                />
+            </Animation>
+            <Animation
+                animation="slide-to-bottom"
+                delay={100}
+            >
+                <img
+                    src="/images/logos/intercontinental.webp"
+                    alt="Intercontinental Bandung"
+                    title="Intercontinental Bandung"
+                    height={120}
+                    width="auto"
+                />
+            </Animation>
+            <Animation
+                animation="slide-to-bottom"
+                delay={200}
+            >
+                <img
+                    src="/images/logos/marriott.webp"
+                    alt="Marriott Resort Lampung"
+                    title="Marriott Resort Lampung"
+                    height={120}
+                    width="auto"
+                />
+            </Animation>
+            <Animation
+                animation="slide-to-bottom"
+                delay={300}
+            >
+                <img
+                    src="/images/logos/le-eminence.webp"
+                    alt="Le Eminence Puncak"
+                    title="Le Eminence Puncak"
+                    height={120}
+                    width="auto"
+                />
+            </Animation>
         </section>
         <section className="landing-container">
-            <div
-                className={`${
-                    VarelaRound.className
-                } ${
-                    "bg-dark text-white d-flex align-items-center justify-content-between book position-relative"
-                }`}
+            <Animation
+                animation="fade-in"
             >
-                <h3 className="mb-0">
-                    Want memorable staycation photo service in your Hotel & Resort?
-                </h3>
-                <LinkButton
-                    href="/book"
+                <div
+                    className={`${
+                        VarelaRound.className
+                    } ${
+                        "bg-dark text-white d-flex align-items-center justify-content-between book position-relative"
+                    }`}
                 >
-                    Book Appointment Now
-                </LinkButton>
-                <img
-                    src="/images/misc/ornament.svg"
-                    className="ornament position-absolute"
-                />
-            </div>
+                    <h3 className="mb-0">
+                        Want memorable staycation photo service in your Hotel & Resort?
+                    </h3>
+                    <LinkButton
+                        href="/book"
+                    >
+                        Book Appointment Now
+                    </LinkButton>
+                    <img
+                        src="/images/misc/ornament.svg"
+                        className="ornament position-absolute"
+                    />
+                </div>
+            </Animation>
         </section>
     </Section>
 )
