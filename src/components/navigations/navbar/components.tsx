@@ -49,7 +49,8 @@ export const Navbar : FC = () => {
                         )) }
                         <LinkButton
                             href="/book"
-                            className="fs-7"
+                            className="fs-7 nav-book"
+                            target="_blank"
                         >
                             Book Appointment Now
                         </LinkButton>

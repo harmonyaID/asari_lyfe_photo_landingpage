@@ -24,7 +24,13 @@ export const TestimonySection : FC = () => (
             <Swiper
                 modules={[Pagination]}
                 spaceBetween={16}
-                slidesPerView={4}
+                slidesPerView={1}
+                breakpoints={{
+                    576: { slidesPerView: 1 },
+                    768: { slidesPerView: 2 },
+                    992: { slidesPerView: 3 },
+                    1200: { slidesPerView: 4 },
+                }}
                 pagination={{ clickable:true }}
                 className="summary-swiper w-100"
             >

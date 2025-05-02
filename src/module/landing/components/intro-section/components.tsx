@@ -12,8 +12,11 @@ export const IntroSection : FC = () => (
         }`}
     >
         <div className="d-flex flex-column intro-flex align-items-stretch w-100">
-            <div className="d-flex intro">
-                <Animation animation="slide-to-right">
+            <div className="d-grid grid-cols-lg-5 justify-content-stretch intro">
+                <Animation 
+                    animation="slide-to-right"
+                    wrapperClassName="grid-span-lg-3"
+                >
                     <h2 className={VarelaRound.className}>
                         Who We Are
                     </h2>
@@ -31,15 +34,21 @@ export const IntroSection : FC = () => (
                         Our Mission is To provide unforgettable photographic memories for families, children, and couples during their staycations, enhancing their hotel experience with professional photography and beautiful scenery
                     </p>
                 </Animation>
-                <Animation animation="slide-to-left">
+                <Animation 
+                    animation="slide-to-left"
+                    wrapperClassName="grid-span-lg-2"
+                >
                     <Thumbnail
                         src="/images/thumbnails/intro.webp"
                         alt="Introduction thumbnail"
                     />
                 </Animation>
             </div>
-            <div className="d-flex intro">
-                <Animation animation="slide-to-right">
+            <div className="d-grid grid-cols-lg-5 justify-content-stretch intro">
+                <Animation 
+                    animation="slide-to-right"
+                    wrapperClassName="grid-span-lg-2"
+                >
                     <Thumbnail
                         src="/images/thumbnails/value.webp"
                         alt="Value thumbnail"
@@ -47,6 +56,7 @@ export const IntroSection : FC = () => (
                 </Animation>
                 <Animation 
                     animation="slide-to-left"
+                    wrapperClassName="grid-span-lg-3"
                     className="text-end"
                 >
                     <h2 className={VarelaRound.className}>
@@ -69,8 +79,11 @@ export const IntroSection : FC = () => (
                     </p>
                 </Animation>
             </div>
-            <div className="d-flex intro">
-                <Animation animation="slide-to-right">
+            <div className="d-grid grid-cols-lg-5 intro">
+                <Animation 
+                    animation="slide-to-right"
+                    wrapperClassName="grid-span-lg-3"
+                >
                     <h2 className={VarelaRound.className}>
                         How It Works?
                     </h2>
@@ -94,7 +107,10 @@ export const IntroSection : FC = () => (
                     Guests can choose their favorite photo for a complimentary staycation gift in a frame and have the option to purchase digital files, larger prints, photobooks, etc., if they wish.
                     </p>
                 </Animation>
-                <Animation animation="slide-to-left">
+                <Animation 
+                    animation="slide-to-left"
+                    wrapperClassName="grid-span-lg-2"
+                >
                     <Thumbnail
                         src="/images/thumbnails/procedure.webp"
                         alt="Procedure thumbnail"

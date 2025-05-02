@@ -21,4 +21,9 @@ export const DummyTestimony : TestimonyItem[] = [
         message: 'Lorem ipsum dolor sit amet consectetur. Accumsan malesuada risus augue at. Lorem ipsum dolor sit amet consectetur. Accumsan malesuada risus augue at.Accumsan malesuada risus augue at.',
         stars: 4.25
     },
+    {
+        name: 'Lorem Ipsum',
+        message: 'Lorem ipsum dolor sit amet consectetur. Accumsan malesuada risus augue at. Lorem ipsum dolor sit amet consectetur. Accumsan malesuada risus augue at.Accumsan malesuada risus augue at.',
+        stars: 3.5
+    },
 ]

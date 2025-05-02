@@ -4,7 +4,7 @@ import { FC } from "react";
 
 export const SubjectSection : FC = () => (
     <section
-        className="d-grid grid-cols-2 w-100 subject"
+        className="d-grid grid-cols-lg-2 w-100 subject"
     >
         <div
             className="position-relative overflow-hidden"

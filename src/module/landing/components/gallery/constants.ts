@@ -1,0 +1,1 @@
+export const GalleryAmount = 10

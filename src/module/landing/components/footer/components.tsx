@@ -60,8 +60,8 @@ export const Footer : FC = () => {
                                 className="text-dark"
                             >
                                 <PlainInstagram
-                                    width="2rem"
-                                    height="2rem"
+                                    width="1.5rem"
+                                    height="1.5rem"
                                 />
                             </Link>
                             <Link
@@ -70,8 +70,8 @@ export const Footer : FC = () => {
                                 className="text-dark"
                             >
                                 <PlainFacebook
-                                    width="2rem"
-                                    height="2rem"
+                                    width="1.5rem"
+                                    height="1.5rem"
                                 />
                             </Link>
                         </div>
@@ -79,7 +79,7 @@ export const Footer : FC = () => {
                 </section>
                 <section>
                     <h2>Contact Us</h2>
-                    <div className="d-grid grid-cols-4 gap-5">
+                    <div className="d-grid grid-cols-md-2 grid-cols-xxl-4 gap-5">
                         { isLoading ? (
                             <></>
                         ) : error || data?.status?.code != 200 ? (
