@@ -19,8 +19,7 @@ export interface CreateBookingFormdata {
     recaptchaAction     : string
     date                : string
     checkoutDate        : string
-    customerId?         : number
-    customer?           : BriefCustomer
+    customerNumber      : string
     locationId          : number
     scheduleId          : number
     name                : string

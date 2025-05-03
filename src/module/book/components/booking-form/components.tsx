@@ -17,10 +17,7 @@ import { Loader } from "@/components/misc";
 import { BOOKING_NUMBER, SUCCESS_MESSAGE } from "@/configs/session-storage-keys";
 import { LanguageSelect } from "@/module/misc/components/language-select";
 import { BookingFormProps } from "./props";
-import { NameInput } from "../name-input";
-import { PhoneInput } from "../phone-input";
-import { BriefCustomer } from "@/book/types/customer";
-import { CustomerDetail } from "../customer-detail";
+import { UserCheck, UserPlus } from "react-feather";
 
 export const BookingForm : FC<BookingFormProps> = ({ location }) => {
 
@@ -37,6 +34,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
         scheduleId          : 0,
         preferredLanguage   : undefined,
         preferredLanguageId : 0,
+        customerNumber      : '',
         name                : '',
         email               : '',
         phone               : '',
@@ -46,26 +44,12 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
     })
     const { data: scheduleSetting, isLoading } = useFindScheduleSetting(DAY_OFFS, formData.locationId || 0)
 
+    const [status, setStatus] = useState<'new' | 'returning' | ''>('')
+
     const handleChange : InputChangeHandler = ({name, value}) => {
         setFormData(prevState => ({
             ...prevState,
             [name] : value
-        }))
-    }
-
-    const handleSelectCustomer = (customer: BriefCustomer) => {
-        setFormData((prevState) => ({
-            ...prevState,
-            customer    : customer,
-            customerId  : customer.id
-        }))
-    }
-
-    const handleRemoveCustomer = () => {
-        setFormData((prevState) => ({
-            ...prevState,
-            customer    : undefined,
-            customerId  : undefined
         }))
     }
 
@@ -125,163 +109,208 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
             </h1>
             <form
                 onSubmit={handleSubmit}
-                className="row overflow-y-auto max-h-lg-screen-60 min-h-screen-60"
+                className={`${
+                    "row overflow-y-auto max-h-lg-screen-60 min-h-screen-60"
+                } ${
+                    !status ? 'pt-5' : ''
+                }`}
             >
-                { !formData.customer ? (
+                { !status ? (
                     <>
-                        <div className="col-12 mb-3">
-                            <NameInput
-                                name="name"
-                                value={formData.name || ''}
-                                onChange={handleChange}
-                                onSelect={handleSelectCustomer}
-                                label="Name"
-                                required
-                                placeholder="e.g Nama Saya Budi"
-                            />
+                        <div className="col-6 mb-3">
+                            <div 
+                                className="card selectable"
+                                onClick={() => setStatus('new')}
+                            >
+                                <div className="card-body text-center">
+                                    <UserPlus
+                                        size="3rem"
+                                        strokeWidth={1}
+                                        className="text-primary"
+                                    />
+                                    <div className="fw-semibold">
+                                        New Customer
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div className="col-12 mb-3">
-                            <Input
-                                name="email"
-                                value={formData.email || ''}
-                                onChange={handleChange}
-                                label="Email"
-                                type="email"
-                                placeholder="e.g budi@nama.saya"
-                            />
-                        </div>
-                        <div className="col-12 mb-3">
-                            <PhoneInput
-                                name="phone"
-                                value={formData.phone || ''}
-                                onChange={handleChange}
-                                onSelect={handleSelectCustomer}
-                                label="Phone"
-                                type="tel"
-                                required
-                                placeholder="e.g 6281122223333"
-                            />
-                        </div>
-                        <div className="col-12 mb-3">
-                            <LanguageSelect
-                                name="preferredLanguageId"
-                                label="Preferred Language"
-                                value={formData.preferredLanguageId || 0}
-                                onChange={handleChange}
-                            />
+                        <div className="col-6 mb-3">
+                            <div 
+                                className="card selectable"
+                                onClick={() => setStatus('returning')}
+                            >
+                                <div className="card-body text-center">
+                                    <UserCheck
+                                        size="3rem"
+                                        strokeWidth={1}
+                                        className="text-primary"
+                                    />
+                                    <div className="fw-semibold">
+                                        Returning Customer
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </>
                 ) : (
-                    <div className="col-12 mb-3">
-                        <CustomerDetail
-                            className="rounded border border-grey-800"
-                            customer={formData.customer}
-                            closable
-                            onClose={handleRemoveCustomer}
-                        />
-                    </div>
-                )}
-                <div className="col-12 mb-3">
-                    { !location ? (
-                        <LocationSelect
-                            required
-                            value={formData.locationId || ''}
-                            onChange={handleChange}
-                        />
-                    ) : (
-                        <Input
-                            name="location"
-                            label="Location"
-                            readOnly
-                            value={location.name || ''}
-                            className="border-white"
-                        />
-                    ) }
-                </div>
-                <div className="col-6 mb-3">
-                    <Input
-                        name="roomNumber"
-                        value={formData.roomNumber || ''}
-                        onChange={handleChange}
-                        label="Room"
-                        placeholder="e.g HI-203"
-                    />
-                </div>
-                <div className="col-6 mb-3">
-                    <Input
-                        name="paxQty"
-                        value={formData.paxQty || ''}
-                        onChange={handleChange}
-                        label="PAX"
-                        placeholder="e.g 1"
-                        type="number"
-                    />
-                </div>
-                <div className="col-6 mb-3">
-                    <DatePicker
-                        name="date"
-                        value={formData.date || ''}
-                        onChange={handleChange}
-                        label="Choose Session Date"
-                        placeholder="e.g. 30 September 2024"
-                        required
-                        datesDisabled={scheduleSetting?.result?.value || []}
-                    />
-                </div>
-                <div className="col-6 mb-3">
-                    <DatePicker
-                        name="checkoutDate"
-                        value={formData.checkoutDate || ''}
-                        onChange={handleChange}
-                        label="Checkout Date"
-                        placeholder="e.g. 2 October 2024"
-                    />
-                </div>
-                <div className="col-12 mb-3">
-                    <ScheduleSelect
-                        required
-                        value={formData.scheduleId}
-                        onChange={handleChange}
-                        date={formData.date}
-                        locationId={formData.locationId}
-                    />
-                </div>
-                <div className="col-12 mb-3">
-                    <Checkbox
-                        label={(
+                    <>
+                        { status == 'new' ? (
                             <>
-                                I agree to the
-                                {' '}
-                                <Link href="/policy">
-                                    Terms and Conditions
-                                </Link>
-                            </>
+                                <div className="col-12 mb-3">
+                                    <Input
+                                        name="name"
+                                        value={formData.name || ''}
+                                        onChange={handleChange}
+                                        label="Name"
+                                        required
+                                        placeholder="e.g Nama Saya Budi"
+                                    />
+                                </div>
+                                <div className="col-12 mb-3">
+                                    <Input
+                                        name="email"
+                                        value={formData.email || ''}
+                                        onChange={handleChange}
+                                        label="Email"
+                                        type="email"
+                                        placeholder="e.g budi@nama.saya"
+                                    />
+                                </div>
+                                <div className="col-12 mb-3">
+                                    <Input
+                                        name="phone"
+                                        value={formData.phone || ''}
+                                        onChange={handleChange}
+                                        label="Phone"
+                                        type="tel"
+                                        required
+                                        placeholder="e.g 6281122223333"
+                                    />
+                                </div>
+                                <div className="col-12 mb-3">
+                                    <LanguageSelect
+                                        name="preferredLanguageId"
+                                        label="Preferred Language"
+                                        value={formData.preferredLanguageId || 0}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                            </> 
+                        ) : (
+                            <div className="col-12 mb-3">
+                                <Input
+                                    name="customerNumber"
+                                    value={formData.customerNumber || ''}
+                                    onChange={handleChange}
+                                    label="Customer Number"
+                                    required
+                                    placeholder="e.g 123456999"
+                                />
+                            </div>
                         )}
-                        name="compilance"
-                        checked={formData.compilance}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div className="col-12 mb-3 text-danger fst-italic">
-                    *required field
-                </div>
-                <div className="col-12 mb-3">
-                    <div className="d-grid">
-                        <Button 
-                            type="submit"
-                            disabled={isSending}
-                            pill
-                        >
-                            <Loader 
-                                small 
-                                hidden={!isSending} 
-                                className="me-2"
+                        <div className="col-12 mb-3">
+                            { !location ? (
+                                <LocationSelect
+                                    required
+                                    value={formData.locationId || ''}
+                                    onChange={handleChange}
+                                />
+                            ) : (
+                                <Input
+                                    name="location"
+                                    label="Location"
+                                    readOnly
+                                    value={location.name || ''}
+                                    className="border-white"
+                                />
+                            ) }
+                        </div>
+                        <div className="col-6 mb-3">
+                            <Input
+                                name="roomNumber"
+                                value={formData.roomNumber || ''}
+                                onChange={handleChange}
+                                label="Room"
+                                placeholder="e.g HI-203"
                             />
-                            Book an Appointment
-                        </Button>
-                    </div>
-                </div>
+                        </div>
+                        <div className="col-6 mb-3">
+                            <Input
+                                name="paxQty"
+                                value={formData.paxQty || ''}
+                                onChange={handleChange}
+                                label="PAX"
+                                placeholder="e.g 1"
+                                type="number"
+                            />
+                        </div>
+                        <div className="col-6 mb-3">
+                            <DatePicker
+                                name="date"
+                                value={formData.date || ''}
+                                onChange={handleChange}
+                                label="Choose Session Date"
+                                placeholder="e.g. 30 September 2024"
+                                required
+                                datesDisabled={scheduleSetting?.result?.value || []}
+                            />
+                        </div>
+                        <div className="col-6 mb-3">
+                            <DatePicker
+                                name="checkoutDate"
+                                value={formData.checkoutDate || ''}
+                                onChange={handleChange}
+                                label="Checkout Date"
+                                placeholder="e.g. 2 October 2024"
+                            />
+                        </div>
+                        <div className="col-12 mb-3">
+                            <ScheduleSelect
+                                required
+                                value={formData.scheduleId}
+                                onChange={handleChange}
+                                date={formData.date}
+                                locationId={formData.locationId}
+                            />
+                        </div>
+                        <div className="col-12 mb-3">
+                            <Checkbox
+                                label={(
+                                    <>
+                                        I agree to the
+                                        {' '}
+                                        <Link href="/policy">
+                                            Terms and Conditions
+                                        </Link>
+                                    </>
+                                )}
+                                name="compilance"
+                                checked={formData.compilance}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div className="col-12 mb-3 text-danger fst-italic">
+                            *required field
+                        </div>
+                        <div className="col-12 mb-3">
+                            <div className="d-grid">
+                                <Button 
+                                    type="submit"
+                                    disabled={isSending}
+                                    pill
+                                >
+                                    <Loader 
+                                        small 
+                                        hidden={!isSending} 
+                                        className="me-2"
+                                    />
+                                    Book an Appointment
+                                </Button>
+                            </div>
+                        </div>
+                    </>
+                ) }
             </form>
         </section>
     )
