@@ -44,6 +44,7 @@ export const PartnerSection : FC = () => (
                     >
                         <Animation
                             animation="slide-to-bottom"
+                            className="text-center"
                         >
                             <img
                                 src={ partner.url }
@@ -65,7 +66,7 @@ export const PartnerSection : FC = () => (
                     className={`${
                         VarelaRound.className
                     } ${
-                        "bg-dark text-white d-flex flex-wrap align-items-center justify-content-between book position-relative gap-3"
+                        "bg-dark text-white d-flex flex-wrap align-items-center justify-content-between book position-relative gap-3 overflow-hidden"
                     }`}
                 >
                     <h3 className="mb-0">
