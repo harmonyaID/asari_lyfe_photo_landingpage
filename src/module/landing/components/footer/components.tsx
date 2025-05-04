@@ -41,12 +41,10 @@ export const Footer : FC = () => {
                 className={`${
                     VarelaRound.className
                 } ${
-                    "d-flex gap-5 contact"
+                    "d-grid grid-cols-md-4 grid-cols-lg-5 grid-cols-xxl-7 gap-5 contact"
                 }`}
             >
-                <section 
-                    className="flex-grow-0 flex-shrink-0"
-                >
+                <section>
                     <Logo
                         size={160}
                         className="mb-4"
@@ -77,7 +75,9 @@ export const Footer : FC = () => {
                         </div>
                     </div>
                 </section>
-                <section>
+                <section 
+                    className="grid-span-md-3 grid-span-lg-4 grid-span-xxl-6"
+                >
                     <h2>Contact Us</h2>
                     <div className="d-grid grid-cols-md-2 grid-cols-xxl-4 gap-5">
                         { isLoading ? (
@@ -96,7 +96,7 @@ export const Footer : FC = () => {
                                         size="1.25rem"
                                         className="text-primary flex-shrink-0 flex-grow-0 pt-1"
                                     />
-                                    <p className={NunitoSans.className}>
+                                    <p className={`text-break ${NunitoSans.className}`}>
                                         { item.address }
                                     </p>
                                 </div>
@@ -105,7 +105,7 @@ export const Footer : FC = () => {
                                         size="1.25rem"
                                         className="text-primary flex-shrink-0 flex-grow-0 pt-1"
                                     />
-                                    <p className={NunitoSans.className}>
+                                    <p className={`text-break ${NunitoSans.className}`}>
                                         { item.phone }
                                     </p>
                                 </div>
@@ -114,7 +114,7 @@ export const Footer : FC = () => {
                                         size="1.25rem"
                                         className="text-primary flex-shrink-0 flex-grow-0 pt-1"
                                     />
-                                    <p className={NunitoSans.className}>
+                                    <p className={`text-break ${NunitoSans.className}`}>
                                         { item.email || '-' }
                                     </p>
                                 </div>
