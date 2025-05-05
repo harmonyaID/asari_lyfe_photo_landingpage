@@ -3,7 +3,7 @@
 import { Animation } from "@/components/animation";
 import { useMediaQuery } from "@/hooks/media-query";
 import { FC } from "react";
-import { Pagination } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { GalleryAmount } from "./constants";
 
@@ -43,10 +43,13 @@ export const Gallery : FC = () => {
 
     return (
         <Swiper
-            modules={[Pagination]}
+            className="swiper-white"
+            modules={[Navigation]}
             spaceBetween={16}
             slidesPerView={1}
-            pagination={{ clickable:true }}
+            navigation={{
+                enabled: true
+            }}
         >
             { Array(GalleryAmount).fill(0).map((item, index) => (
                 <SwiperSlide

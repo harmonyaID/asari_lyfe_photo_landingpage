@@ -17,3 +17,15 @@
         }
     }
 }
+
+.swiper-white {
+    .swiper-button-prev, .swiper-button-next {
+        color: var(--bs-white) !important;
+    }
+}
+
+.swiper-primary {
+    .swiper-button-prev, .swiper-button-next {
+        color: var(--bs-primary) !important;
+    }
+}

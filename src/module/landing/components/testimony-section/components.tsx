@@ -31,7 +31,10 @@ export const TestimonySection : FC = () => (
                     992: { slidesPerView: 3 },
                     1200: { slidesPerView: 4 },
                 }}
-                pagination={{ clickable:true }}
+                pagination={{ 
+                    clickable: true,
+                    dynamicBullets: true
+                }}
                 className="summary-swiper w-100"
             >
                 { DummyTestimony.map((item, index) => (

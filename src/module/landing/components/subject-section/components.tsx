@@ -11,6 +11,7 @@ export const SubjectSection : FC = () => (
         >
             <Animation
                 animation="lighten"
+                wrapperClassName="h-100"
                 className="h-100 w-100 overflow-hidden"
             >
                 <img
@@ -55,6 +56,7 @@ export const SubjectSection : FC = () => (
         >
             <Animation
                 animation="lighten"
+                wrapperClassName="h-100"
                 className="h-100 w-100 overflow-hidden"
             >
                 <img

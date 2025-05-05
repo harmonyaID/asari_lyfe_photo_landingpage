@@ -21,6 +21,7 @@ export const CustomerDetail : FC<CustomerDetailProps> = ({
                 <img 
                     className="object-fit-cover  w-100 h-100"
                     src={`https://ui-avatars.com/api/?name=${customer.name}&rounded=true&color=FFFFFF&background=0099AB&font-size=0.35`}
+                    alt={`${customer.name} photo`}
                 />
             </div>
         </div>

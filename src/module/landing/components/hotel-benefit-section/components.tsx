@@ -24,13 +24,16 @@ export const HotelBenefitSection : FC = () => (
         >
             <Swiper
                 modules={[Pagination]}
-                spaceBetween={16}
+                spaceBetween={64}
                 slidesPerView={1}
                 breakpoints={{
                     768: { slidesPerView: 2 },
                     1200: { slidesPerView: 3 },
                 }}
-                pagination={{ clickable:true }}
+                pagination={{ 
+                    clickable: true,
+                    dynamicBullets: true
+                }}
                 className="summary-swiper w-100"
             >
                 <SwiperSlide>
@@ -42,7 +45,13 @@ export const HotelBenefitSection : FC = () => (
                                 alt="Engaging Activity"
                             />
                         </div>
-                        <h3 className={NunitoSans.className}>
+                        <h3 
+                            className={`${
+                                "mb-3"
+                            } ${
+                                NunitoSans.className
+                            }`}
+                        >
                             Engaging Activity
                         </h3>
                         <p className={NunitoSans.className}>
@@ -59,7 +68,13 @@ export const HotelBenefitSection : FC = () => (
                                 alt="Memorable Gift"
                             />
                         </div>
-                        <h3 className={NunitoSans.className}>
+                        <h3 
+                            className={`${
+                                "mb-3"
+                            } ${
+                                NunitoSans.className
+                            }`}
+                        >
                             Memorable Gift
                         </h3>
                         <p className={NunitoSans.className}>
@@ -76,7 +91,13 @@ export const HotelBenefitSection : FC = () => (
                                 alt="Revenue"
                             />
                         </div>
-                        <h3 className={NunitoSans.className}>
+                        <h3 
+                            className={`${
+                                "mb-3"
+                            } ${
+                                NunitoSans.className
+                            }`}
+                        >
                             Revenue
                         </h3>
                         <p className={NunitoSans.className}>

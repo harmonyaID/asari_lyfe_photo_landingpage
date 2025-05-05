@@ -4,6 +4,7 @@ import { BookBtn, Footer, GallerySection, HotelBenefitSection, IntroSection, Par
 import { LandingProvider } from "./providers";
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 import { Section } from "@/components/layouts/section";
 
 export default function Home() {

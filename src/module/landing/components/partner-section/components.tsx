@@ -5,7 +5,7 @@ import { LinkButton } from "@/components/buttons";
 import { Section } from "@/components/layouts/section";
 import { VarelaRound } from "@/configs/fonts";
 import { FC } from "react";
-import { Pagination } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Partners } from "./constants";
 
@@ -27,7 +27,8 @@ export const PartnerSection : FC = () => (
         </header>
         <section className="partner-list landing-container d-flex flex-wrap justify-content-between">
             <Swiper
-                modules={[Pagination]}
+                className="swiper-primary"
+                modules={[Navigation]}
                 spaceBetween={16}
                 slidesPerView={1}
                 breakpoints={{
@@ -36,7 +37,9 @@ export const PartnerSection : FC = () => (
                     992: { slidesPerView: 3 },
                     1200: { slidesPerView: Math.min(5, Partners.length) },
                 }}
-                pagination={{ clickable:true }}
+                navigation={{
+                    enabled: true
+                }}
             >
                 { Partners.map((partner) => (
                     <SwiperSlide
@@ -81,6 +84,7 @@ export const PartnerSection : FC = () => (
                     <img
                         src="/images/misc/ornament.svg"
                         className="ornament position-absolute"
+                        alt="Ornament"
                     />
                 </div>
             </Animation>

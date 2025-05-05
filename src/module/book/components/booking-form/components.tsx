@@ -167,7 +167,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                                     onClick={handleBack}
                                 >
                                     <ChevronLeft/>
-                                    <span>Return to customer selection</span>
+                                    <span>Back</span>
                                 </Button>
                             </div>
                             { status == 'new' ? (
