@@ -56,7 +56,7 @@ export const Animation : FC<AnimationProps> = ({
             data-anim-delay={delay}
             data-anim-show={show ? 1 : 0}
             className={`${
-                "w-100 overflow-x-hidden relative"
+                "w-100 overflow-hidden relative"
             } ${
                 wrapperClassName
             }`}
