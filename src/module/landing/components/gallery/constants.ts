@@ -1,1 +1,2 @@
-export const GalleryAmount = 10
+export const GalleryMin = 10
+export const GalleryMax = 15
