@@ -6,6 +6,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Section } from "@/components/layouts/section";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: `Memorable Family Staycation Imaging Provider | ${ process.env.NEXT_PUBLIC_APP_NAME }`,
+}
 
 export default function Home() {
     return (

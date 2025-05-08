@@ -20,7 +20,7 @@ export async function generateMetadata({ params, searchParams }: Props) : Promis
     }
 
     return {
-        title       : `${title} - ${process.env.NEXT_PUBLIC_APP_NAME}`,
+        title       : `${title} | ${process.env.NEXT_PUBLIC_APP_NAME}`,
         description : description
     }
 }
