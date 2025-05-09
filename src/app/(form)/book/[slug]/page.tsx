@@ -15,7 +15,7 @@ export async function generateMetadata({ params, searchParams }: Props) : Promis
     let title       = 'Book Your Photo Session'
     let description = 'Book your photo session with our team'
     if (location?.result?.name) {
-        title       = `${title} at ${location.result.name}`
+        title       = `${title} - ${location.result.name}`
         description = `${description} at ${location.result.name}`
     }
 
