@@ -114,52 +114,48 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
             <form
                 onSubmit={handleSubmit}
                 className={`${
-                    "overflow-x-hidden overflow-y-auto max-h-lg-screen-60 min-h-screen-60"
+                    "overflow-y-auto max-h-lg-screen-60 min-h-screen-60"
                 } ${
                     !status ? 'pt-5' : ''
                 }`}
             >
-                <div className="row">
+                <div className="d-grid grid-cols-2 gap-3">
                     { !status ? (
                         <>
-                            <div className="col-md-6 mb-3">
-                                <div 
-                                    className="card selectable h-100"
-                                    onClick={() => setStatus('new')}
-                                >
-                                    <div className="card-body text-center">
-                                        <UserPlus
-                                            size="3rem"
-                                            strokeWidth={1}
-                                            className="text-primary"
-                                        />
-                                        <div className="fw-semibold">
-                                            New Customer
-                                        </div>
+                            <div 
+                                className="card selectable grid-span-2 grid-span-md-1"
+                                onClick={() => setStatus('new')}
+                            >
+                                <div className="card-body text-center">
+                                    <UserPlus
+                                        size="3rem"
+                                        strokeWidth={1}
+                                        className="text-primary"
+                                    />
+                                    <div className="fw-semibold">
+                                        New Customer
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6 mb-3">
-                                <div 
-                                    className="card selectable h-100"
-                                    onClick={() => setStatus('returning')}
-                                >
-                                    <div className="card-body text-center">
-                                        <UserCheck
-                                            size="3rem"
-                                            strokeWidth={1}
-                                            className="text-primary"
-                                        />
-                                        <div className="fw-semibold">
-                                            Returning Customer
-                                        </div>
+                            <div 
+                                className="card selectable grid-span-2 grid-span-md-1"
+                                onClick={() => setStatus('returning')}
+                            >
+                                <div className="card-body text-center">
+                                    <UserCheck
+                                        size="3rem"
+                                        strokeWidth={1}
+                                        className="text-primary"
+                                    />
+                                    <div className="fw-semibold">
+                                        Returning Customer
                                     </div>
                                 </div>
                             </div>
                         </>
                     ) : (
                         <>
-                            <div className="col-12 mb-4">
+                            <div className="grid-span-2 pb-1">
                                 <Button
                                     type="button"
                                     outline
@@ -172,7 +168,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                             </div>
                             { status == 'new' ? (
                                 <>
-                                    <div className="col-12 mb-3">
+                                    <div className="grid-span-2">
                                         <Input
                                             name="name"
                                             value={formData.name || ''}
@@ -182,7 +178,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                                             placeholder="e.g Nama Saya Budi"
                                         />
                                     </div>
-                                    <div className="col-12 mb-3">
+                                    <div className="grid-span-2">
                                         <Input
                                             name="email"
                                             value={formData.email || ''}
@@ -192,7 +188,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                                             placeholder="e.g budi@nama.saya"
                                         />
                                     </div>
-                                    <div className="col-12 mb-3">
+                                    <div className="grid-span-2">
                                         <Input
                                             name="phone"
                                             value={formData.phone || ''}
@@ -203,7 +199,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                                             placeholder="e.g 6281122223333"
                                         />
                                     </div>
-                                    <div className="col-12 mb-3">
+                                    <div className="grid-span-2">
                                         <LanguageSelect
                                             name="preferredLanguageId"
                                             label="Preferred Language"
@@ -213,18 +209,19 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                                     </div>
                                 </> 
                             ) : (
-                                <div className="col-12 mb-3">
+                                <div className="grid-span-2">
                                     <Input
                                         name="customerNumber"
                                         value={formData.customerNumber || ''}
                                         onChange={handleChange}
                                         label="Customer Number"
+                                        type="number"
                                         required
                                         placeholder="e.g 123456999"
                                     />
                                 </div>
                             )}
-                            <div className="col-12 mb-3">
+                            <div className="grid-span-2">
                                 { !location ? (
                                     <LocationSelect
                                         required
@@ -241,7 +238,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                                     />
                                 ) }
                             </div>
-                            <div className="col-6 mb-3">
+                            <div>
                                 <Input
                                     name="roomNumber"
                                     value={formData.roomNumber || ''}
@@ -250,7 +247,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                                     placeholder="e.g HI-203"
                                 />
                             </div>
-                            <div className="col-6 mb-3">
+                            <div>
                                 <Input
                                     name="paxQty"
                                     value={formData.paxQty || ''}
@@ -260,7 +257,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                                     type="number"
                                 />
                             </div>
-                            <div className="col-6 mb-3">
+                            <div>
                                 <DatePicker
                                     name="date"
                                     value={formData.date || ''}
@@ -271,7 +268,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                                     datesDisabled={scheduleSetting?.result?.value || []}
                                 />
                             </div>
-                            <div className="col-6 mb-3">
+                            <div>
                                 <DatePicker
                                     name="checkoutDate"
                                     value={formData.checkoutDate || ''}
@@ -280,7 +277,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                                     placeholder="e.g. 2 October 2024"
                                 />
                             </div>
-                            <div className="col-12 mb-3">
+                            <div className="grid-span-2">
                                 <ScheduleSelect
                                     required
                                     value={formData.scheduleId}
@@ -289,7 +286,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                                     locationId={formData.locationId}
                                 />
                             </div>
-                            <div className="col-12 mb-3">
+                            <div className="grid-span-2">
                                 <Checkbox
                                     label={(
                                         <>
@@ -306,10 +303,10 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                                     required
                                 />
                             </div>
-                            <div className="col-12 mb-3 text-danger fst-italic">
+                            <div className="grid-span-2 text-danger fst-italic">
                                 *required field
                             </div>
-                            <div className="col-12 mb-3">
+                            <div className="grid-span-2">
                                 <div className="d-grid">
                                     <Button 
                                         type="submit"
