@@ -1,39 +1,41 @@
 'use client';
 
-import { FC, useMemo } from "react";
+import { FC, useMemo, useState } from "react";
 import { LocationSelectProps } from "./props";
 import { useGetLocation } from "../../hooks";
 import { Select, SelectOptionType } from "@/components/inputs/select";
+import { SearchableSelect } from "@/components/inputs/searchable-select";
 
 export const LocationSelect : FC<LocationSelectProps> = ({
     className = '',
     ...props
 }) => {
-    const { data, isLoading } = useGetLocation()
+    const [filter, setFilter] = useState<Record<string, any>>({
+        search  : '',
+        isActive: '1',
+    })
 
-    const parsedOptions = useMemo<SelectOptionType[]>(() => {
-        const output : SelectOptionType[] = [
-            { label: "Select Location", value: '' }
-        ]
+    const { data, isLoading } = useGetLocation(filter)
 
-        if (!isLoading && data?.result?.length) {
-            data.result.forEach((location) => {
-                output.push({
-                    label: location.name,
-                    value: `${location.id}`
-                })
-            })
-        }
-
-        return output
-    }, [data, isLoading])
+    const handleSearch = (search: string) => {
+        setFilter((prevFilter) => ({
+            ...prevFilter,
+            search: search
+        }))
+    }
 
     return (
-        <Select
+        <SearchableSelect
             name="locationId"
             label="Location"
             className={className}
-            options={parsedOptions}
+            data={data?.result || []}
+            itemLabelKey="name"
+            onSearch={handleSearch}
+            loading={isLoading}
+            notFoundMessage="Unable to find location"
+            emptyMessage="No more location to select"
+            searchPlaceholder="Select location"
             { ...props }
         />
     )

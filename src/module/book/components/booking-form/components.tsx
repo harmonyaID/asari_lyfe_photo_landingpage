@@ -225,7 +225,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                                 { !location ? (
                                     <LocationSelect
                                         required
-                                        value={formData.locationId || ''}
+                                        value={formData.locationId || 0}
                                         onChange={handleChange}
                                     />
                                 ) : (
