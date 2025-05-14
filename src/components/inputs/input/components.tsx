@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useCallback, useEffect, useLayoutEffect, useRef } from "react";
+import { FC, useCallback, useEffect, useLayoutEffect, useRef, WheelEventHandler } from "react";
 import { InputProps } from "./props";
 import { changeHandlerGenerator } from "@/helpers/changeHandlers";
 
@@ -19,6 +19,7 @@ export const Input : FC<InputProps> = ({
     label = '',
     required = false,
     onChange,
+    onWheel,
     type,
     ...props
 }) => {
@@ -86,6 +87,27 @@ export const Input : FC<InputProps> = ({
         }
     }, [])
 
+    const handleWheel = useCallback<WheelEventHandler<HTMLInputElement>>((event) => {
+        if (typeof onWheel == 'function') {
+            onWheel(event)
+        }
+        
+        const target = event.target as HTMLInputElement
+        if (target != document.activeElement) {
+            return
+        }
+
+        if (type != 'number') {
+            return
+        }
+
+        target.blur()
+
+        setTimeout(() => {
+            target.focus()
+        }, 0)
+    }, [type, onWheel])
+
     useLayoutEffect(() => {
         if (type != 'number' && type != 'tel') {
             return
@@ -139,6 +161,7 @@ export const Input : FC<InputProps> = ({
                 name={name}
                 className={`form-control ${className}`}
                 onChange={handleChange}
+                onWheel={handleWheel}
                 required={required}
                 type={type}
                 {...props}
