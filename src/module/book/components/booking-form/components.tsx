@@ -45,12 +45,40 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
     const { data: scheduleSetting, isLoading } = useFindScheduleSetting(DAY_OFFS, formData.locationId || 0)
 
     const [status, setStatus] = useState<'new' | 'returning' | ''>('')
+    const [error, setError] = useState({
+        attribute   : '',
+        message     : '',
+    })
 
     const handleChange : InputChangeHandler = ({name, value}) => {
+        if (error.attribute == name) {
+            setError((prevState) => ({
+                ...prevState,
+                attribute   : '',
+                message     : '',
+            }))
+        }
+
         setFormData(prevState => ({
             ...prevState,
             [name] : value
         }))
+    }
+
+    const handleError = (message: string, attribute: string | Record<string, any>) => {
+        setError((prevState) => {
+            const modified = { ...prevState }
+
+            if (typeof attribute == 'object') {
+                modified.attribute  = attribute.param
+                modified.message    = attribute.msg
+            } else {
+                modified.attribute  = attribute
+                modified.message    = message
+            } 
+
+            return modified
+        })
     }
 
     const handleBack = () => {
@@ -80,6 +108,10 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                     createBooking(formRequest)
                         .then(response => {
                             if (!response?.result) {
+                                if (response?.status.attributes?.length) {
+                                    handleError(response.status.message, response.status.attributes[0])
+                                }
+
                                 return
                             }
 
@@ -171,6 +203,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                                     <div className="grid-span-2">
                                         <Input
                                             name="name"
+                                            error={ error.attribute == 'name' ? error.message : '' }
                                             value={formData.name || ''}
                                             onChange={handleChange}
                                             label="Name"
@@ -181,6 +214,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                                     <div className="grid-span-2">
                                         <Input
                                             name="email"
+                                            error={ error.attribute == 'email' ? error.message : '' }
                                             value={formData.email || ''}
                                             onChange={handleChange}
                                             label="Email"
@@ -191,6 +225,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                                     <div className="grid-span-2">
                                         <Input
                                             name="phone"
+                                            error={ error.attribute == 'phone' ? error.message : '' }
                                             value={formData.phone || ''}
                                             onChange={handleChange}
                                             label="Phone"
@@ -202,6 +237,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                                     <div className="grid-span-2">
                                         <LanguageSelect
                                             name="preferredLanguageId"
+                                            error={ error.attribute == 'preferredLanguageId' ? error.message : '' }
                                             label="Preferred Language"
                                             value={formData.preferredLanguageId || 0}
                                             onChange={handleChange}
@@ -212,6 +248,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                                 <div className="grid-span-2">
                                     <Input
                                         name="customerNumber"
+                                        error={ error.attribute == 'customerNumber' ? error.message : '' }
                                         value={formData.customerNumber || ''}
                                         onChange={handleChange}
                                         label="Customer Number"
@@ -241,6 +278,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                             <div>
                                 <Input
                                     name="roomNumber"
+                                    error={ error.attribute == 'roomNumber' ? error.message : '' }
                                     value={formData.roomNumber || ''}
                                     onChange={handleChange}
                                     label="Room"
@@ -250,6 +288,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                             <div>
                                 <Input
                                     name="paxQty"
+                                    error={ error.attribute == 'paxQty' ? error.message : '' }
                                     value={formData.paxQty || ''}
                                     onChange={handleChange}
                                     label="PAX"
@@ -260,6 +299,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                             <div>
                                 <DatePicker
                                     name="date"
+                                    error={ error.attribute == 'date' ? error.message : '' }
                                     value={formData.date || ''}
                                     onChange={handleChange}
                                     label="Choose Session Date"
@@ -271,6 +311,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                             <div>
                                 <DatePicker
                                     name="checkoutDate"
+                                    error={ error.attribute == 'checkoutDate' ? error.message : '' }
                                     value={formData.checkoutDate || ''}
                                     onChange={handleChange}
                                     label="Checkout Date"
@@ -279,6 +320,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                             </div>
                             <div className="grid-span-2">
                                 <ScheduleSelect
+                                    error={ error.attribute == 'scheduleId' ? error.message : '' }
                                     required
                                     value={formData.scheduleId}
                                     onChange={handleChange}

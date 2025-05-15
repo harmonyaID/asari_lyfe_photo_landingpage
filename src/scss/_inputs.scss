@@ -38,3 +38,7 @@ input[type="number"] {
         margin: 0;
     }
 }
+
+.error-tooltip {
+    --bs-tooltip-bg: var(--bs-danger);
+}

@@ -21,6 +21,7 @@ export const Input : FC<InputProps> = ({
     onChange,
     onWheel,
     type,
+    error,
     ...props
 }) => {
     const inputId = id || `input-${name}`
@@ -141,6 +142,28 @@ export const Input : FC<InputProps> = ({
             }
         }
     }, [type])
+
+    useEffect(() => {
+        if (!error || !inputRef.current) {
+            return
+        }
+
+        inputRef.current.focus()
+
+        const tooltip = window.bootstrap.Tooltip.getOrCreateInstance(inputRef.current, {
+            title: error,
+            placement: 'bottom',
+            trigger: 'manual',
+            customClass: 'error-tooltip',
+        })
+
+        tooltip.show()
+
+        return () => {
+            tooltip.dispose()
+        }
+
+    }, [error])
 
     return (
         <div

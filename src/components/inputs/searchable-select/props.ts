@@ -17,6 +17,7 @@ export interface SearchableSelectProps extends Omit<SelectProps, 'value' | 'opti
     searchPlaceholder?  : string
     hideSelected?       : boolean
     hint?               : string
+    error?              : string
 }
 
 export type CustomSearchableSelectProps = Omit<SearchableSelectProps, 'name' | 'data' | 'itemLabelKey' | 'loading'>

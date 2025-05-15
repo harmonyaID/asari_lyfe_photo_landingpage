@@ -23,6 +23,7 @@ export const SearchableSelect : FC<SearchableSelectProps> = ({
     value,
     search = '',
     render,
+    error,
     notFoundMessage     = 'Unable to find any data',
     emptyMessage        = 'No more data to select',
     searchPlaceholder   = 'Search by name or code',
@@ -309,6 +310,27 @@ export const SearchableSelect : FC<SearchableSelectProps> = ({
 
         return () => { clearTimeout(changeTimeoutRef.current) }
     }, [selectedItems])
+
+    useEffect(() => {
+        if (!error || !searchRef.current) {
+            return
+        }
+
+        searchRef.current.focus()
+
+        const tooltip = window.bootstrap.Tooltip.getOrCreateInstance(searchRef.current, {
+            title: error,
+            placement: 'top',
+            trigger: 'manual',
+            customClass: 'error-tooltip',
+        })
+
+        tooltip.show()
+
+        return () => {
+            tooltip.dispose()
+        }
+    }, [error])
 
     useEffect(() => {
         return () => {
