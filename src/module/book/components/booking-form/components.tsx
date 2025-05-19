@@ -83,6 +83,25 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
 
     const handleBack = () => {
         setStatus('')
+        setFormData((prevState) => ({
+            ...prevState,
+            source              : 'Website',
+            recaptchaToken      : '',
+            recaptchaAction     : '',
+            date                : '',
+            checkoutDate        : '',
+            locationId          : location ? location.id : 0,
+            scheduleId          : 0,
+            preferredLanguage   : undefined,
+            preferredLanguageId : 0,
+            customerNumber      : '',
+            name                : '',
+            email               : '',
+            phone               : '',
+            roomNumber          : '',
+            paxQty              : 0,
+            compilance          : false,
+        }))
     }
 
     const handleSubmit : FormEventHandler<HTMLFormElement> = (event) => {
