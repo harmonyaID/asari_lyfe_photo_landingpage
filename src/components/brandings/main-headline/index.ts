@@ -1,0 +1,1 @@
+export { MainHeadline } from "./components"

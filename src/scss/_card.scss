@@ -1,0 +1,9 @@
+.card {
+    &.selectable {
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--bs-grey-900);
+        }
+    }
+}

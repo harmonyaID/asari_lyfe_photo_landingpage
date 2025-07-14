@@ -1,0 +1,135 @@
+.transition-linear { transition-timing-function: linear; }
+.transition-ease { transition-timing-function: ease; }
+.transition-ease-in { transition-timing-function: ease-in; }
+.transition-ease-out { transition-timing-function: ease-out; }
+.transition-ease-in-out { transition-timing-function: ease-in-out }
+
+:root {
+    --transition-duration : 500ms;
+}
+
+@keyframes main-thumbnail {
+    from { opacity: 1; }
+    to { opacity: .4; }
+}
+
+@keyframes slide-to-right {
+    from {
+        transform: translateX(-25%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slide-to-right {
+    transform: translateX(-25%);
+    opacity: 0;
+    transition-property: transform, opacity;
+    transition-duration: var(--transition-duration);
+
+    &.active {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-to-left {
+    from {
+        transform: translateX(25%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slide-to-left {
+    transform: translateX(25%);
+    opacity: 0;
+    transition-property: transform, opacity;
+    transition-duration: var(--transition-duration);
+
+    &.active {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-to-up {
+    from {
+        transform: translateY(25%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.slide-to-up {
+    transform: translateY(25%);
+    opacity: 0;
+    transition-property: transform, opacity;
+    transition-duration: var(--transition-duration);
+
+    &.active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-to-bottom {
+    from {
+        transform: translateY(-25%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.slide-to-bottom {
+    transform: translateY(-25%);
+    opacity: 0;
+    transition-property: transform, opacity;
+    transition-duration: var(--transition-duration);
+
+    &.active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: var(--transition-duration);
+
+    &.active {
+        opacity: 1;
+    }
+}
+
+.lighten {
+    filter: brightness(0);
+    transition-property: filter;
+    transition-duration: var(--transition-duration);
+
+    &.active {
+        filter: brightness(.6);
+    }
+}

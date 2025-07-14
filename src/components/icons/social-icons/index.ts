@@ -4,4 +4,6 @@ export {
     LinkedIn,
     XTwitter,
     Youtube,
+    PlainFacebook,
+    PlainInstagram,
 } from "./components"

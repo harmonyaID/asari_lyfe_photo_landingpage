@@ -1,0 +1,183 @@
+.custom-select {
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    padding: $input-padding-y $input-padding-x;
+    font-family: $input-font-family;
+
+    @include font-size($input-font-size);
+    font-weight: $input-font-weight;
+    line-height: $input-line-height;
+    color: $input-color;
+    appearance: none; // Fix appearance for date inputs in Safari
+    background-color: $input-bg;
+    background-clip: padding-box;
+    border: $input-border-width solid $input-border-color;
+
+    &.disabled {
+        cursor: default;
+        color: $input-disabled-color;
+        background-color: $input-disabled-bg;
+        border-color: $input-disabled-border-color;
+    }
+
+    @include border-radius($input-border-radius, 0);
+
+    @include box-shadow($input-box-shadow);
+    @include transition($input-transition);
+
+    .select-container {
+        cursor: pointer;
+        display: flex;
+        flex-wrap: wrap;
+        flex-grow: 1;
+        flex-shrink: 1;
+        min-width: 1px;
+        flex-basis: 0%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .select-control {
+        display: flex;
+        align-items: center;
+        align-self: stretch;
+
+        .control-item {
+            padding: 0 .5rem;
+            cursor: pointer;
+            color: var(--bs-grey-700);
+
+            &:hover {
+                color: var(--bs-grey-500);
+            }
+
+            &:last-child {
+                padding-right: 0;
+            }
+
+            &:not(:last-child) {
+                border-right: 1px solid var(--bs-grey-800);
+            }
+        }
+    }
+
+    .select-dropdown {
+        z-index: 50;
+        display     : none;
+        max-height  : 0;
+        overflow-x   : hidden;
+        overflow-y   : auto;
+        transition-behavior: allow-discrete;
+        transition-property: display, max-height;
+
+        padding: .5rem 0;
+
+        position: absolute;
+        bottom  : 0;
+        left    : 0;
+        right   : 0;
+        transform: translateY(calc(100% + .25rem));
+
+        .select-item {
+            padding: .75rem 1rem;
+            cursor: pointer;
+            background-color: var(--bs-white);
+            display: block;
+            &:hover {
+                background-color: var(--bs-grey-900);
+            }
+        }
+    }
+
+    &.focus {
+        color: $input-focus-color;
+        background-color: $input-focus-bg;
+        border-color: $input-focus-border-color;
+        outline: 0;
+        .select-dropdown {
+            @starting-style {
+                display: block;
+            }
+
+            display: block;
+            max-height: 200px;
+        }
+    }
+}
+
+.searchable-select {
+    .select-container {
+        cursor: text;
+        
+        input {
+            display: block;
+            border: 0;
+            padding: 0;
+            margin: 0;
+            outline: none;
+            &::placeholder {
+                color: $input-placeholder-color;
+                opacity: 1;
+            }
+
+            &.has-value {
+                &::placeholder {
+                    opacity: 0;
+                }
+            }
+        }
+    
+        .selected-value {
+            &.single {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                font-size: 1rem;
+
+                &.searching {
+                    display: none;
+                }
+            }
+    
+            &.multiple {
+                display: inline-block;
+                background-color: var(--bs-grey-800);
+                color: var(--bs-grey-400);
+                font-size: .80rem;
+                padding: .1rem .35rem;
+                border-radius: $border-radius;
+                span {
+                    display: inline-block;
+                    padding: 0 .25rem;
+                    border-right: 1px solid var(--bs-grey-700);
+                    &:first-child {
+                        padding-left: 0;
+                    }
+                    &:last-child {
+                        padding-right: 0;
+                        border-right: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .select-dropdown {
+        .select-item {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .input-resizer {
+        height: 0;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+    }
+
+}

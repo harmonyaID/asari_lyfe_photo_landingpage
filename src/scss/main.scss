@@ -19,14 +19,31 @@
 @import "~bootstrap/scss/button-group";
 @import "~bootstrap/scss/modal";
 @import "~bootstrap/scss/spinners";
+@import "~bootstrap/scss/close";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/transitions";
+@import "~bootstrap/scss/card";
+@import "~bootstrap/scss/tooltip";
 
 @import "./grids";
 @import "./heights";
 
 @import "~bootstrap/scss/utilities/api";
 
+@import "./animations";
 @import "./buttons";
+@import "./card";
 @import "./cursors";
+@import "./custom";
 @import "./datepicker";
+@import "./flex";
+@import "./inputs";
 @import "./misc";
+@import "./navigations";
 @import "./panels";
+@import "./select";
+@import "./swiper";
+
+body {
+    max-width: 100vw;
+}
