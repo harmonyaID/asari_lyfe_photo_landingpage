@@ -3,18 +3,21 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev",
+        "dev": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 next dev",
         "build": "next build",
         "start": "next start",
         "lint": "next lint"
     },
     "dependencies": {
         "bootstrap": "^5.3.3",
-        "next": "14.2.4",
+        "iconsax-react": "^0.0.8",
+        "next": "^14.2.4",
         "react": "^18",
         "react-dom": "^18",
+        "react-feather": "^2.0.10",
         "react-toastify": "^10.0.5",
         "sass": "^1.77.8",
+        "swiper": "^11.2.6",
         "swr": "^2.2.5",
         "vanillajs-datepicker": "^1.3.4"
     },
@@ -26,6 +29,7 @@
         "@types/react-dom": "^18",
         "@types/vanillajs-datepicker": "^1.3.5",
         "copy-webpack-plugin": "^12.0.2",
+        "cross-env": "^7.0.3",
         "eslint": "^8",
         "eslint-config-next": "14.2.4",
         "typescript": "^5"

@@ -10,7 +10,7 @@ export const Logo : FC<LogoProps> = ({
             src="/images/logo.webp"
             width={size}
             height="auto"
-            alt="Lyfe Foto Logo"
+            alt={`${process.env.NEXT_PUBLIC_APP_NAME} Logo`}
             className={className}
         />
     )

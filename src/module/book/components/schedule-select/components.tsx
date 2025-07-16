@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, Fragment } from "react";
+import { FC, Fragment, useEffect, useRef } from "react";
 import { ScheduleSelectProps } from "./props";
 import { useGetSchedule } from "@/book/hooks";
 import { changeHandlerGenerator } from "@/helpers/changeHandlers";
@@ -14,11 +14,34 @@ export const ScheduleSelect : FC<ScheduleSelectProps> = ({
     value,
     required = false,
     className = '',
+    error = '',
     ...props
 }) => {
-    const {data, isLoading, error} = useGetSchedule(locationId, date)
+    const {data, isLoading, error : fetchError} = useGetSchedule(locationId, date)
+    const containerRef = useRef<HTMLDivElement>(null)
 
     const handleChange = changeHandlerGenerator<HTMLInputElement>(onChange)
+    
+    useEffect(() => {
+        if (!error || !containerRef.current) {
+            return
+        }
+
+        containerRef.current.focus()
+
+        const tooltip = window.bootstrap.Tooltip.getOrCreateInstance(containerRef.current, {
+            title: error,
+            placement: 'top',
+            trigger: 'manual',
+            customClass: 'error-tooltip',
+        })
+
+        tooltip.show()
+
+        return () => {
+            tooltip.dispose()
+        }
+    }, [error])
 
     if (!locationId || !date) {
         return (
@@ -35,12 +58,15 @@ export const ScheduleSelect : FC<ScheduleSelectProps> = ({
                 {' '}
                 { required ? <span className="text-danger">*</span> : <></> }
             </label>
-            <div className="d-grid gap-2 grid-cols-2 grid-cols-md-4 grid-cols-lg-6">
+            <div 
+                ref={containerRef}
+                className="d-grid gap-2 grid-cols-2 grid-cols-md-4 grid-cols-lg-6"
+            >
                 { isLoading ? (
                     <div className="grid-span-2 grid-span-md-4 grid-span-lg-6">
                         <Loader small/> Loading...
                     </div>
-                ) : error || !data?.result?.length ? (
+                ) : fetchError || !data?.result?.length ? (
                     <div className="grid-span-2 grid-span-md-4 grid-span-lg-6">
                         <ErrorMsg message="Unable to find schedule for this date"/>
                     </div>

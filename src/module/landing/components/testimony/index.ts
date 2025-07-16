@@ -1,0 +1,1 @@
+export { Testimony } from "./components"

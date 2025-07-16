@@ -15,6 +15,7 @@ export const DatePicker : FC<DatePickerProps> = ({
     maxNumberOfDates = 1,
     datesDisabled = [],
     onChange,
+    error = '',
     ...props
 }) => {
 
@@ -85,6 +86,28 @@ export const DatePicker : FC<DatePickerProps> = ({
 
         dateRef.current.refresh()
     }, [datesDisabled])
+
+    useEffect(() => {
+        if (!error || !elemRef.current) {
+            return
+        }
+
+        elemRef.current.focus()
+
+        const tooltip = window.bootstrap.Tooltip.getOrCreateInstance(elemRef.current, {
+            title: error,
+            placement: 'top',
+            trigger: 'manual',
+            customClass: 'error-tooltip',
+        })
+
+        tooltip.show()
+
+        return () => {
+            tooltip.dispose()
+        }
+
+    }, [error])
 
 
     return (

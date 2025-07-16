@@ -3,7 +3,7 @@ export interface CreatedBy {
     name: string
 }
 
-export interface BaseModel {
+export interface BaseModel extends Record<string, any> {
     id          : number
     location?   : Location
     createdBy?  : CreatedBy

@@ -1,3 +1,7 @@
-import { SelectProps } from "@/components/inputs/select";
+import { CustomSearchableSelectProps } from "@/components/inputs/searchable-select";
+import { Location } from "@/location/types";
 
-export type LocationSelectProps = Omit<SelectProps, 'name' | 'options' | 'label'>
+export interface LocationSelectProps extends CustomSearchableSelectProps {
+    name?   : string
+    value?  : number | number[] | Location | Location[]
+}

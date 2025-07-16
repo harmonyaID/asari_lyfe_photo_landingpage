@@ -1,0 +1,8 @@
+export { BookBtn } from "./book-btn"
+export { Footer } from "./footer"
+export { GallerySection } from "./gallery-section"
+export { HotelBenefitSection } from "./hotel-benefit-section"
+export { IntroSection } from "./intro-section"
+export { PartnerSection } from "./partner-section"
+export { SubjectSection } from "./subject-section"
+export { TestimonySection } from "./testimony-section"

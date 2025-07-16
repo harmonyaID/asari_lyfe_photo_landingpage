@@ -6,4 +6,5 @@ export interface InputProps extends Omit<ComponentPropsWithoutRef<'input'>, 'nam
     name                : string
     wrapperClassName?   : string
     onChange?           : InputChangeHandler
+    error?              : string
 }

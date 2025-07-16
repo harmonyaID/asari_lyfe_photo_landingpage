@@ -1,0 +1,1 @@
+export { GetLanguageUrl } from "./language"

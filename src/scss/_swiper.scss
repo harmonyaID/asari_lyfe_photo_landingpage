@@ -1,0 +1,31 @@
+:root {
+    --swiper-pagination-color: var(--bs-primary);
+    --swiper-pagination-bullet-size: .625rem;
+    --swiper-pagination-bottom: 0;
+}
+
+.swiper-wrapper {
+    align-items: stretch;
+}
+
+.summary-swiper {
+    padding-bottom: 2rem !important;
+    .swiper-pagination {
+        .swiper-pagination-bullet-active {
+            width: 1.5rem;
+            border-radius: .625rem;
+        }
+    }
+}
+
+.swiper-white {
+    .swiper-button-prev, .swiper-button-next {
+        color: var(--bs-white) !important;
+    }
+}
+
+.swiper-primary {
+    .swiper-button-prev, .swiper-button-next {
+        color: var(--bs-primary) !important;
+    }
+}
