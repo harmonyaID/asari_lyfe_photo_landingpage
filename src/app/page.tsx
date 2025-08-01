@@ -25,7 +25,7 @@ export default function Home() {
                 <IntroSection/>
                 <SubjectSection/>
                 <HotelBenefitSection/>
-                <TestimonySection/>
+                {/* <TestimonySection/> */}
             </Section>
             <GallerySection/>
             <PartnerSection/>

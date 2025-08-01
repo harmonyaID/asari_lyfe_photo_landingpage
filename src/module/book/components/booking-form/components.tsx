@@ -153,21 +153,27 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
 
     return (
         <section className="text-start">
-            <Link href="/">
-                <Logo
-                    size={96}
-                    className="mb-4 pb-2"
-                />
-            </Link>
-            <h1 className="fw-light mb-3 page-title">
-                Record Your Memory <span className="fw-semibold">With Us</span>
-            </h1>
+            <div 
+                className={`${
+                    "content-header position-lg-sticky top-0 bg-white"
+                } ${
+                    !status ? 'pb-5' : ''
+                }`}
+            >
+                <Link href="/">
+                    <Logo
+                        size={96}
+                        className="mb-4 pb-2"
+                    />
+                </Link>
+                <h1 className="fw-light mb-3 page-title">
+                    Record Your Memory <span className="fw-semibold">With Us</span>
+                </h1>
+            </div>
             <form
                 onSubmit={handleSubmit}
                 className={`${
-                    "overflow-y-auto max-h-lg-screen-60 min-h-screen-60"
-                } ${
-                    !status ? 'pt-5' : ''
+                    "min-h-screen-60"
                 }`}
             >
                 <div className="d-grid grid-cols-2 gap-3">
@@ -315,7 +321,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                                     type="number"
                                 />
                             </div>
-                            <div>
+                            <div className="grid-span-2 grid-span-md-1">
                                 <DatePicker
                                     name="date"
                                     error={ error.attribute == 'date' ? error.message : '' }
@@ -327,7 +333,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
                                     datesDisabled={scheduleSetting?.result?.value || []}
                                 />
                             </div>
-                            <div>
+                            <div className="grid-span-2 grid-span-md-1">
                                 <DatePicker
                                     name="checkoutDate"
                                     error={ error.attribute == 'checkoutDate' ? error.message : '' }
