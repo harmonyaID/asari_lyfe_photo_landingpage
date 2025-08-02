@@ -1,12 +1,14 @@
 {
     "name": "lyfe-foto",
-    "version": "0.1.0",
+    "version": "2.0.1",
     "private": true,
     "scripts": {
         "dev": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint"
+        "lint": "next lint",
+        "push-fix": "npm version patch && git push --follow-tags",
+        "push-feature": "npm version minor && git push --follow-tags"
     },
     "dependencies": {
         "bootstrap": "^5.3.3",
