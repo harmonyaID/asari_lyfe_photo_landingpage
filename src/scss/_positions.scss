@@ -1,0 +1,5 @@
+.position-lg-sticky {
+    @include media-breakpoint-up(lg) {
+        position: sticky;
+    }
+}

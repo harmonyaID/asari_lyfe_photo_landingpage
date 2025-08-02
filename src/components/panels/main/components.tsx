@@ -12,7 +12,15 @@ export const MainPanel : FC<PropsWithChildren> = ({
                     { children }
                 </div>
                 <footer
-                    className="border-top border-grey-800 d-flex justify-content-between align-items-center fs-7"
+                    className={`${
+                        "border-top border-grey-800"
+                    } ${
+                        "d-flex justify-content-between align-items-center mt-3"
+                    } ${
+                        "position-lg-sticky bottom-0 bg-white"
+                    } ${
+                        "fs-7"
+                    }`}
                 >
                     <div 
                         className="text-grey-600"

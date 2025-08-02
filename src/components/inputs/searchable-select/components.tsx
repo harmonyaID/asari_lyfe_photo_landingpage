@@ -31,6 +31,7 @@ export const SearchableSelect : FC<SearchableSelectProps> = ({
     hint,
 }) => {
     const triggerEffectRef  = useRef(false)
+    const wrapperRef        = useRef<HTMLDivElement>(null)
     const searchRef         = useRef<HTMLInputElement>(null)
     const resizerRef        = useRef<HTMLDivElement>(null)
     const changeTimeoutRef  = useRef<ReturnType<typeof setTimeout>>()
@@ -86,6 +87,8 @@ export const SearchableSelect : FC<SearchableSelectProps> = ({
 
         clearTimeout(blurTimeoutRef.current)
         setFocused(true)
+
+        wrapperRef.current?.scrollIntoView()
     }
 
     const handleBlurSearch : FocusEventHandler = (event) => {
@@ -341,7 +344,10 @@ export const SearchableSelect : FC<SearchableSelectProps> = ({
     }, [])
 
     return (
-        <div className={wrapperClassName}>
+        <div 
+            ref={wrapperRef}
+            className={wrapperClassName}
+        >
             { label ? (
                 <label
                     htmlFor={`search-${id}`}

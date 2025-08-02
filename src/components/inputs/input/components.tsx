@@ -58,7 +58,7 @@ export const Input : FC<InputProps> = ({
         if (typeof onChangeRef.current == 'function') {
             onChangeRef.current({name, value})
         }
-    }, [])
+    }, [name])
 
     const handleTelFilter = useCallback((event : HTMLElementEventMap['input']) => {
         event.preventDefault()
@@ -86,7 +86,7 @@ export const Input : FC<InputProps> = ({
         if (typeof onChangeRef.current == 'function') {
             onChangeRef.current({name, value: oldValue})
         }
-    }, [])
+    }, [name])
 
     const handleWheel = useCallback<WheelEventHandler<HTMLInputElement>>((event) => {
         if (typeof onWheel == 'function') {
