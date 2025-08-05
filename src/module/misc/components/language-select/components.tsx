@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { LanguageSelectProps } from "./props"
 import { useGetLanguage } from "../../hooks/useGetLanguage"
 import { SearchableSelect } from "@/components/inputs/searchable-select"
@@ -11,6 +11,7 @@ export const LanguageSelect : FC<LanguageSelectProps> = ({
     label = 'Language',
     onChange,
     multiple = false,
+    value,
     ...props
 }) => {
     const inputName = name ? name : multiple ? 'languageIds' : 'languageId'
@@ -19,6 +20,8 @@ export const LanguageSelect : FC<LanguageSelectProps> = ({
     const [filter, setFilter] = useState<Record<string, any>>({
         search  : '',
         isActive: '1',
+        selectedId  : !Array.isArray(value) && typeof value == 'number' ?  value : undefined,
+        selectedIds : Array.isArray(value) && value.length && typeof value[0] == 'number' ? value.join(',') : undefined
     })
 
     const { data, isLoading } = useGetLanguage(filter)
@@ -29,6 +32,15 @@ export const LanguageSelect : FC<LanguageSelectProps> = ({
             search: search
         }))
     }
+
+    
+    useEffect(() => {
+        setFilter((prevFilter) => ({
+            ...prevFilter,
+            selectedId  : !Array.isArray(value) && typeof value == 'number' ?  value : undefined,
+            selectedIds : Array.isArray(value) && value.length && typeof value[0] == 'number' ? value.join(',') : undefined
+        }))
+    }, [value])
 
     return (
         <SearchableSelect
