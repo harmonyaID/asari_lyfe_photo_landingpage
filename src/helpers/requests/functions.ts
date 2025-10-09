@@ -10,7 +10,15 @@ export const objectToParam : ObjectToParam = (object) => {
 
         let value = object[key]
 
+        if (typeof value == 'undefined') {
+            continue
+        }
+
         if (Array.isArray(value)) {
+            if (value.length) {
+                continue
+            }
+
             value = value.join(',')
         }
 
