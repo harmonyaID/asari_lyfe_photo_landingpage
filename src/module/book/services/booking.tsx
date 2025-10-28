@@ -11,6 +11,7 @@ export const createBooking = async (formData : CreateBookingFormdata) : Promise<
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
+                "Timezone": window.timezone,
             }
         })
 

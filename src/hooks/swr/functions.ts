@@ -16,6 +16,7 @@ export const swrFetcher : SwrFetcherType = async (...params) => {
         requestInit.headers = {
             ...requestInit.headers,
             accept: 'application/json',
+            timezone: window.timezone,
         }
         
         const response = await fetch(url, requestInit)
