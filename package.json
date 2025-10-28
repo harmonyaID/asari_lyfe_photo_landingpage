@@ -1,6 +1,6 @@
 {
     "name": "lyfe-foto",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "private": true,
     "scripts": {
         "dev": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 next dev",
