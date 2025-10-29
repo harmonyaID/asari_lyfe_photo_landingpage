@@ -8,7 +8,6 @@ export async function findLocationBySlug (slug: string) {
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
-                "Timezone": window.timezone
             }
         })
 
