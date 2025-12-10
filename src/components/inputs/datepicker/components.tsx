@@ -21,7 +21,6 @@ export const DatePicker : FC<DatePickerProps> = ({
     error = '',
     ...props
 }) => {
-
     const dateRef   = useRef<Datepicker>()
     const elemRef   = useRef<HTMLInputElement>(null)
     const changeRef = useRef(onChange)
@@ -40,15 +39,38 @@ export const DatePicker : FC<DatePickerProps> = ({
         return 'Date'
     }, [label,  withLabel])
 
-    const handleChange = (event : any) => {
-        if (typeof changeRef.current != 'function') {
+    const handleRenderPicker = async () => {
+        if (!elemRef.current) {
             return
         }
 
-        const data = (event as DatepickerEvent).detail
-        changeRef.current({
-            name        : name,
-            value       : data.datepicker.getDate('dd MM yyyy'),
+        const { Datepicker } = await import("vanillajs-datepicker")
+
+        dateRef.current = new Datepicker(elemRef.current, {
+            buttonClass: 'btn',
+            format: 'dd MM yyyy',
+            minDate: new Date,
+            maxNumberOfDates: maxNumberOfDates,
+            clearButton     : maxNumberOfDates > 1,
+            datesDisabled   : datesDisabled,
+            autohide        : true
+        })
+
+        if (value) {
+            const date = dayjs(value as string, 'dd MM yyyy');
+            dateRef.current.setDate(date.toDate())
+            dateRef.current.refresh()
+        }
+
+        elemRef.current.addEventListener('changeDate', (event) => {
+            const data = (event as DatepickerEvent).detail
+
+            if (typeof changeRef.current == 'function') {
+                changeRef.current({
+                    name        : name,
+                    value       : data.datepicker.getDate('dd MM yyyy'),
+                })
+            }
         })
     }
 
@@ -58,35 +80,10 @@ export const DatePicker : FC<DatePickerProps> = ({
 
 
     useEffect(() => {
-        if (!elemRef.current) {
-            return
-        }
-
-        dateRef.current = new Datepicker(elemRef.current, {
-            buttonClass     : 'btn',
-            format          : 'dd MM yyyy',
-            minDate         : new Date,
-            maxNumberOfDates: maxNumberOfDates,
-            clearButton     : maxNumberOfDates > 1,
-            datesDisabled   : datesDisabled,
-            autohide        : maxNumberOfDates == 1,
-        })
-
-        if (value) {
-            dateRef.current.setDate(value)
-        }
-
-        elemRef.current.addEventListener('changeDate', handleChange)
-        
-        const date      = dateRef.current
-        const element   = elemRef.current
-        
-        return () => {
-            element?.removeEventListener('changeDate', handleChange)
-            date?.destroy()
-        }
+        handleRenderPicker()
     }, [])
 
+    
     useEffect(() => {
         if (!dateRef.current) {
             return
@@ -95,7 +92,6 @@ export const DatePicker : FC<DatePickerProps> = ({
         dateRef.current.setOptions({
             maxNumberOfDates: maxNumberOfDates,
             clearButton     : maxNumberOfDates > 1,
-            autohide        : maxNumberOfDates == 1,
         })
     }, [maxNumberOfDates])
 
@@ -107,8 +103,10 @@ export const DatePicker : FC<DatePickerProps> = ({
         dateRef.current.setOptions({
             datesDisabled: datesDisabled
         })
-    }, [datesDisabled])
 
+        dateRef.current.refresh()
+    }, [datesDisabled])
+    
     useEffect(() => {
         if (!dateRef.current) {
             return
