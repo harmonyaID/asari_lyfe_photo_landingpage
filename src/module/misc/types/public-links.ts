@@ -7,5 +7,6 @@ export interface PublicLink extends BaseModelWithCode {
     type        : {
         id      : number
         name    : string
-    }
+    },
+    reference   : any,
 }

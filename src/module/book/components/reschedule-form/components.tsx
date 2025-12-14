@@ -13,7 +13,7 @@ import { InputChangeHandler } from "@/helpers/changeHandlers"
 import { useFindScheduleSetting } from "@/setting/hooks"
 import { DAY_OFFS } from "@/setting/constants"
 import { ChevronLeft } from "react-feather"
-import { DatePicker } from "@/components/inputs"
+import { DatePicker, Textarea } from "@/components/inputs"
 import { ScheduleSelect } from "../schedule-select"
 
 export const RescheduleForm : FC<RescheduleFormProps> = ({ 
@@ -21,7 +21,7 @@ export const RescheduleForm : FC<RescheduleFormProps> = ({
     url,
     code,
     booking,
-    onBack
+    onSuccess
 }) => {
     const router = useRouter()
     
@@ -30,7 +30,8 @@ export const RescheduleForm : FC<RescheduleFormProps> = ({
         date            : booking?.date || '',
         recaptchaAction : '',
         recaptchaToken  : '',
-        scheduleId      : booking?.schedule?.id || 0
+        scheduleId      : booking?.schedule?.id || 0,
+        reason          : ''
     })
 
     const { data: scheduleSetting, isLoading } = useFindScheduleSetting(DAY_OFFS, booking?.location?.id || 0)
@@ -69,8 +70,12 @@ export const RescheduleForm : FC<RescheduleFormProps> = ({
                             if (response?.status.code != 200) {
                                 return
                             }
+                            
+                            if (typeof onSuccess == 'function') {
+                                onSuccess()
+                            }
 
-                            router.push('reschedule-success')
+                            router.refresh()
                         })
                         .finally(() => {
                             setIsSending(false)
@@ -81,73 +86,46 @@ export const RescheduleForm : FC<RescheduleFormProps> = ({
     }
 
     return (
-        <section className="text-start">
-            <div 
-                className={`${
-                    "content-header position-lg-sticky top-0 bg-white z-1"
-                }`}
-            >
-                <Link href="/">
-                    <Logo
-                        size={96}
-                        className="mb-4 pb-2"
-                    />
-                </Link>
-                <h1 className="fw-light mb-3 page-title">
-                    Reschedule Appointment <span className="fw-semibold">#{ number }</span>
-                </h1>
-            </div>
-            <form
-                onSubmit={handleSubmit}
-                className={`${
-                    "min-h-screen-60"
-                }`}
-            >
-                <div className="d-grid gap-3">
-                    <div className="pb-1">
-                        <Button
-                            type="button"
-                            outline
-                            className="d-inline-flex gap-1 align-items-center justify-content-center"
-                            onClick={onBack}
-                        >
-                            <ChevronLeft/>
-                            <span>Back</span>
-                        </Button>
-                    </div>
-                    <DatePicker
-                        name="date"
-                        value={formData.date || ''}
-                        onChange={handleChange}
-                        label="Choose Session Date"
-                        placeholder="e.g. 30 September 2024"
-                        required
-                        datesDisabled={scheduleSetting?.result?.value || []}
-                    />
-                    <ScheduleSelect
-                        required
-                        value={formData.scheduleId}
-                        onChange={handleChange}
-                        date={formData.date}
-                        locationId={booking?.location?.id || 0}
-                    />
-                    <div className="d-grid">
-                        <Button 
-                            type="submit"
-                            disabled={isSending}
-                            pill
-                        >
-                            <Loader
-                                small 
-                                hidden={!isSending} 
-                                className="me-2"
-                            />
-                            Reschedule Appointment
-                        </Button>
-                    </div>
+        <form onSubmit={handleSubmit}>
+            <div className="d-grid gap-3">
+                <DatePicker
+                    name="date"
+                    value={formData.date || ''}
+                    onChange={handleChange}
+                    label="Choose Session Date"
+                    placeholder="e.g. 30 September 2024"
+                    required
+                    datesDisabled={scheduleSetting?.result?.value || []}
+                />
+                <ScheduleSelect
+                    required
+                    value={formData.scheduleId}
+                    onChange={handleChange}
+                    date={formData.date}
+                    locationId={booking?.location?.id || 0}
+                />
+                <Textarea
+                    name="reason"
+                    onChange={handleChange}
+                    value={formData.reason}
+                    label="Reason"
+                />
+                <div className="d-grid">
+                    <Button 
+                        type="submit"
+                        disabled={isSending}
+                        pill
+                    >
+                        <Loader
+                            small 
+                            hidden={!isSending} 
+                            className="me-2"
+                        />
+                        Reschedule Appointment
+                    </Button>
                 </div>
-            </form>
-        </section>
+            </div>
+        </form>
     )
 
 }

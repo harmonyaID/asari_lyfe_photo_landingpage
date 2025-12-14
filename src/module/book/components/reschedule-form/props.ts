@@ -5,5 +5,5 @@ export interface RescheduleFormProps {
     booking?: Booking
     url     : string
     code    : string
-    onBack? : () => void
+    onSuccess?: () => void
 }

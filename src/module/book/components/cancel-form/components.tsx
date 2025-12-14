@@ -9,17 +9,24 @@ import { Logo } from "@/components/brandings"
 import { Loader } from "@/components/misc"
 import { Button } from "@/components/buttons"
 import { ChevronLeft } from "react-feather"
+import { Textarea } from "@/components/inputs"
+import { InputChangeHandler } from "@/helpers/changeHandlers"
 
 export const CancelForm : FC<CancelFormProps> = ({ 
     number,
     url,
     code,
-    onBack,
+    onSuccess
 }) => {
 
     const router = useRouter()
 
     const [isSending, setIsSending] = useState(false)
+    const [reason, setReason] = useState('')
+
+    const handleChange : InputChangeHandler = ({value}) => {
+        setReason(value)
+    }
 
     const handleSubmit : FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault()
@@ -39,7 +46,8 @@ export const CancelForm : FC<CancelFormProps> = ({
                     const formRequest = {
                         code            : code,
                         recaptchaToken  : token,
-                        recaptchaAction : action
+                        recaptchaAction : action,
+                        reason          : reason,
                     }
 
                     cancelBooking(number, formRequest)
@@ -48,7 +56,11 @@ export const CancelForm : FC<CancelFormProps> = ({
                                 return
                             }
 
-                            router.push('cancel-success')
+                            if (typeof onSuccess == 'function') {
+                                onSuccess()
+                            }
+
+                            router.refresh()
                         })
                         .finally(() => {
                             setIsSending(false)
@@ -59,60 +71,30 @@ export const CancelForm : FC<CancelFormProps> = ({
     }
 
     return (
-        <section className="text-start">
-            <div 
-                className={`${
-                    "content-header position-lg-sticky top-0 bg-white z-1"
-                }`}
-            >
-                <Link href="/">
-                    <Logo
-                        size={96}
-                        className="mb-4 pb-2"
-                    />
-                </Link>
-                <h1 className="fw-light mb-3 page-title">
-                    Cancel Appointment <span className="fw-semibold">#{ number }</span>
-                </h1>
-            </div>
-            <form
-                onSubmit={handleSubmit}
-                className={`${
-                    "min-h-screen-60"
-                }`}
-            >
-                <div className="d-grid gap-3">
-                    <div className="pb-1">
-                        <Button
-                            type="button"
-                            outline
-                            className="d-inline-flex gap-1 align-items-center justify-content-center"
-                            onClick={onBack}
-                        >
-                            <ChevronLeft/>
-                            <span>Back</span>
-                        </Button>
-                    </div>
-                    <p className="text-center">
-                        Are you sure you want to cancel this appointment?
-                    </p>
-                    <div className="d-grid">
-                        <Button 
-                            type="submit"
-                            disabled={isSending}
-                            pill
-                        >
-                            <Loader
-                                small 
-                                hidden={!isSending} 
-                                className="me-2"
-                            />
-                            Cancel Appointment
-                        </Button>
-                    </div>
+        <form onSubmit={handleSubmit}>
+            <div className="d-grid gap-3">
+                <Textarea
+                    name="reason"
+                    onChange={handleChange}
+                    value={reason}
+                    label="Reason"
+                />
+                <div className="d-grid">
+                    <Button 
+                        type="submit"
+                        disabled={isSending}
+                        pill
+                    >
+                        <Loader
+                            small 
+                            hidden={!isSending} 
+                            className="me-2"
+                        />
+                        Cancel Appointment
+                    </Button>
                 </div>
-            </form>
-        </section>
+            </div>
+        </form>
     )
 
 }
