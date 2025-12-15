@@ -71,14 +71,14 @@ export const SelfAdjustmentDetail : FC<SelfAdjustmentDetailProps> = ({
                 <div className="d-grid grid-cols-2 gap-3">
                     <Input
                         wrapperClassName="grid-span-2"
-                        disabled
+                        readOnly
                         name="requestType"
                         label="Adjustment Type"
                         value={booking?.adjustmentRequest.type.name || '-'}
                     />
                     <Input
                         wrapperClassName="grid-span-2"
-                        disabled
+                        readOnly
                         name="requestType"
                         label="Status"
                         value={booking?.adjustmentRequest.status.name || '-'}
@@ -86,13 +86,13 @@ export const SelfAdjustmentDetail : FC<SelfAdjustmentDetailProps> = ({
                     { booking?.adjustmentRequest.schedule ? (
                         <>
                             <Input
-                                disabled
+                                readOnly
                                 name="requestDate"
                                 label="Requested Session Date"
                                 value={booking?.adjustmentRequest.schedule.date || '-'}
                             />
                             <Input
-                                disabled
+                                readOnly
                                 name="requestTime"
                                 label="Requested Session Time"
                                 value={booking?.adjustmentRequest.schedule.fromTime || '-'}

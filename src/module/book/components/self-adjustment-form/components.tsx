@@ -94,38 +94,38 @@ export const SelfAdjustmentSection : FC<SelfAdjustmentProps> = ({
                         <>
                             <Input
                                 wrapperClassName="grid-span-2"
-                                disabled
+                                readOnly
                                 name="name"
                                 label="Name"
                                 value={booking?.name || '-'}
                             />
                             <Input
-                                disabled
+                                readOnly
                                 name="email"
                                 label="Email"
                                 value={booking?.email || '-'}
                             />
                             <Input
-                                disabled
+                                readOnly
                                 name="phone"
                                 label="Phone"
                                 value={booking?.phone || '-'}
                             />
                             <Input
                                 wrapperClassName="grid-span-2"
-                                disabled
+                                readOnly
                                 name="location"
                                 label="Location"
                                 value={booking?.location?.name || '-'}
                             />
                             <Input
-                                disabled
+                                readOnly
                                 name="date"
                                 label="Session Date"
                                 value={booking?.date || '-'}
                             />
                             <Input
-                                disabled
+                                readOnly
                                 name="time"
                                 label="Session Time"
                                 value={booking?.time || '-'}
