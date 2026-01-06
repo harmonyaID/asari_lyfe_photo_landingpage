@@ -43,7 +43,7 @@ input[type="number"] {
     --bs-tooltip-bg: var(--bs-danger);
 }
 
-input:read-only{
+input[readonly]{
     border-color: transparent;
     border-bottom-color: var(--bs-primary);
     border-radius: 0;
