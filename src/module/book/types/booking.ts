@@ -31,3 +31,25 @@ export interface CreateBookingFormdata {
     compilance          : boolean
     paxQty              : number
 }
+
+export interface CancelBookingFormdata {
+    code                : string
+    recaptchaToken      : string
+    recaptchaAction     : string
+    reason              : string
+}
+
+export interface RescheduleBookingFormdata {
+    code                : string
+    date                : string
+    scheduleId          : number
+    recaptchaToken      : string
+    recaptchaAction     : string
+    reason              : string
+}
+
+export interface DeleteBookingAdjustmentFormdata {
+    code                : string
+    recaptchaToken      : string
+    recaptchaAction     : string
+}

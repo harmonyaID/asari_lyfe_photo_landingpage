@@ -8,6 +8,7 @@ export const LandingProvider : FC<PropsWithChildren> = ({
     children
 }) => {
     useEffect(() => {
+        window.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
         document.body.classList.add('landing')
 
         return () => {

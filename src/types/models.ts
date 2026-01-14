@@ -1,3 +1,5 @@
+import { Location } from "@/location/types"
+
 export interface CreatedBy {
     id  : number
     name: string

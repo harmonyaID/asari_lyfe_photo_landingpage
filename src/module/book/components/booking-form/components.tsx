@@ -155,7 +155,7 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
         <section className="text-start">
             <div 
                 className={`${
-                    "content-header position-lg-sticky top-0 bg-white"
+                    "content-header position-lg-sticky top-0 bg-white z-1"
                 } ${
                     !status ? 'pb-5' : ''
                 }`}

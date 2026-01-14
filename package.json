@@ -1,6 +1,6 @@
 {
     "name": "lyfe-foto",
-    "version": "2.0.2",
+    "version": "2.2.0",
     "private": true,
     "scripts": {
         "dev": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 next dev",
@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "bootstrap": "^5.3.3",
+        "dayjs": "^1.11.19",
         "iconsax-react": "^0.0.8",
         "next": "^14.2.4",
         "react": "^18",

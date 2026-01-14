@@ -22,6 +22,7 @@ export const Input : FC<InputProps> = ({
     onWheel,
     type,
     error,
+    readOnly = false,
     ...props
 }) => {
     const inputId = id || `input-${name}`
@@ -172,7 +173,11 @@ export const Input : FC<InputProps> = ({
             { label ? (
                 <label
                     htmlFor={inputId}
-                    className="form-label"
+                    className={`${
+                        "form-label"
+                    } ${
+                        readOnly ? 'text-primary fw-medium' : ''
+                    }`}
                 >
                     { label }
                     { required ? <span className="text-danger">*</span> : <></> }
@@ -187,6 +192,7 @@ export const Input : FC<InputProps> = ({
                 onWheel={handleWheel}
                 required={required}
                 type={type}
+                readOnly={readOnly}
                 {...props}
             />
         </div>
