@@ -12,17 +12,8 @@ interface Props {
 export async function generateMetadata({ params, searchParams }: Props) : Promise<Metadata> {
     const { number }= await params
     const { code }  = await searchParams
-    const requestHeaders = headers()
 
-    const url = `https://${requestHeaders.get('host')}/booking/${number}?code=${code}`
-    if (!url || !code) {
-        return {
-            title: `Invalid Self-Adjustment Page | ${process.env.NEXT_PUBLIC_APP_NAME}`,
-            description: 'Invalid self-adjustment page, please make sure the URL you inputted is correct'
-        }
-    }
-
-    const publicLink = await findPublicLinkByCode(code as string || '', url || '')
+    const publicLink = await findPublicLinkByCode(code as string || '', number || '')
     if (!publicLink?.result?.code) {
         return {
             title: `Invalid Self-Adjustment Page | ${process.env.NEXT_PUBLIC_APP_NAME}`,
@@ -43,9 +34,10 @@ export async function generateMetadata({ params, searchParams }: Props) : Promis
 const BookingPage = async ({ params, searchParams }: Props) => {
     const { number }    = await params
     const { code }      = await searchParams
+
     const requestHeaders= headers()
     const url           = `https://${requestHeaders.get('host')}/booking/${number}?code=${code}`
-    const publicLink    = await findPublicLinkByCode(code as string || '', url || '')
+    const publicLink    = await findPublicLinkByCode(code as string || '', number)
 
     return (
         <>
