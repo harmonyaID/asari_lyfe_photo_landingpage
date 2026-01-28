@@ -1,7 +1,7 @@
 'use client';
 
 import { Button, LinkButton } from "@/components/buttons";
-import { SUCCESS_MESSAGE } from "@/configs/session-storage-keys";
+import { BRANCH_PHONE, CONFIRMATION_MESSAGE, SUCCESS_MESSAGE } from "@/configs/session-storage-keys";
 import { formatPhoneNumber } from "@/helpers/formatter";
 import { FC, useEffect, useRef, useState } from "react";
 
@@ -9,6 +9,7 @@ export const SuccessNotification : FC = () => {
     const [message, setMessage] = useState('')
     const [contactName, setContactName] = useState('')
     const [contact, setContact] = useState('')
+    const [confirmationLink, setConfirmationLink] = useState('')
     const elementRef = useRef<HTMLDivElement>(null)
 
     const toggle = (value: boolean = true) => {
@@ -51,7 +52,22 @@ export const SuccessNotification : FC = () => {
                 }
 
             } catch (error) {
-                console.error('Failed to decode success msg')
+                console.error('Failed to decode success msg', error)
+            }
+        }
+
+        const confirmationMsg = sessionStorage.getItem(CONFIRMATION_MESSAGE)
+        const branchPhone = sessionStorage.getItem(BRANCH_PHONE)
+        if (confirmationMsg && branchPhone) {
+            try {
+                
+                const decoded = JSON.parse(confirmationMsg)
+                if (decoded.formatted) {
+                    setConfirmationLink(`https://wa.me/${branchPhone}?text=${decoded.formatted}`)
+                }
+
+            } catch (error) {
+                console.error('Failed to decode confirmation message', error)
             }
         }
 
@@ -101,12 +117,22 @@ export const SuccessNotification : FC = () => {
                                     Open Whatsapp
                                 </LinkButton>
                             ) : <></> }
-                            <Button 
-                                onClick={() => toggle(false)}
-                                pill
-                            >
-                                OK
-                            </Button>
+                            { confirmationLink ? (
+                                <LinkButton
+                                    href={confirmationLink}
+                                    target="_blank"
+                                    pill
+                                >
+                                    Confirm Booking
+                                </LinkButton>
+                            ) : (
+                                <Button 
+                                    onClick={() => toggle(false)}
+                                    pill
+                                >
+                                    OK
+                                </Button>
+                            ) }
                         </div>
                     </div>
                 </div>
