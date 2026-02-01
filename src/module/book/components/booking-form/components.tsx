@@ -14,7 +14,7 @@ import { CreateBookingFormdata } from "@/book/types";
 import { createBooking } from "@/book/services";
 import { useRouter } from "next/navigation";
 import { Loader } from "@/components/misc";
-import { BOOKING_NUMBER, SUCCESS_MESSAGE } from "@/configs/session-storage-keys";
+import { BOOKING_NUMBER, BRANCH_PHONE, CONFIRMATION_MESSAGE, SUCCESS_MESSAGE } from "@/configs/session-storage-keys";
 import { LanguageSelect } from "@/module/misc/components/language-select";
 import { BookingFormProps } from "./props";
 import { ChevronLeft, UserCheck, UserPlus } from "react-feather";
@@ -136,6 +136,16 @@ export const BookingForm : FC<BookingFormProps> = ({ location }) => {
 
                             const number = response.result.number
                             sessionStorage.setItem(BOOKING_NUMBER, number)
+
+                            const confirmationMsg = response.result.confirmationMsg
+                            if (confirmationMsg) {
+                                sessionStorage.setItem(CONFIRMATION_MESSAGE, JSON.stringify(confirmationMsg))
+                            }
+
+                            const branchPhone = response.result.branchPhone
+                            if (branchPhone) {
+                                sessionStorage.setItem(BRANCH_PHONE, branchPhone || '')
+                            }
 
                             const successMsg = response.status.attributes
                             if (successMsg) {
