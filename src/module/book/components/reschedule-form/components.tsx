@@ -62,6 +62,7 @@ export const RescheduleForm : FC<RescheduleFormProps> = ({
 
                     const formRequest = {
                         ...formData,
+                        recaptchaToken  : token,
                         recaptchaAction : action
                     }
 
