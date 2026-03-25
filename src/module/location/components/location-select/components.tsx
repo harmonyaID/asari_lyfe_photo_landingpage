@@ -12,10 +12,11 @@ export const LocationSelect : FC<LocationSelectProps> = ({
     ...props
 }) => {
     const [filter, setFilter] = useState<Record<string, any>>({
-        search  : '',
-        isActive: '1',
-        selectedId  : !Array.isArray(value) && typeof value == 'number' ?  value : undefined,
-        selectedIds : Array.isArray(value) && value.length && typeof value[0] == 'number' ? value.join(',') : undefined
+        search          : '',
+        isActive        : '1',
+        isBookingable   : '1',
+        selectedId      : !Array.isArray(value) && typeof value == 'number' ?  value : undefined,
+        selectedIds     : Array.isArray(value) && value.length && typeof value[0] == 'number' ? value.join(',') : undefined
     })
 
     const { data, isLoading } = useGetLocation(filter)
