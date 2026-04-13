@@ -1,7 +1,8 @@
 import bootstrap from "@types/bootstrap"
 
-namespace global {
+declare global {
     interface Window {
-        bootstrap: bootstrap
+        timezone    : string
+        bootstrap   : bootstrap
     }
 }

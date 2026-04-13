@@ -1,9 +1,10 @@
-'use client';
+'use client'
 
-import { FC, useEffect, useLayoutEffect, useRef } from "react"
+import { FC, useEffect, useLayoutEffect, useMemo, useRef } from "react"
 import { DatePickerProps } from "./props"
+import { Datepicker } from "vanillajs-datepicker"
 import { DatepickerEvent } from "./types"
-import { Datepicker } from "vanillajs-datepicker";
+import dayjs from "dayjs"
 
 export const DatePicker : FC<DatePickerProps> = ({
     className = '',
@@ -11,19 +12,32 @@ export const DatePicker : FC<DatePickerProps> = ({
     id,
     name,
     label = '',
+    withLabel = false,
     required = false,
     maxNumberOfDates = 1,
     datesDisabled = [],
     onChange,
+    value,
     error = '',
     ...props
 }) => {
-
     const dateRef   = useRef<Datepicker>()
     const elemRef   = useRef<HTMLInputElement>(null)
     const changeRef = useRef(onChange)
 
     const inputId = id || `date-picker-${name}`
+
+    const inputLabel = useMemo(() => {
+        if (!withLabel && !label) {
+            return ''
+        }
+
+        if (label) {
+            return label
+        }
+
+        return 'Date'
+    }, [label,  withLabel])
 
     const handleRenderPicker = async () => {
         if (!elemRef.current) {
@@ -42,6 +56,12 @@ export const DatePicker : FC<DatePickerProps> = ({
             autohide        : true
         })
 
+        if (value) {
+            const date = dayjs(value as string, 'dd MM yyyy');
+            dateRef.current.setDate(date.toDate())
+            dateRef.current.refresh()
+        }
+
         elemRef.current.addEventListener('changeDate', (event) => {
             const data = (event as DatepickerEvent).detail
 
@@ -56,7 +76,7 @@ export const DatePicker : FC<DatePickerProps> = ({
 
     useLayoutEffect(() => {
         changeRef.current = onChange
-    })
+    }, [onChange])
 
 
     useEffect(() => {
@@ -86,6 +106,20 @@ export const DatePicker : FC<DatePickerProps> = ({
 
         dateRef.current.refresh()
     }, [datesDisabled])
+    
+    useEffect(() => {
+        if (!dateRef.current) {
+            return
+        }
+
+        if (dateRef.current.getDate('dd MM yyyy') == value) {
+            return
+        }
+
+        const date = dayjs(value as string, 'dd MM yyyy');
+        dateRef.current.setDate(date.toDate())
+        dateRef.current.refresh()
+    }, [value])
 
     useEffect(() => {
         if (!error || !elemRef.current) {
@@ -114,12 +148,12 @@ export const DatePicker : FC<DatePickerProps> = ({
         <div
             className={wrapperClassName}
         >
-            { label ? (
+            { inputLabel ? (
                 <label
                     htmlFor={inputId}
                     className="form-label"
                 >
-                    { label }
+                    { inputLabel }
                     { required ? <span className="text-danger">*</span> : <></> }
                 </label>
             ) : (<></>) }

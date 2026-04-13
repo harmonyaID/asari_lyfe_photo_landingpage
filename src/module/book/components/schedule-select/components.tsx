@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, Fragment, useEffect, useRef } from "react";
+import { FC, Fragment, useEffect, useMemo, useRef } from "react";
 import { ScheduleSelectProps } from "./props";
 import { useGetSchedule } from "@/book/hooks";
 import { changeHandlerGenerator } from "@/helpers/changeHandlers";
@@ -21,6 +21,16 @@ export const ScheduleSelect : FC<ScheduleSelectProps> = ({
     const containerRef = useRef<HTMLDivElement>(null)
 
     const handleChange = changeHandlerGenerator<HTMLInputElement>(onChange)
+
+    const isAvailable = useMemo(() => {
+        if (!data?.result?.length) {
+            return false
+        }
+
+        return data.result.reduce((accumulator, schedule) => {
+            return accumulator || schedule.isAvailable
+        }, false)
+    }, [data])
     
     useEffect(() => {
         if (!error || !containerRef.current) {
@@ -50,7 +60,13 @@ export const ScheduleSelect : FC<ScheduleSelectProps> = ({
     }
 
     return (
-        <div className={wrapperClassName}>
+        <div 
+            className={`${
+                "position-relative"
+            } ${
+                wrapperClassName
+            }`}
+        >
             <label
                 className="form-label"
             >
@@ -60,7 +76,7 @@ export const ScheduleSelect : FC<ScheduleSelectProps> = ({
             </label>
             <div 
                 ref={containerRef}
-                className="d-grid gap-2 grid-cols-2 grid-cols-md-4 grid-cols-lg-6"
+                className="d-grid gap-2 grid-cols-2 grid-cols-md-4 grid-cols-lg-6 position-relative"
             >
                 { isLoading ? (
                     <div className="grid-span-2 grid-span-md-4 grid-span-lg-6">
@@ -93,6 +109,17 @@ export const ScheduleSelect : FC<ScheduleSelectProps> = ({
                         </label>
                     </Fragment>
                 )) }
+
+                { !fetchError && data?.result?.length && !isAvailable ? (
+                    <div className="grid-span-2 grid-span-md-4 grid-span-lg-6 position-absolute top-0 bottom-0 start-0 end-0 glass-panel rounded-2 d-flex justify-content-center flex-column">
+                        <div className="bg-white border-0 p-3 text-center">
+                            <p className="page-title fw-semibold">
+                                We are sorry {":("}
+                            </p>
+                            The schedules on this date are fully booked. Please select another date.
+                        </div>
+                    </div>
+                ) : (<></>) }
             </div>
         </div>
     )

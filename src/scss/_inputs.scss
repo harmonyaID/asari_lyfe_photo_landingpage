@@ -42,3 +42,17 @@ input[type="number"] {
 .error-tooltip {
     --bs-tooltip-bg: var(--bs-danger);
 }
+
+input[readonly]{
+    border-color: transparent;
+    border-bottom-color: var(--bs-primary);
+    border-radius: 0;
+    padding-left: 0;
+    padding-right: 0;
+    &:focus, &:focus-visible, &:focus-within {
+        outline: none;
+        box-shadow: none;
+        border-color: transparent;
+        border-bottom-color: var(--bs-primary);
+    }
+}

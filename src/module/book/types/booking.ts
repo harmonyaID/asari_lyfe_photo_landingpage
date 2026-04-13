@@ -4,13 +4,19 @@ import { Language } from "@/module/misc/types"
 import { BriefCustomer } from "./customer"
 
 export interface Booking extends BaseModel {
-    number            : string
-    source            : string
-    schedule?         : Schedule
-    name              : string
-    email?            : string
-    phone             : string
-    roomNumber?       : string
+    number          : string
+    source          : string
+    schedule?       : Schedule
+    name            : string
+    email?          : string
+    phone           : string
+    roomNumber?     : string
+    confirmationMsg?: {
+        html        : string
+        formatted   : string
+        fullyFilled?: boolean
+    }
+    branchPhone?    : string
 }
 
 export interface CreateBookingFormdata {
@@ -30,4 +36,26 @@ export interface CreateBookingFormdata {
     preferredLanguageId?: number
     compilance          : boolean
     paxQty              : number
+}
+
+export interface CancelBookingFormdata {
+    code                : string
+    recaptchaToken      : string
+    recaptchaAction     : string
+    reason              : string
+}
+
+export interface RescheduleBookingFormdata {
+    code                : string
+    date                : string
+    scheduleId          : number
+    recaptchaToken      : string
+    recaptchaAction     : string
+    reason              : string
+}
+
+export interface DeleteBookingAdjustmentFormdata {
+    code                : string
+    recaptchaToken      : string
+    recaptchaAction     : string
 }

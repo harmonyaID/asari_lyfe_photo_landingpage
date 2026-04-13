@@ -11,7 +11,7 @@ const SuccessPage : FC = () => (
             <SuccessIcon/>
         </div>
         <h1 className="pb-2 mb-1 page-title bold">
-            BOOKING SUCESS
+            BOOKING SUCCESS
         </h1>
         <p className="fw-light mb-1">
             Successfully booked an appointment, our team will reach you as soon as possible
