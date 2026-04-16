@@ -10,11 +10,16 @@ import Link from "next/link"
 import { FC, useContext, useEffect, useRef } from "react"
 import { Mail, MapPin, Phone } from "react-feather"
 
+const filter = {
+    isActive        : '1',
+    isBookingable   : '1'
+}
+
 export const Footer : FC = () => {
     const elementRef = useRef<HTMLElement>(null)
     const { observe, unobserve } = useContext(NavbarContext) as NavbarContextType
 
-    const { data, isLoading, error } = useGetLocation()
+    const { data, isLoading, error } = useGetLocation(filter)
 
     useEffect(() => {
         if (!elementRef.current) {
