@@ -2,7 +2,12 @@ import { BookingNumber } from "@/book/components/booking-number";
 import { SuccessNotification } from "@/book/components/success-notification";
 import { LinkButton } from "@/components/buttons";
 import { SuccessIcon } from "@/components/icons";
+import { Metadata } from "next";
 import { FC } from "react";
+
+export const metadata: Metadata = {
+    title: `Bookng Success | ${ process.env.NEXT_PUBLIC_APP_NAME }`
+}
 
 const SuccessPage : FC = () => (
     <section>
