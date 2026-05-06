@@ -104,7 +104,7 @@ export const SuccessNotification : FC = () => {
                             className={`${
                                 "d-grid"
                             } ${
-                                contact ? 'grid-cols-2 gap-2' : ''
+                                contact ? 'grid-cols-md-2 gap-2' : ''
                             }`}
                         >
                             { contact ? (
