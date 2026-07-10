@@ -2,6 +2,9 @@ import CopyPlugin from 'copy-webpack-plugin';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    env: {
+        version: process.env.npm_package_version
+    },
     reactStrictMode: true,
     swcMinify: true,
     trailingSlash: true,
