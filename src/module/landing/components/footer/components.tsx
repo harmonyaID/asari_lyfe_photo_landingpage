@@ -136,14 +136,15 @@ export const Footer : FC = () => {
                     Inter.className
                 }`}
             >
-                <p>Copyright ©2024 - 2025 Lyfe Foto. All Rights Reserved. Design & Development By Harmonya Indonesia</p>
-                <p>
+                <p>Copyright ©2024 - 2026 Lyfe Foto. All Rights Reserved. Design & Development By Harmonya Indonesia</p>
+                <p className="mb-1">
                     This site is protected by reCAPTCHA and the Google{' '}
                     <Link target="_blank" href="https://policies.google.com/privacy">Privacy Policy</Link> 
                     {' '}and{' '}
                     <Link target="_blank" href="https://policies.google.com/terms">Terms of Service</Link> 
                     {' '}apply.
                 </p>
+                <p className="fs-7 text-grey-700">Version { process.env.version }</p>
             </section>
         </footer>
     )
