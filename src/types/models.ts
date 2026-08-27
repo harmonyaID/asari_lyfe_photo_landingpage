@@ -12,6 +12,12 @@ export interface BaseModel extends Record<string, any> {
     createdAt?  : string
 }
 
+export interface BaseGlobalModel extends Record<string, any> {
+    id          : number
+    createdBy?  : CreatedBy
+    createdAt?  : string
+}
+
 export interface BaseModelWithName extends BaseModel {
     name : string
 }

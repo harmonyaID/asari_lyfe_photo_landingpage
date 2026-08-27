@@ -26,7 +26,7 @@ export const MainPanel : FC<PropsWithChildren> = ({
                         className="text-grey-600"
                         title="copyright"
                     >
-                        © {year} { process.env.NEXT_PUBLIC_APP_NAME }
+                        © {year} { process.env.NEXT_PUBLIC_APP_NAME || 'Lyfe Foto'}
                     </div>
                     <div
                         className="text-grey-400 text-end"

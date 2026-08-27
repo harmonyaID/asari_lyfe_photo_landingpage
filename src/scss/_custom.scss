@@ -18,6 +18,16 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 
+    &.radius-reverse {
+        border-radius: 50% / 10% 18%;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+
+        img {
+            transform: rotateY(0deg);
+        }
+    }
+
     .headline-text {
         max-width: 640px;
     }

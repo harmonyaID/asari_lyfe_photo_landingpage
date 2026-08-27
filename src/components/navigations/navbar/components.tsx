@@ -18,7 +18,7 @@ export const Navbar : FC = () => {
             <div className="landing-container">
                 <Link
                     className="navbar-brand"
-                    href={"#"}
+                    href={"/"}
                 >
                     <Logo
                         size={64}
