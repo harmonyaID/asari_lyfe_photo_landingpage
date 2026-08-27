@@ -6,7 +6,7 @@ import { Metadata } from "next";
 import { FC } from "react";
 
 export const metadata: Metadata = {
-    title: `Bookng Success | ${ process.env.NEXT_PUBLIC_APP_NAME }`
+    title: `Bookng Success | ${ process.env.NEXT_PUBLIC_APP_NAME || 'Lyfe Foto' }`
 }
 
 const SuccessPage : FC = () => (
