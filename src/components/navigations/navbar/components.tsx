@@ -3,6 +3,7 @@ import { NavbarItem, NavItem } from "../navbar-item";
 import Link from "next/link";
 import { Logo } from "@/components/brandings";
 import { LinkButton } from "@/components/buttons";
+import { NavbarProps } from "./props";
 
 const items : NavItem[] = [
     { id: 'home', label: 'Home' },
@@ -10,9 +11,12 @@ const items : NavItem[] = [
     { id: 'portfolio', label: 'Our Works' },
     { id: 'partner', label: 'Our Partners' },
     { id: 'contact', label: 'Contact Us' },
+    { label: 'Event Booking', href: '/event-booking' },
 ]
 
-export const Navbar : FC = () => {
+export const Navbar : FC<NavbarProps> = ({
+    hideBookButton = false
+}) => {
     return (
         <nav className="navbar navbar-expand-lg bg-white">
             <div className="landing-container">
@@ -45,15 +49,18 @@ export const Navbar : FC = () => {
                                 key={item.id}
                                 label={item.label}
                                 id={item.id}
+                                href={item.href}
                             />
                         )) }
-                        <LinkButton
-                            href="/book"
-                            className="fs-7 nav-book"
-                            target="_blank"
-                        >
-                            Book Appointment Now
-                        </LinkButton>
+                        { !hideBookButton ? (
+                            <LinkButton
+                                href="/book"
+                                className="fs-7 nav-book"
+                                target="_blank"
+                            >
+                                Book Appointment Now
+                            </LinkButton>
+                        ) : (<></>) }
                     </div>
                 </div>
             </div>

@@ -6,4 +6,21 @@
             background-color: var(--bs-grey-900);
         }
     }
+
+    .card-img {
+        height: 160px;
+        width: 100%;
+        position: relative;
+
+        img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
+
+.package-card {
+    width: 100%;
+    max-width: 360px;
 }

@@ -1,16 +1,22 @@
 import { Animation } from "@/components/animation";
 import { NotoSans, VarelaRound } from "@/configs/fonts";
 import { FC } from "react";
+import { EventType } from "../types/event-type";
 
-export const EventHeadline: FC = () => (
+interface Props {
+    eventType: EventType
+}
+
+export const EventTypeHeadline: FC<Props> = ({
+    eventType
+}) => (
     <section
         className="main-headline radius-reverse position-relative overflow-hidden"
     >
         <img
             className="position-absolute top-0 start-0 end-0 bottom-0"
-            srcSet="/images/events/headline-1280.webp 900w, /images/events/headline-1600.webp 1280w, /images/events/headline.webp 1600w"
-            src="/images/events/headline.webp"
-            alt="Backdrop"
+            src={eventType.thumbnail}
+            alt={`${eventType.name} thumbnail`}
         />
         <div className="landing-container h-100 position-relative">
             <div className="headline-text h-100 d-flex flex-column justify-content-center align-items-start">
@@ -26,7 +32,7 @@ export const EventHeadline: FC = () => (
                             VarelaRound.className
                         }`}
                     >
-                        Memorable<br/>Event Imaging
+                        { eventType.name }
                     </h1>
                 </Animation>
                 <Animation
@@ -41,7 +47,7 @@ export const EventHeadline: FC = () => (
                             NotoSans.className
                         }`}
                     >
-                        Lyfe Foto is Memorable Imaging provider to your events.
+                        { eventType.description }
                     </p>
                 </Animation>
             </div>
