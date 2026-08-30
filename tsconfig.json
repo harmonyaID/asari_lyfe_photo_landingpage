@@ -15,7 +15,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": false,
+    "incremental": true,
+    "target": "es2020",
     "plugins": [
       {
         "name": "next"
@@ -24,6 +25,9 @@
     "paths": {
       "@/book/*": [
         "./src/module/book/*"
+      ],
+      "@/event-booking/*": [
+        "./src/module/event-booking/*"
       ],
       "@/landing/*": [
         "./src/module/landing/*"
