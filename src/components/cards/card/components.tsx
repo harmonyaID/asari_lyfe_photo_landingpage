@@ -3,12 +3,15 @@ import { CardProps } from "./props";
 
 export const Card : FC<CardProps> = ({
     imgUrl,
+    leftImg,
     className,
     children,
 }) => (
     <section 
         className={`${
             "card"
+        } ${
+            leftImg ? 'left-img' : ''
         } ${
             className || ''
         }`}

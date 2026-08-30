@@ -16,6 +16,7 @@ interface PackageComplimentary extends BaseGlobalModel {
 
 export interface Package extends BaseGlobalModel{
     name            : string
+    slug            : string
     description     : string
     ordering        : number
     price           : number
