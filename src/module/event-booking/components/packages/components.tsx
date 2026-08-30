@@ -1,8 +1,9 @@
 import { FC } from "react";
-import { getEventTypePackages } from "../services/getEventType";
+import { getEventTypePackages } from "@/event-booking/services/getEventType";
 import { Card } from "@/components/cards/card";
 import { Check } from "react-feather";
 import { LinkButton } from "@/components/buttons";
+import { formatCurrency } from "@/helpers/formatter/functions";
 
 interface Props {
     eventTypeSlug: string
@@ -30,6 +31,9 @@ export const Packages : FC<Props> = async ({
                                 <h5 className="card-title">
                                     { eventPackage.name }
                                 </h5>
+                                <h6>
+                                    { formatCurrency(eventPackage.price, eventPackage.currency.symbol || eventPackage.currency.name) }
+                                </h6>
                                 { eventPackage.complimentaries?.map((complimentary) => (
                                     <div 
                                         key={`complimentary-${eventPackage.id}-${complimentary.id}`}
@@ -47,7 +51,7 @@ export const Packages : FC<Props> = async ({
                                 )) }
                             </div>
                             <LinkButton
-                                href={`/book/event/${eventTypeSlug}/${eventPackage.id}`}
+                                href={`/book/event/${eventTypeSlug}/${eventPackage.slug}`}
                                 className="text-center"
                                 target="_blank"
                             >

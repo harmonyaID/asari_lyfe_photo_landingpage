@@ -1,9 +1,9 @@
 import { LandingProvider } from "@/app/providers"
 import { Navbar } from "@/components/navigations/navbar"
 import { Footer } from "@/landing/components"
-import { EventTypeHeadline } from "@/module/event-booking/components/EventTypeHeadline"
-import { Packages } from "@/module/event-booking/components/Packages"
-import { findEventType } from "@/module/event-booking/services/getEventType"
+import { EventTypeHeadline } from "@/event-booking/components/event-type-headline"
+import { Packages } from "@/event-booking/components/packages"
+import { findEventType } from "@/event-booking/services/getEventType"
 import { Metadata } from "next"
 
 interface Props {

@@ -1,14 +1,12 @@
 import { FC, Fragment } from "react";
-import { getEventTypes } from "../services/getEventType";
 import { NunitoSans, VarelaRound } from "@/configs/fonts";
 import { Animation } from "@/components/animation";
 import { Thumbnail } from "@/components/layouts/thumbnail";
 import { LinkButton } from "@/components/buttons";
+import { getEventTypes } from "@/event-booking/services/getEventType";
 
 export const EventTypes : FC = async () => {
     const eventTypes = await getEventTypes()
-
-    console.log(eventTypes)
 
     return (
         <section 

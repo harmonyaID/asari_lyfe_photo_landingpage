@@ -1,7 +1,7 @@
 import { Animation } from "@/components/animation";
 import { NotoSans, VarelaRound } from "@/configs/fonts";
 import { FC } from "react";
-import { EventType } from "../types/event-type";
+import { EventType } from "@/event-booking/types/event-type";
 
 interface Props {
     eventType: EventType
