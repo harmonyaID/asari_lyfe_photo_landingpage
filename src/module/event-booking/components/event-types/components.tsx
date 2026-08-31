@@ -17,7 +17,11 @@ export const EventTypes : FC = async () => {
             }`}
         >
             <div className="d-flex flex-column intro-flex align-items-stretch w-100">
-                { eventTypes?.result?.map((eventType, index) => (
+                { !eventTypes?.result?.length ? (
+                    <div className="text-center">
+                        <h5>No Event Type Found</h5>
+                    </div>
+                ) : eventTypes.result.map((eventType, index) => (
                     <div 
                         className="d-grid grid-cols-lg-5 justify-content-stretch intro"
                         key={`event-type-${eventType.id}-${index}`}

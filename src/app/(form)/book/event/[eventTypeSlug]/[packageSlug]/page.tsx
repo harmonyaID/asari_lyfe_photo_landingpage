@@ -1,6 +1,7 @@
 import { BookingForm } from "@/event-booking/components/booking-form/components"
 import { findEventTypePackage } from "@/event-booking/services/getEventType"
 import { Metadata } from "next"
+import { notFound } from "next/navigation"
 import Script from "next/script"
 
 interface Slugs {
@@ -34,9 +35,13 @@ export default async function BookingPage ({ params, searchParams } : Props) {
     const { eventTypeSlug, packageSlug } = await params
     const eventPackage = await findEventTypePackage(eventTypeSlug, packageSlug)
 
+    if (!eventPackage?.result) {
+        notFound()
+    }
+
     return (
         <>
-            { eventPackage?.result ? (
+            { eventPackage.result ? (
                 <BookingForm eventPackage={eventPackage?.result}/>
             ) : (<></>) }
             <Script src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}`}/>

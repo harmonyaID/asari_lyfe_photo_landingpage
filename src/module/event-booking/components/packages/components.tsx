@@ -20,7 +20,11 @@ export const Packages : FC<Props> = async ({
             <div 
                 className="d-flex gap-2 align-items-stretch justify-content-center"
             >
-                {packagesResponse?.result?.map((eventPackage) => (
+                {!packagesResponse?.result?.length ? (
+                    <div className="text-center">
+                        <h5>No Packages Found</h5>
+                    </div>
+                ) : packagesResponse.result.map((eventPackage) => (
                     <Card
                         key={`package-${eventPackage.id}`}
                         imgUrl={eventPackage.thumbnail}

@@ -5,6 +5,7 @@ import { EventTypeHeadline } from "@/event-booking/components/event-type-headlin
 import { Packages } from "@/event-booking/components/packages"
 import { findEventType } from "@/event-booking/services/getEventType"
 import { Metadata } from "next"
+import { notFound } from "next/navigation"
 
 interface Props {
     params: Promise<{ eventTypeSlug: string }>
@@ -32,21 +33,19 @@ export default async function Page({ params, searchParams } : Props) {
     const { eventTypeSlug } = await params
     const eventTypeResponse = await findEventType(eventTypeSlug)
 
+    if (!eventTypeResponse?.result) {
+        notFound()
+    }
+
     return (
         <LandingProvider>
             <Navbar hideBookButton/>
-            { eventTypeResponse?.result ? (
-                <>
-                    <EventTypeHeadline
-                        eventType={eventTypeResponse?.result}
-                    />
-                    <Packages
-                        eventTypeSlug={eventTypeSlug}
-                    />
-                </>
-            ) : (
-                <></>
-            ) }
+            <EventTypeHeadline
+                eventType={eventTypeResponse?.result}
+            />
+            <Packages
+                eventTypeSlug={eventTypeSlug}
+            />
             <Footer/>
         </LandingProvider>
     )
