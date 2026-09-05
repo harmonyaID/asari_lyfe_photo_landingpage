@@ -2,12 +2,13 @@
 
 import { FC, FormEventHandler, useContext, useState } from "react";
 import { LocationSelect } from "@/location/components/location-select";
-import { DatePicker, Input } from "@/components/inputs";
+import { DatePicker, Input, Timepicker } from "@/components/inputs";
 import { Button } from "@/components/buttons";
 import { BookingFormContext, BookingFormContextType } from "../contexts/BookingFormContext";
 import { Check, ChevronLeft } from "react-feather";
 import { Card } from "@/components/cards/card";
 import { formatCurrency } from "@/helpers/formatter/functions";
+import { TimezoneSelect } from "@/module/misc/components/timezone-select";
 
 export const LocationForm : FC = () => {
     const { 
@@ -90,13 +91,21 @@ export const LocationForm : FC = () => {
                     />
                 </div>
                 <div>
-                    <Input
+                    <Timepicker
                         name="time"
                         label="Start From"
                         value={formData.time}
                         onChange={handleChange}
                         required
-                        type="time"
+                    />
+                </div>
+                <div className="grid-span-2">
+                    <TimezoneSelect
+                        name="timezone"
+                        label="Timezone"
+                        value={formData.timezone}
+                        onChange={handleChange}
+                        required
                     />
                 </div>
                 <div className="grid-span-2">

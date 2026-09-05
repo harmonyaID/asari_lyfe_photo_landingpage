@@ -8,7 +8,7 @@ import { Button } from "@/components/buttons"
 import { ChevronLeft } from "react-feather"
 import Link from "next/link"
 import { Loader } from "@/components/misc"
-import { createBooking } from "@/book/services"
+import { createBooking } from "@/event-booking/services/booking"
 import { BOOKING_NUMBER, BRANCH_PHONE, CONFIRMATION_MESSAGE, SUCCESS_MESSAGE } from "@/configs/session-storage-keys"
 import { useRouter } from "next/navigation"
 import { CreateBookingFormdata } from "@/event-booking/types/booking"
@@ -77,60 +77,47 @@ export const PersonalDataForm : FC = () => {
                         recaptchaAction : action
                     }
 
-                    // createBooking(formRequest)
-                    //     .then(response => {
-                    //         if (!response?.result) {
-                    //             let newPhase = phase
-                    //             if (response?.status.attributes?.length) {
-                    //                 const newErrors = { ...errors }
-                    //                 response.status.attributes.forEach((attr) => {
-                    //                     if (typeof attr == 'string') {
-                    //                         newErrors[attr as ErrorKey] = response.status.message
-                    //                     } else if (typeof attr == 'object') {
-                    //                         newErrors[attr.param as ErrorKey] = attr.msg
-                    //                     }
-                    //                 })
+                    createBooking(formRequest)
+                        .then(response => {
+                            if (!response?.result) {
+                                let newPhase = phase
+                                if (response?.status.attributes?.length) {
+                                    const newErrors = { ...errors }
+                                    response.status.attributes.forEach((attr) => {
+                                        if (typeof attr == 'string') {
+                                            newErrors[attr as ErrorKey] = response.status.message
+                                        } else if (typeof attr == 'object') {
+                                            newErrors[attr.param as ErrorKey] = attr.msg
+                                        }
+                                    })
                                     
-                    //                 setErrors(newErrors)
+                                    setErrors(newErrors)
 
-                    //                 if (('locationId' in newErrors) ||
-                    //                     ('scheduleId' in newErrors) ||
-                    //                     ('date' in newErrors)
-                    //                 ) {
-                    //                     newPhase = 'location'
-                    //                 }
-                    //             }
+                                    if (('packageId' in newErrors) ||
+                                        ('eventTypeId' in newErrors) ||
+                                        ('date' in newErrors)
+                                    ) {
+                                        newPhase = 'location'
+                                    }
+                                }
 
-                    //             if (newPhase != phase) {
-                    //                 setPhase(newPhase)
-                    //             }
+                                if (newPhase != phase) {
+                                    setPhase(newPhase)
+                                }
 
-                    //             return
-                    //         }
+                                return
+                            }
 
-                    //         const number = response.result.number
-                    //         sessionStorage.setItem(BOOKING_NUMBER, number)
+                            const successMsg = response.status.attributes
+                            if (successMsg) {
+                                sessionStorage.setItem(SUCCESS_MESSAGE, JSON.stringify(successMsg))
+                            }
 
-                    //         const confirmationMsg = response.result.confirmationMsg
-                    //         if (confirmationMsg) {
-                    //             sessionStorage.setItem(CONFIRMATION_MESSAGE, JSON.stringify(confirmationMsg))
-                    //         }
-
-                    //         const branchPhone = response.result.branchPhone
-                    //         if (branchPhone) {
-                    //             sessionStorage.setItem(BRANCH_PHONE, branchPhone || '')
-                    //         }
-
-                    //         const successMsg = response.status.attributes
-                    //         if (successMsg) {
-                    //             sessionStorage.setItem(SUCCESS_MESSAGE, JSON.stringify(successMsg))
-                    //         }
-
-                    //         router.push(`/success`)
-                    //     })
-                    //     .finally(() => {
-                    //         setIsSending(false)
-                    //     })
+                            router.push(`book/event/success`)
+                        })
+                        .finally(() => {
+                            setIsSending(false)
+                        })
                 })
         })
     }

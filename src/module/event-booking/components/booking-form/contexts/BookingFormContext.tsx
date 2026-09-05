@@ -31,6 +31,7 @@ export const BookingFormProvider : FC<Props> = ({
     children 
 }) => {
     const [formData, setFormData] = useState<CreateBookingFormdata>({
+        source          : 'Website',
         recaptchaToken  : '',
         recaptchaAction : '',
         date            : '',
@@ -41,6 +42,8 @@ export const BookingFormProvider : FC<Props> = ({
         notes           : '',
         time            : '',
         packageId       : eventPackage.id,
+        eventTypeId     : eventPackage.eventType.id,
+        timezone        : window.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone,
         compilance      : false,
     })
 
@@ -67,6 +70,7 @@ export const BookingFormProvider : FC<Props> = ({
     const reset = useCallback(() => {
         setFormData((prevState) => ({
             ...prevState,
+            source          : 'Website',
             recaptchaToken  : '',
             recaptchaAction : '',
             date            : '',
@@ -77,6 +81,8 @@ export const BookingFormProvider : FC<Props> = ({
             time            : '',
             notes           : '',
             packageId       : eventPackage.id,
+            eventTypeId     : eventPackage.eventType.id,
+            timezone        : window.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone,
             compilance      : false,
         }))
 
