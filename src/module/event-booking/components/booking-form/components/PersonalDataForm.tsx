@@ -79,7 +79,7 @@ export const PersonalDataForm : FC = () => {
 
                     createBooking(formRequest)
                         .then(response => {
-                            if (!response?.result) {
+                            if (response?.status?.code != 200) {
                                 let newPhase = phase
                                 if (response?.status.attributes?.length) {
                                     const newErrors = { ...errors }
@@ -113,7 +113,7 @@ export const PersonalDataForm : FC = () => {
                                 sessionStorage.setItem(SUCCESS_MESSAGE, JSON.stringify(successMsg))
                             }
 
-                            router.push(`book/event/success`)
+                            router.push(`/success/event`)
                         })
                         .finally(() => {
                             setIsSending(false)
