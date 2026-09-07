@@ -30,11 +30,11 @@ export const RescheduleForm : FC<RescheduleFormProps> = ({
         date            : booking?.date || '',
         recaptchaAction : '',
         recaptchaToken  : '',
-        scheduleId      : booking?.schedule?.id || 0,
+        scheduleId      : (booking?.schedule?.id as number) || 0,
         reason          : ''
     })
 
-    const { data: scheduleSetting, isLoading } = useFindScheduleSetting(DAY_OFFS, booking?.location?.id || 0)
+    const { data: scheduleSetting, isLoading } = useFindScheduleSetting(DAY_OFFS, (booking?.location?.id as number) || 0)
     
     const handleChange : InputChangeHandler = ({name, value}) => {
         setFormData(prevState => ({
@@ -103,7 +103,7 @@ export const RescheduleForm : FC<RescheduleFormProps> = ({
                     value={formData.scheduleId}
                     onChange={handleChange}
                     date={formData.date}
-                    locationId={booking?.location?.id || 0}
+                    locationId={(booking?.location?.id as number) || 0}
                 />
                 <Textarea
                     name="reason"

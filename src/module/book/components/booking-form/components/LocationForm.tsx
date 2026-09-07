@@ -19,7 +19,7 @@ export const LocationForm : FC = () => {
         reset,
     } = useContext(BookingFormContext) as BookingFormContextType
 
-    const { data: scheduleSetting } = useFindScheduleSetting(DAY_OFFS, formData.locationId || 0)
+    const { data: scheduleSetting } = useFindScheduleSetting(DAY_OFFS, (formData.locationId as number) || 0)
 
 
     const handleSubmit : FormEventHandler<HTMLFormElement> = (event) => {
