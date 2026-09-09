@@ -10,7 +10,6 @@ export async function getEventTypes () {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
             },
-            cache: 'no-store'
         })
 
         const result : Response<EventType[]> = await response.json()
@@ -39,7 +38,6 @@ export async function findEventType (slug: string) {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
             },
-            cache: 'no-store'
         })
 
         const result : Response<EventType> = await response.json()
@@ -68,7 +66,6 @@ export async function getEventTypePackages (slug: string) {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
             },
-            cache: 'no-store'
         })
 
         const result : Response<Package[]> = await response.json()
@@ -97,7 +94,6 @@ export async function findEventTypePackage (slug: string, packageSlug: string) {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
             },
-            cache: 'no-store'
         })
 
         const result : Response<Package> = await response.json()
