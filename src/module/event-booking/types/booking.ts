@@ -14,3 +14,21 @@ export interface CreateBookingFormdata {
     notes           : string
     compilance      : boolean
 }
+
+export interface BookingFeedbackFormdata {
+    code: string
+    experienceRating: number
+    photographerRating: number
+    adminRating: number
+    photoQualityRating: number
+    priceRatingId: number
+    photoFormatIds?: number[]
+    recommendationScore: number
+    suggestion: string
+    uploadAllowed: boolean
+}
+
+export interface BookingFeedbackFormdataWithToken extends BookingFeedbackFormdata {
+    recaptchaToken: string
+    recaptchaAction: string
+}

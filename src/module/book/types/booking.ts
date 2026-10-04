@@ -59,3 +59,21 @@ export interface DeleteBookingAdjustmentFormdata {
     recaptchaToken      : string
     recaptchaAction     : string
 }
+
+export interface BookingFeedbackFormdata {
+    code: string
+    experienceRating: number
+    photographerRating: number
+    adminRating: number
+    photoQualityRating: number
+    priceRatingId: number
+    photoFormatIds?: number[]
+    recommendationScore: number
+    suggestion: string
+    uploadAllowed: boolean
+}
+
+export interface BookingFeedbackFormdataWithToken extends BookingFeedbackFormdata {
+    recaptchaToken: string
+    recaptchaAction: string
+}

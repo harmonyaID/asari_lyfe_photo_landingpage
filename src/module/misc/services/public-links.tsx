@@ -27,7 +27,10 @@ export async function findPublicLinkByCode (code: string, referenceId: string) {
 
         console.error(result)
 
-        return null
+        return {
+            result  : null,
+            status  : result.status,
+        }
 
     } catch (error) {
         console.error(error)
