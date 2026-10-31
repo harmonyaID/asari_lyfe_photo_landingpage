@@ -114,6 +114,7 @@ export const EventTypeList : FC<Props> = ({
                             <Animation
                                 animation="slide-to-up"
                                 className="border border-grey-900 p-4 rounded-5"
+                                show={index == 0}
                             >
                                 <div className="mobile-event-card d-flex flex-column">
                                     <Thumbnail
