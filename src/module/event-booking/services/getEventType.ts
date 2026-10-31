@@ -2,6 +2,7 @@ import { Response } from "@/types/responses";
 import { FindEventTypePackageUrl, FindEventTypeUrl, GetEventTypePackageUrl, GetEventTypeUrl } from "../urls/event-type";
 import { EventType } from "../types/event-type";
 import { Package } from "../types/package";
+import { DynamicServerError } from "next/dist/client/components/hooks-server-context";
 
 export async function getEventTypes () {
     try {
@@ -10,6 +11,7 @@ export async function getEventTypes () {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
             },
+            cache: 'no-store',
         })
 
         const result : Response<EventType[]> = await response.json()
@@ -26,6 +28,10 @@ export async function getEventTypes () {
         return null
 
     } catch (error) {
+        if (error instanceof DynamicServerError) {
+            throw error
+        }
+        
         console.error(error)
         return null
     }
@@ -38,6 +44,7 @@ export async function findEventType (slug: string) {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
             },
+            cache: 'no-store',
         })
 
         const result : Response<EventType> = await response.json()
@@ -54,6 +61,10 @@ export async function findEventType (slug: string) {
         return null
 
     } catch (error) {
+        if (error instanceof DynamicServerError) {
+            throw error
+        }
+
         console.error(error)
         return null
     }
@@ -66,6 +77,7 @@ export async function getEventTypePackages (slug: string) {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
             },
+            cache: 'no-store',
         })
 
         const result : Response<Package[]> = await response.json()
@@ -82,6 +94,10 @@ export async function getEventTypePackages (slug: string) {
         return null
 
     } catch (error) {
+        if (error instanceof DynamicServerError) {
+            throw error
+        }
+
         console.error(error)
         return null
     }
@@ -110,6 +126,10 @@ export async function findEventTypePackage (slug: string, packageSlug: string) {
         return null
 
     } catch (error) {
+        if (error instanceof DynamicServerError) {
+            throw error
+        }
+        
         console.error(error)
         return null
     }
