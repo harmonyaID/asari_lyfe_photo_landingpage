@@ -47,6 +47,7 @@ export const NavbarItem : FC<NavbarItemProps> = ({
                 isActive ? 'active' : ''
             }`}
             href={url}
+            scroll={false}
         >
             { label }
         </Link>

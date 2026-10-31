@@ -76,10 +76,21 @@
         right: 0;
         bottom: 0;
 
-        opacity: .4;
         background-color: rgba(0, 0, 0);
+    }
 
-        animation: main-thumbnail ease-out 1.5s;
+    &.hidden {
+        &::before {
+            opacity: 1;
+            animation: hide-main-thumbnail ease-out 1.5s;
+        }
+    }
+
+    &:not(.hidden) {
+        &::before {
+            opacity: .4;
+            animation: main-thumbnail ease-out 1.5s;
+        }
     }
 }
 

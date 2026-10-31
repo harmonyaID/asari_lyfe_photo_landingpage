@@ -41,8 +41,6 @@ const FeedbackPage = async ({ params, searchParams } : Props) => {
     const url           = `https://${requestHeaders.get('host')}/event-booking/${number}/feedback?code=${code}`
     const publicLink    = await findPublicLinkByCode(code as string || '', number)
 
-    console.log('A', publicLink)
-
     return (
         <>
             { publicLink?.status?.code != 200 ? (

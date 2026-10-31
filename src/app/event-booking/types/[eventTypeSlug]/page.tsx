@@ -6,6 +6,7 @@ import { Packages } from "@/event-booking/components/packages"
 import { findEventType } from "@/event-booking/services/getEventType"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
+import { HeadlineSetter } from "@/event-booking/components/headline-setter"
 
 interface Props {
     params: Promise<{ eventTypeSlug: string }>
@@ -38,15 +39,14 @@ export default async function Page({ params, searchParams } : Props) {
     }
 
     return (
-        <LandingProvider>
-            <Navbar hideBookButton/>
-            <EventTypeHeadline
-                eventType={eventTypeResponse?.result}
-            />
+        <>
             <Packages
+                eventTypeName={eventTypeResponse.result.name}
                 eventTypeSlug={eventTypeSlug}
             />
-            <Footer/>
-        </LandingProvider>
+            <HeadlineSetter
+                imgUrl={eventTypeResponse.result.thumbnail}
+            />
+        </>
     )
 }

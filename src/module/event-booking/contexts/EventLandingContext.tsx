@@ -3,21 +3,24 @@
 import { createContext, Dispatch, FC, PropsWithChildren, SetStateAction, useContext, useState } from "react"
 
 export interface EventLandingContextType {
-    expanded: boolean
-    setExpanded: Dispatch<SetStateAction<boolean>>
+    folded: boolean
+    setFolded: Dispatch<SetStateAction<boolean>>
+    img: string
+    setImg: Dispatch<SetStateAction<string>>
 }
 
 export const EventLandingContext = createContext<EventLandingContextType|null>(null)
 export const EventLandingProvider : FC<PropsWithChildren> = ({
     children
 }) => {
-    const [expanded, setExpanded] = useState(false)
+    const [folded, setFolded] = useState(true)
+    const [img, setImg] = useState('')
 
     return (
         <EventLandingContext.Provider
             value={{
-                expanded,
-                setExpanded
+                folded, setFolded,
+                img, setImg,
             }}
         >
             { children }

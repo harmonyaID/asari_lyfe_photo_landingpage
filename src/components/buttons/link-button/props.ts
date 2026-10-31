@@ -4,4 +4,5 @@ export interface LinkButtonProps extends Omit<ComponentPropsWithoutRef<'a'>, 'hr
     href    : string
     pill?   : boolean
     outline?: boolean
+    scroll? : boolean
 }
