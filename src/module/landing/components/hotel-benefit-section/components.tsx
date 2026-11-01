@@ -43,6 +43,7 @@ export const HotelBenefitSection : FC = () => (
                                 className="object-fit-cover h-100 w-100"
                                 src="/images/thumbnails/benefit-engaging.webp"
                                 alt="Engaging Activity"
+                                loading="lazy"
                             />
                         </div>
                         <h3 
@@ -66,6 +67,7 @@ export const HotelBenefitSection : FC = () => (
                                 className="object-fit-cover h-100 w-100"
                                 src="/images/thumbnails/benefit-gift.webp"
                                 alt="Memorable Gift"
+                                loading="lazy"
                             />
                         </div>
                         <h3 
@@ -89,6 +91,7 @@ export const HotelBenefitSection : FC = () => (
                                 className="object-fit-cover h-100 w-100"
                                 src="/images/thumbnails/benefit-revenue.webp"
                                 alt="Revenue"
+                                loading="lazy"
                             />
                         </div>
                         <h3 

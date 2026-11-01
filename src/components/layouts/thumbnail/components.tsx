@@ -16,6 +16,7 @@ export const Thumbnail : FC<ThumbnailProps> = ({
         <img 
             src={src}
             alt={alt}
+            loading="lazy"
         />
     </div>
 )

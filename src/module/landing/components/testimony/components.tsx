@@ -23,6 +23,7 @@ export const Testimony : FC<TestimonyProps> = ({
                     className="object-fit-cover w-100 h-100"
                     src={ image ? image : `https://ui-avatars.com/api/?name=${name}&rounded=true&color=FFFFFF&background=0099AB&font-size=0.35` }
                     alt={`${name}'s picture`}
+                    loading="lazy"
                 />
             </div>
             <div>

@@ -37,6 +37,7 @@ export const Gallery : FC = () => {
                                 src={`/images/gallery/gallery-${(index + 1).toString().padStart(2, '0')}.webp`}
                                 alt={`Gallery item #${index + 1}`}
                                 className="object-fit-cover h-100 w-100"
+                                loading="lazy"
                             />
                         </Animation>
                     )) }
@@ -77,6 +78,7 @@ export const Gallery : FC = () => {
                             src={`/images/gallery/gallery-${(index + 1).toString().padStart(2, '0')}.webp`}
                             alt={`Gallery item #${index + 1}`}
                             className="object-fit-cover h-100 w-100"
+                            loading="lazy"
                         />
                     </Animation>
                 </SwiperSlide>

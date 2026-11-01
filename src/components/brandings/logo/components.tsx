@@ -12,6 +12,7 @@ export const Logo : FC<LogoProps> = ({
             height="auto"
             alt={`${process.env.NEXT_PUBLIC_APP_NAME} Logo`}
             className={className}
+            loading="lazy"
         />
     )
 }

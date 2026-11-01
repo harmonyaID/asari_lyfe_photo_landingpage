@@ -22,6 +22,7 @@ export const Card : FC<CardProps> = ({
                     src={imgUrl} 
                     alt="Card image"
                     className="card-img-top"
+                    loading="lazy"
                 />
             </div>
         ) : (<></>) }

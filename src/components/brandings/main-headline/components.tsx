@@ -14,6 +14,7 @@ export const MainHeadline : FC = () => (
             srcSet="/images/background-1280.webp 900w, /images/background-1600.webp 1280w, /images/background.webp 1600w"
             src="/images/background.webp"
             alt="Backdrop"
+            loading="lazy"
         />
         <div className="landing-container h-100 position-relative">
             <div className="headline-text h-100 d-flex flex-column justify-content-center align-items-start">

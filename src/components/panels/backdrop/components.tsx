@@ -13,6 +13,7 @@ export const BackdropPanel : FC = () => {
                     srcSet={ !img ? "/images/background-1280.webp 900w, /images/background-1600.webp 1280w, /images/background.webp 1600w" : undefined }
                     src={ img || "/images/background.webp" }
                     alt="Backdrop"
+                    loading="lazy"
                 />
             </div>
         </section>

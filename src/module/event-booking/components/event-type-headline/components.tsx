@@ -17,6 +17,7 @@ export const EventTypeHeadline: FC<Props> = ({
             className="position-absolute top-0 start-0 end-0 bottom-0"
             src={eventType.thumbnail}
             alt={`${eventType.name} thumbnail`}
+            loading="lazy"
         />
         <div className="landing-container h-100 position-relative">
             <div className="headline-text h-100 d-flex flex-column justify-content-center align-items-start">
