@@ -6,6 +6,7 @@ import { LinkButton } from "@/components/buttons";
 import { formatCurrency } from "@/helpers/formatter/functions";
 import { Animation } from "@/components/animation";
 import { VarelaRound } from "@/configs/fonts";
+import { PackageCard } from "../package-card";
 
 interface Props {
     eventTypeName: string
@@ -44,45 +45,13 @@ export const Packages : FC<Props> = async ({
                     <div className="text-center">
                         <h5>No Packages Found</h5>
                     </div>
-                ) : packagesResponse.result.map((eventPackage) => (
-                    <Card
-                        key={`package-${eventPackage.id}`}
-                        imgUrl={eventPackage.thumbnail}
-                        className="package-card"
-                    >
-                        <div className="d-flex h-100 gap-4 flex-column justify-content-between">
-                            <div>
-                                <h5 className="card-title">
-                                    { eventPackage.name }
-                                </h5>
-                                <h6>
-                                    { formatCurrency(eventPackage.price, eventPackage.currency.symbol || eventPackage.currency.name) }
-                                </h6>
-                                { eventPackage.complimentaries?.map((complimentary) => (
-                                    <div 
-                                        key={`complimentary-${eventPackage.id}-${complimentary.id}`}
-                                        className="d-flex gap-1 align-items-center"
-                                    >
-                                        <div className="flex-grow-0 flex-shrink-0">
-                                            <Check
-                                                className="text-primary"
-                                            />
-                                        </div>
-                                        <div className="flex-grow-1">
-                                            { complimentary.name }
-                                        </div>
-                                    </div>
-                                )) }
-                            </div>
-                            <LinkButton
-                                href={`/book/event/${eventTypeSlug}/${eventPackage.slug}`}
-                                className="text-center"
-                                target="_blank"
-                            >
-                                Book
-                            </LinkButton>
-                        </div>
-                    </Card>
+                ) : packagesResponse.result.map((eventPackage, index) => (
+                    <PackageCard
+                        key={`event-package-${eventPackage.id}`}
+                        eventPackage={eventPackage}
+                        eventTypeSlug={eventTypeSlug}
+                        show={index == 0}
+                    />
                 ))}
             </div>
         </section>
