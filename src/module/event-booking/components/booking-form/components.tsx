@@ -6,7 +6,10 @@ import { BookingFormProvider } from "./contexts/BookingFormContext";
 import { BackdropContext, BackdropContextType } from "@/book/contexts/BackdropContext";
 import { MainForm } from "./components/MainForm";
 
-export const BookingForm : FC<BookingFormProps> = ({ eventPackage }) => {
+export const BookingForm : FC<BookingFormProps> = ({ 
+    eventPackage,
+    logo
+}) => {
     const { setImg } = useContext(BackdropContext) as BackdropContextType
 
     useLayoutEffect(() => {
@@ -17,7 +20,9 @@ export const BookingForm : FC<BookingFormProps> = ({ eventPackage }) => {
         <BookingFormProvider
             eventPackage={eventPackage}
         >
-            <MainForm/>
+            <MainForm
+                logo={logo}
+            />
         </BookingFormProvider>
     )
 }

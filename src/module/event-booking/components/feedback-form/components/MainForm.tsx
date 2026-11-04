@@ -7,12 +7,16 @@ import { Logo } from "@/components/brandings"
 import { ExperienceForm } from "./ExperienceForm"
 import { ProductPriceForm } from "./ProductPriceForm"
 import { LoyalityForm } from "./LoyalityForm"
+import { ComponentWithLogo } from "@/types/components"
 
-interface Props {
+interface Props extends ComponentWithLogo {
     number: string
 }
 
-export const MainForm : FC<Props> = ({ number }) => {
+export const MainForm : FC<Props> = ({ 
+    number,
+    logo
+}) => {
     const {
         phase
     } = useContext(FeedbackFormContext) as FeedbackFormContextType
@@ -25,10 +29,7 @@ export const MainForm : FC<Props> = ({ number }) => {
                 }`}
             >
                 <Link href="/">
-                    <Logo
-                        size={96}
-                        className="mb-4 pb-2"
-                    />
+                    { logo }
                 </Link>
                 <h1 className="fw-light mb-4 page-title">
                     Feedback Form for booking <span className="fw-semibold">#{ number }</span>

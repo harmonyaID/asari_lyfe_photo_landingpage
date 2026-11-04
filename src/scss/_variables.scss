@@ -1,7 +1,7 @@
 @use "sass:map";
 
-$primary: #0099AB;
-$secondary: #009FB2;
+$primary: #c2933b;
+$secondary: #d3ac55;
 
 $grey: (
     100: #18255C,
@@ -40,8 +40,8 @@ $tooltip-max-width: 280px;
 @import "~bootstrap/scss/variables-dark";
 
 $custom-colors: (
-    "accent"    : #009AAC,
-    "highlight" : #12636B,
+    "accent"    : #d3ac55,
+    "highlight" : #c2933b,
     "app-body"  : #F4F6F9,
 );
 

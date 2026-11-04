@@ -1,4 +1,5 @@
 import { SelfAdjustmentSection } from "@/book/components/self-adjustment-form";
+import { Logo } from "@/components/brandings";
 import { getAppName } from "@/helpers/app/functions";
 import { findPublicLinkByCode } from "@/module/misc/services/public-links";
 import { Metadata } from "next";
@@ -14,7 +15,7 @@ export async function generateMetadata({ params, searchParams }: Props) : Promis
     const { number }= await params
     const { code }  = await searchParams
     
-    const appName = getAppName()
+    const appName = await getAppName()
 
     const publicLink = await findPublicLinkByCode(code as string || '', number || '')
     if (!publicLink?.result?.code) {
@@ -59,6 +60,12 @@ const BookingPage = async ({ params, searchParams }: Props) => {
                     number={number}
                     url={url}
                     booking={publicLink.result.reference}
+                    logo={(
+                        <Logo
+                            size={96}
+                            className="mb-4 pb-2"
+                        />
+                    )}
                 />
             ) }
             <Script 

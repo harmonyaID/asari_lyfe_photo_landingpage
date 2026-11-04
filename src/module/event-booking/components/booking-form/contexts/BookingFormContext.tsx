@@ -43,7 +43,7 @@ export const BookingFormProvider : FC<Props> = ({
         time            : '',
         packageId       : eventPackage.id,
         eventTypeId     : eventPackage.eventType.id,
-        timezone        : window.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone,
+        timezone        : window?.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone,
         compilance      : false,
     })
 

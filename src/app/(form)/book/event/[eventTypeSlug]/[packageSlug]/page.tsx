@@ -1,5 +1,8 @@
+import { Logo } from "@/components/brandings"
 import { BookingForm } from "@/event-booking/components/booking-form/components"
 import { findEventTypePackage } from "@/event-booking/services/getEventType"
+import { getAppName } from "@/helpers/app/functions"
+import { getAppSettings } from "@/setting/services/app-setting"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Script from "next/script"
@@ -24,9 +27,12 @@ export async function generateMetadata({ params, searchParams }: Props) : Promis
         title       = `Book ${eventPackage.result.eventType.name} ${eventPackage.result.name}`
         description = eventPackage.result.description
     }
+    
+    const appName = await getAppName()
+    
 
     return {
-        title       : `${title} | ${process.env.NEXT_PUBLIC_APP_NAME || 'Lyfe Foto'}`,
+        title       : `${title} | ${appName}`,
         description : description
     }
 }
@@ -42,7 +48,15 @@ export default async function BookingPage ({ params, searchParams } : Props) {
     return (
         <>
             { eventPackage.result ? (
-                <BookingForm eventPackage={eventPackage?.result}/>
+                <BookingForm 
+                    eventPackage={eventPackage?.result}
+                    logo={(
+                        <Logo
+                            size={96}
+                            className="mb-4 pb-2"
+                        />
+                    )}
+                />
             ) : (<></>) }
             <Script src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}`}/>
         </>

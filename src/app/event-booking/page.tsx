@@ -1,10 +1,19 @@
 import { Metadata } from "next";
 import { EventPageProvider } from "@/event-booking/components/event-page-provider";
 import { HeadlineSetter } from "@/event-booking/components/headline-setter";
+import { getAppSettings } from "@/setting/services/app-setting";
+import { getAppName } from "@/helpers/app/functions";
 
-export const metadata: Metadata = {
-    title: `Memorable Event Imaging Provider | ${ process.env.NEXT_PUBLIC_APP_NAME || 'Lyfe Foto' }`,
+
+export async function generateMetadata() : Promise<Metadata> {
+    
+    const appName = await getAppName()
+    
+    return {
+        title: `Memorable Event Imaging Provider | ${ appName}`,
+    }
 }
+
 
 export default function Home() {
     return (

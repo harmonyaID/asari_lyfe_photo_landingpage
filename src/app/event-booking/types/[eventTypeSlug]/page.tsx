@@ -7,6 +7,8 @@ import { findEventType } from "@/event-booking/services/getEventType"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { HeadlineSetter } from "@/event-booking/components/headline-setter"
+import { getAppSettings } from "@/setting/services/app-setting"
+import { getAppName } from "@/helpers/app/functions"
 
 interface Props {
     params: Promise<{ eventTypeSlug: string }>
@@ -23,9 +25,11 @@ export async function generateMetadata({ params, searchParams }: Props) : Promis
         title       = `Book Your ${eventType.result.name} Photo Session`
         description = `${eventType.result.description}`
     }
+    
+    const appName = await getAppName()
 
     return {
-        title       : `${title} | ${process.env.NEXT_PUBLIC_APP_NAME}`,
+        title       : `${title} | ${appName}`,
         description : description
     }
 }

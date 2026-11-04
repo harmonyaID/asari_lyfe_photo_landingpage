@@ -4,6 +4,7 @@ import { EventLandingProvider } from "@/event-booking/contexts/EventLandingConte
 import { Navbar } from "@/components/navigations/navbar";
 import { Footer } from "@/landing/components";
 import { EventHeadline } from "@/event-booking/components/event-headline";
+import { Logo } from "@/components/brandings";
 
 export default function EventBookingLayout({
     children
@@ -14,7 +15,14 @@ export default function EventBookingLayout({
                 <Navbar hideBookButton/>
                 <EventHeadline/>
                 { children }
-                <Footer/>
+                <Footer
+                    logo={(
+                        <Logo
+                            size={160}
+                            className="mb-4"
+                        />
+                    )}
+                />
             </EventLandingProvider>
         </LandingProvider>
     )

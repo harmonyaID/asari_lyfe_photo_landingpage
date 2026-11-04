@@ -9,7 +9,7 @@ interface Props {
 export async function generateMetadata({ params }: Props) : Promise<Metadata> {
     const { number } = await params
 
-    const appName = getAppName()
+    const appName = await getAppName()
 
     let title       = `Booking ${number} Feedback Submitted`
     let description = `Feedback for booking #${number} successfully submitted`

@@ -5,11 +5,11 @@ import { ErrorKey, FeedbackFormContext, FeedbackFormContextType } from "../conte
 import { Button } from "@/components/buttons"
 import { Checkbox, Radio, Textarea } from "@/components/inputs"
 import { ChevronLeft } from "react-feather"
-import { getAppName } from "@/helpers/app/functions"
 import { usePathname, useRouter } from "next/navigation"
 import { Loader } from "@/components/misc"
 import { BookingFeedbackFormdataWithToken } from "@/event-booking/types/booking"
 import { createBookingFeedback } from "@/event-booking/services/booking"
+import { AppName } from "@/components/brandings"
 
 interface Props {
     number: string
@@ -21,7 +21,6 @@ export const LoyalityForm : FC<Props> = ({ number }) => {
         errors, setErrors,
         phase, setPhase
     } = useContext(FeedbackFormContext) as FeedbackFormContextType
-    const appName = getAppName()
 
     const referralPoint = useMemo(() => Array.from(Array(10).keys()), [])
     const [loading, setLoading] = useState(false)
@@ -131,7 +130,7 @@ export const LoyalityForm : FC<Props> = ({ number }) => {
                     <label
                         className="form-label"
                     >
-                        Would you recommend { appName } to your family and friends?
+                        Would you recommend <AppName/> to your family and friends?
                         <span className="text-danger">*</span>
                     </label>
                     <div className="d-flex justify-content-between gap-1">
@@ -159,7 +158,9 @@ export const LoyalityForm : FC<Props> = ({ number }) => {
                     name="uploadAllowed"
                     checked={formData.uploadAllowed}
                     onChange={handleChange}
-                    label={`I allow the best photo of this session to be uploaded to the social medias of ${appName}`}
+                    label={(
+                        <>I allow the best photo of this session to be uploaded to the social medias of <AppName/></>
+                    )}
                     error={errors.uploadAllowed}
                 />
                 <div className="text-danger fst-italic">

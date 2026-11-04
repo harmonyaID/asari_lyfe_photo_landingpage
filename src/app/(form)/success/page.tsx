@@ -2,12 +2,20 @@ import { BookingNumber } from "@/book/components/booking-number";
 import { SuccessNotification } from "@/book/components/success-notification";
 import { LinkButton } from "@/components/buttons";
 import { SuccessIcon } from "@/components/icons";
+import { getAppName } from "@/helpers/app/functions";
+import { getAppSettings } from "@/setting/services/app-setting";
 import { Metadata } from "next";
 import { FC } from "react";
 
-export const metadata: Metadata = {
-    title: `Bookng Success | ${ process.env.NEXT_PUBLIC_APP_NAME || 'Lyfe Foto' }`
+export async function generateMetadata() : Promise<Metadata> {
+    
+    const appName = await getAppName()
+    
+    return {
+        title: `Booking Success | ${ appName }`
+    }
 }
+
 
 const SuccessPage : FC = () => (
     <section>

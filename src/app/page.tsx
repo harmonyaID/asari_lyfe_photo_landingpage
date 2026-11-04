@@ -1,13 +1,20 @@
-import { MainHeadline } from "@/components/brandings";
+import { Logo, MainHeadline } from "@/components/brandings";
 import { Navbar } from "@/components/navigations/navbar";
 import { BookBtn, Footer, GallerySection, HotelBenefitSection, IntroSection, PartnerSection, SubjectSection, TestimonySection } from "@/landing/components";
 import { LandingProvider } from "./providers";
 import { Section } from "@/components/layouts/section";
 import { Metadata } from "next";
+import { getAppName } from "@/helpers/app/functions";
 
-export const metadata: Metadata = {
-    title: `Memorable Family Staycation Imaging Provider | ${ process.env.NEXT_PUBLIC_APP_NAME || 'Lyfe Foto' }`,
+export async function generateMetadata() : Promise<Metadata> {
+
+    const appName = await getAppName()
+
+    return {
+        title: `Memorable Family Staycation Imaging Provider | ${ appName }`,
+    }
 }
+
 
 export default function Home() {
     return (
@@ -26,7 +33,14 @@ export default function Home() {
             </Section>
             <GallerySection/>
             <PartnerSection/>
-            <Footer/>
+            <Footer
+                logo={(
+                    <Logo
+                        size={160}
+                        className="mb-4"
+                    />
+                )}
+            />
             <BookBtn/>
         </LandingProvider>
     )

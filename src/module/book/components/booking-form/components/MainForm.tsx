@@ -5,10 +5,12 @@ import { BookingFormContext, BookingFormContextType } from "../contexts/BookingF
 import { StatusForm } from "./StatusForm"
 import { LocationForm } from "./LocationForm"
 import { PersonalDataForm } from "./PersonalDataForm"
-import { Logo } from "@/components/brandings"
 import Link from "next/link"
+import { ComponentWithLogo } from "@/types/components"
 
-export const MainForm : FC = () => {
+export const MainForm : FC<ComponentWithLogo> = ({
+    logo
+}) => {
     const { 
         phase
     } = useContext(BookingFormContext) as BookingFormContextType
@@ -23,10 +25,7 @@ export const MainForm : FC = () => {
                 }`}
             >
                 <Link href="/">
-                    <Logo
-                        size={96}
-                        className="mb-4 pb-2"
-                    />
+                    { logo }
                 </Link>
                 <h1 className="fw-light mb-3 page-title">
                     Record Your Memory <span className="fw-semibold">With Us</span>

@@ -14,7 +14,7 @@ export async function generateMetadata({ params, searchParams }: Props) : Promis
     const { number } = await params
     const { code } = await searchParams
 
-    const appName = getAppName()
+    const appName = await getAppName()
 
     const publicLink = await findPublicLinkByCode(code as string || '', number || '')
     if (!publicLink?.result?.code) {
