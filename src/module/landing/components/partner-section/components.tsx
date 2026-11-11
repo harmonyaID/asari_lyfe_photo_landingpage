@@ -55,6 +55,7 @@ export const PartnerSection : FC = () => (
                                 title={ partner.name }
                                 height={120}
                                 width="auto"
+                                loading="lazy"
                             />
                         </Animation>
                     </SwiperSlide>
@@ -85,6 +86,7 @@ export const PartnerSection : FC = () => (
                         src="/images/misc/ornament.svg"
                         className="ornament position-absolute"
                         alt="Ornament"
+                        loading="lazy"
                     />
                 </div>
             </Animation>

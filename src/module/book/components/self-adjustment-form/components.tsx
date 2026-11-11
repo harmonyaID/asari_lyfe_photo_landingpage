@@ -18,7 +18,8 @@ export const SelfAdjustmentSection : FC<SelfAdjustmentProps> = ({
     number,
     url,
     code,
-    booking
+    booking,
+    logo,
 }) => {
 
     const [type, setType] = useState<'cancel'|'reschedule'>()
@@ -50,10 +51,7 @@ export const SelfAdjustmentSection : FC<SelfAdjustmentProps> = ({
                 }`}
             >
                 <Link href="/">
-                    <Logo
-                        size={96}
-                        className="mb-4 pb-2"
-                    />
+                    { logo }
                 </Link>
                 <h1 className="fw-light mb-3 page-title">
                     { booking?.adjustmentRequest ? (

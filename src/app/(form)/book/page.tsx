@@ -1,12 +1,20 @@
 import { BookingForm } from "@/book/components/booking-form";
+import { getAppName } from "@/helpers/app/functions";
+import { getAppSettings } from "@/setting/services/app-setting";
 import { Metadata } from "next";
 import Script from "next/script";
 import { FC } from "react";
 
-export const metadata: Metadata = {
-    title: `Book Your Photo Session | ${ process.env.NEXT_PUBLIC_APP_NAME }`,
-    description: "Book your photo session with our team",
-};
+
+export async function generateMetadata() : Promise<Metadata> {
+
+    const appName = await getAppName()
+
+    return {
+        title: `Book Your Photo Session | ${ appName }`,
+        description: "Book your photo session with our team",
+    }
+}
 
 const BookingPage : FC = () => (
     <>

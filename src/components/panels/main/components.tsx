@@ -1,3 +1,4 @@
+import { AppName } from "@/components/brandings";
 import { FC, PropsWithChildren } from "react";
 
 export const MainPanel : FC<PropsWithChildren> = ({
@@ -26,7 +27,7 @@ export const MainPanel : FC<PropsWithChildren> = ({
                         className="text-grey-600"
                         title="copyright"
                     >
-                        © {year} { process.env.NEXT_PUBLIC_APP_NAME }
+                        © {year} <AppName/>
                     </div>
                     <div
                         className="text-grey-400 text-end"

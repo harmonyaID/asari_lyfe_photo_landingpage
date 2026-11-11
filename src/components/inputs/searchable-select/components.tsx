@@ -235,12 +235,12 @@ export const SearchableSelect : FC<SearchableSelectProps> = ({
                 return
             }
 
-            if (typeof value[0] == 'number') {
+            if (typeof value[0] == 'number' || typeof value[0] == 'string') {
                 if (!data.length) {
                     return
                 }
 
-                const items = data.filter((item) => (value as number[]).includes(item.id))
+                const items = data.filter((item) => (value as (number|string)[]).includes(item.id))
                 setSelectedItems(items)
                 triggerEffectRef.current = false
 
@@ -252,29 +252,12 @@ export const SearchableSelect : FC<SearchableSelectProps> = ({
             return
         }
 
-        if (typeof value == 'number') {
+        if (typeof value == 'number' || typeof value == 'string') {
             if (!data.length) {
                 return
             }
 
             const item = data.find((item) => item.id == value)
-            setSelectedItems(item ? [item] : [])
-            triggerEffectRef.current = false
-
-            return
-        }
-
-        if (typeof value == 'string') {
-            const parsed = parseInt(value)
-            if (Number.isNaN(parsed)) {
-                return
-            }
-
-            if (!data.length) {
-                return
-            }
-
-            const item = data?.find((item) => item.id == value)
             setSelectedItems(item ? [item] : [])
             triggerEffectRef.current = false
 

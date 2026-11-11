@@ -1,13 +1,14 @@
-import { FC } from "react";
+import { forwardRef } from "react";
 import { StarProps } from "./props";
 
-export const Star : FC<StarProps> = ({
+export const Star = forwardRef<SVGSVGElement, StarProps>(({
     width,
     height,
     variant = 'full',
     ...props
-}) => (
+}, ref) => (
     <svg 
+        ref={ref}
         xmlns="http://www.w3.org/2000/svg"
         width={width}
         height={height}
@@ -32,4 +33,6 @@ export const Star : FC<StarProps> = ({
             />
         )}
     </svg>
-)
+))
+
+Star.displayName = 'Star'

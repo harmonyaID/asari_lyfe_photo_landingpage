@@ -1,0 +1,1 @@
+export const AppSettingTag = 'app-setting'

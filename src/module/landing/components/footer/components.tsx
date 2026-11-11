@@ -9,13 +9,16 @@ import { useGetLocation } from "@/location/hooks"
 import Link from "next/link"
 import { FC, useContext, useEffect, useRef } from "react"
 import { Mail, MapPin, Phone } from "react-feather"
+import { FooterProps } from "./props"
 
 const filter = {
     isActive        : '1',
     isBookingable   : '1'
 }
 
-export const Footer : FC = () => {
+export const Footer : FC<FooterProps> = ({
+    logo
+}) => {
     const elementRef = useRef<HTMLElement>(null)
     const { observe, unobserve } = useContext(NavbarContext) as NavbarContextType
 
@@ -50,10 +53,7 @@ export const Footer : FC = () => {
                 }`}
             >
                 <section>
-                    <Logo
-                        size={160}
-                        className="mb-4"
-                    />
+                    { logo }
                     <div className="px-3">
                         <p className="mb-4">Follow Us On:</p>
                         <div className="d-flex flex-wrap gap-3">

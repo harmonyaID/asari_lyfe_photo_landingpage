@@ -13,6 +13,7 @@ export const BookBtn : FC = () => (
             title="Book Now"
             width={72}
             height={72}
+            loading="lazy"
         />
     </Link>
 )

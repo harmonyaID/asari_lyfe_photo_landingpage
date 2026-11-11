@@ -1,5 +1,7 @@
 import { BookingForm } from "@/book/components/booking-form";
+import { getAppName } from "@/helpers/app/functions";
 import { findLocationBySlug } from "@/location/services/findLocationBySlug";
+import { getAppSettings } from "@/setting/services/app-setting";
 import { Metadata } from "next";
 import Script from "next/script";
 
@@ -19,8 +21,10 @@ export async function generateMetadata({ params, searchParams }: Props) : Promis
         description = `${description} at ${location.result.name}`
     }
 
+    const appName = await getAppName()
+
     return {
-        title       : `${title} | ${process.env.NEXT_PUBLIC_APP_NAME}`,
+        title       : `${title} | ${appName}`,
         description : description
     }
 }

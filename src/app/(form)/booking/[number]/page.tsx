@@ -1,4 +1,6 @@
 import { SelfAdjustmentSection } from "@/book/components/self-adjustment-form";
+import { Logo } from "@/components/brandings";
+import { getAppName } from "@/helpers/app/functions";
 import { findPublicLinkByCode } from "@/module/misc/services/public-links";
 import { Metadata } from "next";
 import { headers } from "next/headers";
@@ -12,11 +14,13 @@ interface Props {
 export async function generateMetadata({ params, searchParams }: Props) : Promise<Metadata> {
     const { number }= await params
     const { code }  = await searchParams
+    
+    const appName = await getAppName()
 
     const publicLink = await findPublicLinkByCode(code as string || '', number || '')
     if (!publicLink?.result?.code) {
         return {
-            title: `Invalid Self-Adjustment Page | ${process.env.NEXT_PUBLIC_APP_NAME}`,
+            title: `Invalid Self-Adjustment Page | ${appName}`,
             description: 'Invalid self-adjustment page, please make sure the URL you inputted is correct'
         }
     }
@@ -25,7 +29,7 @@ export async function generateMetadata({ params, searchParams }: Props) : Promis
     let description = `Reschedule or cancel appointment #${number}`
 
     return {
-        title       : `${title} | ${process.env.NEXT_PUBLIC_APP_NAME}`,
+        title       : `${title} | ${appName}`,
         description : description
     }
 }
@@ -56,6 +60,12 @@ const BookingPage = async ({ params, searchParams }: Props) => {
                     number={number}
                     url={url}
                     booking={publicLink.result.reference}
+                    logo={(
+                        <Logo
+                            size={96}
+                            className="mb-4 pb-2"
+                        />
+                    )}
                 />
             ) }
             <Script 

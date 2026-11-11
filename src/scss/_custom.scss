@@ -18,6 +18,27 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 
+    transition: height 350ms ease-out;
+    transition-behavior: allow-discrete;
+
+    &.full-screen {
+        height: 80vh;
+    }
+
+    &.wrapped {
+        height: 25vh;
+    }
+
+    &.radius-reverse {
+        border-radius: 50% / 10% 18%;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+
+        img {
+            transform: rotateY(0deg);
+        }
+    }
+
     .headline-text {
         max-width: 640px;
     }
@@ -37,6 +58,14 @@
         height: 100%;
         transform: rotateY(180deg);
         z-index: -1;
+
+        transition: object-position 350ms ease-out;
+    }
+
+    &.wrapped {
+        img {
+            object-position: 50% 30%;
+        }
     }
 
     &::before {
@@ -47,10 +76,21 @@
         right: 0;
         bottom: 0;
 
-        opacity: .4;
         background-color: rgba(0, 0, 0);
+    }
 
-        animation: main-thumbnail ease-out 1.5s;
+    &.hidden {
+        &::before {
+            opacity: 1;
+            animation: hide-main-thumbnail ease-out 1.5s;
+        }
+    }
+
+    &:not(.hidden) {
+        &::before {
+            opacity: .4;
+            animation: main-thumbnail ease-out 1.5s;
+        }
     }
 }
 
@@ -87,6 +127,14 @@
 
     border-radius: 2rem;
 
+    &.small {
+        height: 12rem;
+
+        @include media-breakpoint-up(md) {
+            height: 18rem;
+        }
+    }
+
     @include media-breakpoint-up(lg) {
         height: 30vw;
     }
@@ -106,12 +154,26 @@
 
 .intro-flex {
     gap: 9rem;
+
+    &.no-gap {
+        gap: 2rem;
+
+        @include media-breakpoint-up(lg) {
+            gap: 0;
+        }
+    }
 }
 
 .intro {
     width: 100%;
     justify-content: space-between;
     gap: 3.25rem;
+
+    &.no-gap {
+        @include media-breakpoint-up(lg) {
+            gap: 0 !important;
+        }
+    }
 
     @include media-breakpoint-up(xl) {
         gap: 7.5rem
@@ -331,4 +393,41 @@
 
 .grecaptcha-badge {
     display: none;
+}
+
+.mobile-event-card {
+    max-width: 320px;
+
+    @include media-breakpoint-up(md) {
+        max-width: 640px;
+    }
+
+    margin-left: auto;
+    margin-right: auto;
+    gap: 1.75rem;
+}
+
+.event-package-card {
+    .thumbnail {
+        width: 320px;
+        height: 180px;
+    }
+
+    .package-description {
+        flex-direction: column;
+        align-items: center;
+
+        section {
+            width: 100%;
+        }
+
+        @include media-breakpoint-up(lg) {
+            flex-direction: row;
+            justify-content: space-between;
+
+            section {
+                width: unset;
+            }
+        }
+    }
 }

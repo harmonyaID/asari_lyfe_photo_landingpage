@@ -13,6 +13,11 @@
     to { opacity: .4; }
 }
 
+@keyframes hide-main-thumbnail {
+    from { opacity: .4; }
+    to { opacity: 1; }
+}
+
 @keyframes slide-to-right {
     from {
         transform: translateX(-25%);

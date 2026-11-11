@@ -6,8 +6,14 @@ export interface CreatedBy {
 }
 
 export interface BaseModel extends Record<string, any> {
-    id          : number
+    id          : number|string
     location?   : Location
+    createdBy?  : CreatedBy
+    createdAt?  : string
+}
+
+export interface BaseGlobalModel extends Record<string, any> {
+    id          : number
     createdBy?  : CreatedBy
     createdAt?  : string
 }

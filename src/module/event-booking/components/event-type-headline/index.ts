@@ -1,0 +1,1 @@
+export { EventTypeHeadline } from "./components"

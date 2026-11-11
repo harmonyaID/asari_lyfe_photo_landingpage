@@ -1,4 +1,6 @@
 import { SuccessIcon } from "@/components/icons";
+import { getAppName } from "@/helpers/app/functions";
+import { getAppSettings } from "@/setting/services/app-setting";
 import { Metadata } from "next";
 
 interface Props {
@@ -12,8 +14,10 @@ export async function generateMetadata({ params, searchParams }: Props) : Promis
     let title       = `Appointment #${number} Cancelled`
     let description = `Appointment #${number} successfully cancelled`
 
+    const appName = await getAppName()
+
     return {
-        title       : `${title} | ${process.env.NEXT_PUBLIC_APP_NAME}`,
+        title       : `${title} | ${appName}`,
         description : description
     }
 }

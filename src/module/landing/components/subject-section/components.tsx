@@ -18,6 +18,7 @@ export const SubjectSection : FC = () => (
                     src="/images/thumbnails/outdoor-location.webp"
                     alt="Outdoor locations"
                     className="object-fit-cover h-100 w-100"
+                    loading="lazy"
                 />
             </Animation>
             <Animation
@@ -63,6 +64,7 @@ export const SubjectSection : FC = () => (
                     src="/images/thumbnails/subject.webp"
                     alt="Outdoor locations"
                     className="object-fit-cover h-100 w-100"
+                    loading="lazy"
                 />
             </Animation>
             <Animation

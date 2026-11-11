@@ -5,7 +5,7 @@ import { ReactNode } from "react";
 export interface SearchableSelectProps extends Omit<SelectProps, 'value' | 'options'> {
     multiple?           : boolean
     data                : BaseModel[]
-    value?              : number | number[] | BaseModel | BaseModel[]
+    value?              : string | string[] | number | number[] | BaseModel | BaseModel[]
     returnsObject?      : boolean
     search?             : string
     itemLabelKey        : string

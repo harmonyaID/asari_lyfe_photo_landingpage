@@ -6,4 +6,41 @@
             background-color: var(--bs-grey-900);
         }
     }
+
+    .card-img {
+        height: 160px;
+        width: 100%;
+        position: relative;
+
+        img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    &.left-img {
+        flex-direction: row;
+
+        .card-img {
+            img {
+                border-top-right-radius: 0;
+                border-bottom-left-radius: var(--bs-card-inner-border-radius);
+            }
+
+            flex-shrink: 0;
+            flex-grow: 0;
+            height: 100%;
+            width: 96px;
+        }
+
+        .card-body {
+            flex-grow: 1;
+        }
+    }
+}
+
+.package-card {
+    width: 100%;
+    max-width: 360px;
 }

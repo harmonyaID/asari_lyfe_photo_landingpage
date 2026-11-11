@@ -2,7 +2,7 @@ export interface ResponseStatus {
     code        : number
     message     : string
     internalMsg : string|null
-    attributes  : string[]|null
+    attributes  : {param: string, msg: string}[]|string[]|null
 }
 
 export interface ResponsePagination {

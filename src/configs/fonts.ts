@@ -3,7 +3,8 @@ import {
     Noto_Sans, 
     Nunito_Sans, 
     Poppins as FontPoppins, 
-    Varela_Round 
+    Varela_Round, 
+    Nunito
 } from "next/font/google";
 
 export const NotoSans = Noto_Sans({ 
@@ -11,7 +12,7 @@ export const NotoSans = Noto_Sans({
     subsets: ['latin'],
 })
 
-export const NunitoSans = Nunito_Sans({ 
+export const NunitoSans = Nunito({ 
     display: 'swap',
     subsets: ['latin'],
 })
